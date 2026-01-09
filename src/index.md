@@ -4,41 +4,88 @@ toc: false
 
 <div class="hero">
   <h1>Lets learn D3</h1>
+  <h2>D3 demystified: No wizardry required (though you'll feel like a wizard)</h2>
 </div>
 
-<!-- <div class="grid grid-cols-2" style="grid-auto-rows: 504px;">
-  <div class="card">${
-    resize((width) => Plot.plot({
-      title: "Your awesomeness over time 🚀",
-      subtitle: "Up and to the right!",
-      width,
-      y: {grid: true, label: "Awesomeness"},
-      marks: [
-        Plot.ruleY([0]),
-        Plot.lineY(aapl, {x: "Date", y: "Close", tip: true})
-      ]
-    }))
-  }</div>
-  <div class="card">${
-    resize((width) => Plot.plot({
-      title: "How big are penguins, anyway? 🐧",
-      width,
-      grid: true,
-      x: {label: "Body mass (g)"},
-      y: {label: "Flipper length (mm)"},
-      color: {legend: true},
-      marks: [
-        Plot.linearRegressionY(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species"}),
-        Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", tip: true})
-      ]
-    }))
-  }</div>
-</div> -->
+
+### Session 1: Web Development Basics
+
+Before diving into D3, you'll need to understand the core web technologies it's built on. This session covers:
+
+1. [Initial Setup](initial-setup) - Get your development environment ready
+2. [Basic HTML](basic-html) - Learn the structure of web pages
+3. [Basic CSS](basic-css) - Style and layout fundamentals
+4. [Basic SVG](basic-svg) - Scalable Vector Graphics for data visualization
+5. [Basic JavaScript](basic-js) - The programming language that powers D3
+
+---
+
+### Session 2: D3 Basics
+
+*Coming soon - Understanding D3 fundamentals, selections, and data binding*
+
+---
+
+### Session 3: D3 Simple Charts
+
+*Coming soon - Bar charts, line charts, and basic visualizations*
+
+---
+
+### Session 4: D3 Intermediate Charts
+
+*Coming soon - Scatter plots, area charts, and more complex visualizations*
+
+---
+
+### Session 5: D3 Advanced Charts
+
+*Coming soon - Hierarchical data, force layouts, and advanced techniques*
+
+---
+
+### Session 6: D3 Custom Charts
+
+*Coming soon - Building your own custom visualizations from scratch*
+
+---
+
+### Session 7: D3 and Observable Notebooks
+
+*Coming soon - Working with Observable for interactive data exploration*
+
+---
+
+### Session 8: Modern Web Development with D3
+
+*Coming soon - Integrating D3 with modern JavaScript workflows*
+
+---
+
+### Session 9: GitHub, Git, and Git Pages
+
+*Coming soon - Version control and deploying your visualizations*
+
+---
+
+### Session 10: D3 and Vue.js
+
+*Coming soon - Combining D3 with the Vue.js framework*
+
+---
+
+### Session 11: D3 and Svelte.js
+
+*Coming soon - Integrating D3 with Svelte for reactive visualizations*
 
 ---
 
 
 <style>
+
+  * {
+        font-family: sans-serif;
+    }
 
 .hero {
   display: flex;

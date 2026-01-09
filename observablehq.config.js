@@ -1,43 +1,77 @@
 // See https://observablehq.com/framework/config for documentation.
 export default {
-  // The app’s title; used in the sidebar and webpage titles.
   title: "Lets learn D3",
-
-  // The pages and sections in the sidebar. If you don’t specify this option,
-  // all pages will be listed in alphabetical order. Listing pages explicitly
-  // lets you organize them into sections and have unlisted pages.
   pages: [
-    {name: "Initial setup", path: "/initial-setup"},
-    {name: "Basic HTML", path: "/basic-html"},
-    {name: "Basic CSS", path: "/basic-css"},
-    {name: "Basic SVG", path: "/basic-svg"},
-    {name: "Basic Javascript", path: "/basic-js"},
+    {
+      name: "Session 1: Web development basics",
+      pages: [
+        { name: "Initial setup", path: "/initial-setup" },
+        { name: "Basic HTML", path: "/basic-html" },
+        { name: "Basic CSS", path: "/basic-css" },
+        { name: "Basic SVG", path: "/basic-svg" },
+        { name: "Basic Javascript", path: "/basic-js" },
+      ]
+    },
+    {
+      name: "Session 2: D3 basics",
+      open: false,
+      pages: []
+    },
+    {
+      name: "Session 3: D3 simple charts",
+      open: false,
+      pages: []
+    },
+    {
+      name: "Session 4: D3 intermediate charts",
+      open: false,
+      pages: []
+    },
+    {
+      name: "Session 5: D3 advanced charts",
+      open: false,
+      pages: []
+    },
+    {
+      name: "Session 6: D3 custom charts",
+      open: false,
+      pages: []
+    },
+    {
+      name: "Session 7: D3 and observable notebooks",
+      open: false,
+      pages: []
+    },
+    {
+      name: "Session 8: Modern web development with D3",
+      open: false,
+      pages: []
+    },
+    {
+      name: "Session 9: Github, git and git pages",
+      open: false,
+      pages: []
+    },
+    {
+      name: "Session 10: D3 and Vue.js",
+      open: false,
+      pages: []
+    },
+    {
+      name: "Session 11: D3 and Svelte.js",
+      open: false,
+      pages: []
+    },
   ],
-  // pages: [
-  //   {
-  //     name: "Examples",
-  //     pages: [
-  //       {name: "Dashboard", path: "/example-dashboard"},
-  //       {name: "Report", path: "/example-report"}
-  //     ]
-  //   }
-  // ],
-
-  // Content to add to the head of the page, e.g. for a favicon:
   head: '<link rel="icon" href="icon.png" type="image/png" sizes="32x32">',
-
-  // The path to the source root.
   root: "src",
-
-  // Some additional configuration options and their defaults:
   theme: "dashboard", // try "light", "dark", "slate", etc.
-  // header: "", // what to show in the header (HTML)
   footer: `<div style="display: flex; align-items: center; ">
   <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
     <img src="icon.png" width="32" height="32"/>
-    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3 | Urmila J</span>
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
   </a>
-  </div>`, // what to show in the footer (HTML)
+  </div>`,
   // sidebar: true, // whether to show the sidebar
   // toc: true, // whether to show the table of contents
   // pager: true, // whether to show previous & next links in the footer
