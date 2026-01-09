@@ -248,7 +248,7 @@ Using D3, select SVG elements and:
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
 <script>
-    // Select the SVG
+    // Select the SVG tag
     const svg = d3.select("svg");
     
     // Change circle color
