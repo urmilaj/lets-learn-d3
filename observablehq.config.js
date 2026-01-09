@@ -10,6 +10,8 @@ export default {
         { name: "Basic CSS", path: "/basic-css" },
         { name: "Basic SVG", path: "/basic-svg" },
         { name: "Basic Javascript", path: "/basic-js" },
+        { name: "D3 example", path: "/d3-example-1" },
+        {name: "Exercises", path: "/exercises-1"}
       ]
     },
     {
