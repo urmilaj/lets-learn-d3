@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Exercises | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="modulepreload" href="./_observablehq/client.28f3e803.js">
+<link rel="modulepreload" href="./_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.73a8ec5a.js">
+<link rel="icon" href="./_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "./_observablehq/client.28f3e803.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Lets learn D3</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="./basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="./basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="./basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="./basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="./d3-example-1">D3 example</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./exercises-1">Exercises</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#exercise-1-html-basics">Exercise 1: HTML Basics</a></li>
+<li class="observablehq-secondary-link"><a href="#exercise-2-css-styling">Exercise 2: CSS Styling</a></li>
+<li class="observablehq-secondary-link"><a href="#exercise-3-java-script-basics">Exercise 3: JavaScript Basics</a></li>
+<li class="observablehq-secondary-link"><a href="#exercise-4-svg-drawing">Exercise 4: SVG Drawing</a></li>
+<li class="observablehq-secondary-link"><a href="#exercise-5-d3-selection-basics">Exercise 5: D3 Selection Basics</a></li>
+<li class="observablehq-secondary-link"><a href="#exercise-6-d3-select-and-modify-svg">Exercise 6: D3 Select and Modify SVG</a></li>
+<li class="observablehq-secondary-link"><a href="#challenge-combine-everything">Challenge: Combine Everything!</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h3 id="practice-exercises" tabindex="-1"><a class="observablehq-header-anchor" href="#practice-exercises">Practice Exercises</a></h3>
+<p>These exercises will help you practice what you've learned in Session 1. Start with HTML, then move through CSS, JavaScript, SVG, and finally some simple D3 selections.</p>
+<hr>
+<h2 id="exercise-1-html-basics" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-1-html-basics">Exercise 1: HTML Basics</a></h2>
+<p><strong>Task:</strong> Create a simple HTML page structure</p>
+<p>Create an HTML file with:</p>
+<ul>
+<li>A proper DOCTYPE and html structure</li>
+<li>A head section with a title "My First Web Page"</li>
+<li>A body with:
+<ul>
+<li>An h1 heading that says "Welcome to My Page"</li>
+<li>A paragraph describing yourself</li>
+<li>An unordered list with 3 of your favorite hobbies</li>
+<li>A div with an id of "chart-container"</li>
+</ul>
+</li>
+</ul>
+<details>
+<summary>View Solution</summary>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My First Web Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to My Page&lt;/h1&gt;
+    &lt;p&gt;Hi! I'm learning web development and D3.js for data visualization.&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Reading&lt;/li&gt;
+        &lt;li&gt;Coding&lt;/li&gt;
+        &lt;li&gt;Hiking&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div id="chart-container"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</details>
+<hr>
+<h2 id="exercise-2-css-styling" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-2-css-styling">Exercise 2: CSS Styling</a></h2>
+<p><strong>Task:</strong> Style your HTML page</p>
+<p>Add a style section to your HTML page and:</p>
+<ul>
+<li>Change the background color of the body to a light blue</li>
+<li>Center the h1 heading and make it dark blue</li>
+<li>Give the paragraph a maximum width of 600px and center it</li>
+<li>Style the list items with a different color</li>
+<li>Give the div with id "chart-container" a border, padding, and background color</li>
+</ul>
+<details>
+<summary>View Solution</summary>
+<pre><code>&lt;style&gt;
+    body {
+        background-color: #e3f2fd;
+        font-family: sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+    
+    h1 {
+        color: #1565c0;
+        text-align: center;
+    }
+    
+    p {
+        max-width: 600px;
+        margin: 20px auto;
+        line-height: 1.6;
+    }
+    
+    li {
+        color: #424242;
+        margin: 10px 0;
+    }
+    
+    #chart-container {
+        border: 2px solid #1565c0;
+        padding: 20px;
+        background-color: white;
+        max-width: 800px;
+        margin: 20px auto;
+    }
+&lt;/style&gt;
+</code></pre>
+</details>
+<hr>
+<h2 id="exercise-3-java-script-basics" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-3-java-script-basics">Exercise 3: JavaScript Basics</a></h2>
+<p><strong>Task:</strong> Add interactivity with JavaScript</p>
+<p>Add a script section to your page and:</p>
+<ul>
+<li>Create a variable called <code>userName</code> with your name</li>
+<li>Create a function called <code>greetUser</code> that displays an alert saying "Hello, [userName]!"</li>
+<li>Add a button to your HTML that calls this function when clicked</li>
+<li>Create an array of 5 numbers and calculate their sum using a loop</li>
+</ul>
+<details>
+<summary>View Solution</summary>
+<p>HTML:</p>
+<pre><code>&lt;button id="greet-btn"&gt;Click to Greet&lt;/button&gt;
+&lt;p id="sum-display"&gt;&lt;/p&gt;
+</code></pre>
+<p>JavaScript:</p>
+<pre><code>&lt;script&gt;
+    // Variable with name
+    const userName = "Alex";
+    
+    // Function to greet user
+    function greetUser() {
+        alert("Hello, " + userName + "!");
+    }
+    
+    // Add click event to button
+    document.getElementById("greet-btn").addEventListener("click", greetUser);
+    
+    // Array of numbers
+    const numbers = [10, 25, 30, 15, 20];
+    let sum = 0;
+    
+    // Calculate sum using loop
+    for (let i = 0; i &lt; numbers.length; i++) {
+        sum += numbers[i];
+    }
+    
+    // Display the sum
+    document.getElementById("sum-display").textContent = "Sum of numbers: " + sum;
+&lt;/script&gt;
+</code></pre>
+</details>
+<hr>
+<h2 id="exercise-4-svg-drawing" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-4-svg-drawing">Exercise 4: SVG Drawing</a></h2>
+<p><strong>Task:</strong> Create basic shapes with SVG</p>
+<p>Inside your chart-container div, add an SVG element and:</p>
+<ul>
+<li>Set the SVG width to 400 and height to 300</li>
+<li>Draw a blue circle at position (100, 100) with radius 50</li>
+<li>Draw a red rectangle at position (200, 50) with width 120 and height 80</li>
+<li>Add a green line from (50, 250) to (350, 250) with stroke-width of 3</li>
+<li>Add a text element at (200, 150) that says "My First SVG"</li>
+</ul>
+<details>
+<summary>View Solution</summary>
+<pre><code>&lt;div id="chart-container"&gt;
+    &lt;svg width="400" height="300" style="border: 1px solid #ccc;"&gt;
+        &lt;!-- Circle --&gt;
+        &lt;circle cx="100" cy="100" r="50" fill="blue" /&gt;
+        
+        &lt;!-- Rectangle --&gt;
+        &lt;rect x="200" y="50" width="120" height="80" fill="red" /&gt;
+        
+        &lt;!-- Line --&gt;
+        &lt;line x1="50" y1="250" x2="350" y2="250" stroke="green" stroke-width="3" /&gt;
+        
+        &lt;!-- Text --&gt;
+        &lt;text x="200" y="150" text-anchor="middle" fill="black" font-size="16"&gt;
+            My First SVG
+        &lt;/text&gt;
+    &lt;/svg&gt;
+&lt;/div&gt;
+</code></pre>
+</details>
+<hr>
+<h2 id="exercise-5-d3-selection-basics" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-5-d3-selection-basics">Exercise 5: D3 Selection Basics</a></h2>
+<p><strong>Task:</strong> Use D3 to manipulate DOM elements (similar to JavaScript DOM manipulation)</p>
+<p>Load D3 library and use D3 selections to:</p>
+<ul>
+<li>Select the h1 element and change its text color to purple</li>
+<li>Select the paragraph and add some bold text to it</li>
+<li>Select the chart-container and change its background color</li>
+<li>Create a new paragraph element and append it to the body</li>
+</ul>
+<details>
+<summary>View Solution</summary>
+<pre><code>&lt;!-- Add D3 library --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // Select h1 and change color
+    d3.select("h1").style("color", "purple");
+    
+    // Select paragraph and add bold text
+    d3.select("p").append("strong").text(" This text was added with D3!");
+    
+    // Select chart-container and change background
+    d3.select("#chart-container").style("background-color", "#fff3e0");
+    
+    // Create a new paragraph and append to body
+    d3.select("body")
+        .append("p")
+        .text("This paragraph was created using D3.select()!")
+        .style("text-align", "center")
+        .style("color", "green");
+&lt;/script&gt;
+</code></pre>
+</details>
+<hr>
+<h2 id="exercise-6-d3-select-and-modify-svg" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-6-d3-select-and-modify-svg">Exercise 6: D3 Select and Modify SVG</a></h2>
+<p><strong>Task:</strong> Use D3 to select and modify SVG elements</p>
+<p>Using D3, select SVG elements and:</p>
+<ul>
+<li>Change the circle's fill color to orange</li>
+<li>Change the rectangle's opacity to 0.5</li>
+<li>Change the line's stroke color to blue</li>
+<li>Add a new circle to the SVG at position (300, 200) with radius 30</li>
+</ul>
+<details>
+<summary>View Solution</summary>
+<pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // Select the SVG tag
+    const svg = d3.select("svg");
+    
+    // Change circle color
+    svg.select("circle").attr("fill", "orange");
+    
+    // Change rectangle opacity
+    svg.select("rect").attr("opacity", 0.5);
+    
+    // Change line color
+    svg.select("line").attr("stroke", "blue");
+    
+    // Add new circle
+    svg.append("circle")
+        .attr("cx", 300)
+        .attr("cy", 200)
+        .attr("r", 30)
+        .attr("fill", "pink")
+        .attr("stroke", "black")
+        .attr("stroke-width", 2);
+&lt;/script&gt;
+</code></pre>
+</details>
+<hr>
+<h2 id="challenge-combine-everything" tabindex="-1"><a class="observablehq-header-anchor" href="#challenge-combine-everything">Challenge: Combine Everything!</a></h2>
+<p><strong>Task:</strong> Create an interactive SVG visualization using all skills learned</p>
+<p>Create a complete HTML page that:</p>
+<ol>
+<li>Has proper HTML structure with head and body</li>
+<li>Includes CSS styling for the page</li>
+<li>Creates an SVG canvas (500x400)</li>
+<li>Uses D3 to draw 5 circles at different positions</li>
+<li>Adds a button that, when clicked, changes all circle colors to random colors</li>
+<li>Displays a text message showing how many times the button was clicked</li>
+</ol>
+<details>
+<summary>View Solution</summary>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Session 1 Challenge&lt;/title&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+    &lt;style&gt;
+        body {
+            font-family: sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #1976d2;
+        }
+        
+        #svg-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: inline-block;
+            margin: 20px;
+        }
+        
+        button {
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        button:hover {
+            background-color: #1565c0;
+        }
+        
+        #click-count {
+            font-size: 18px;
+            color: #424242;
+            margin: 10px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Interactive Circle Color Changer&lt;/h1&gt;
+    &lt;div id="svg-container"&gt;&lt;/div&gt;
+    &lt;br&gt;
+    &lt;button id="change-colors"&gt;Change Colors&lt;/button&gt;
+    &lt;p id="click-count"&gt;Button clicked: 0 times&lt;/p&gt;
+
+    &lt;script&gt;
+        // Create SVG
+        const svg = d3.select("#svg-container")
+            .append("svg")
+            .attr("width", 500)
+            .attr("height", 400);
+
+        // Circle positions
+        const circleData = [
+            { cx: 100, cy: 100 },
+            { cx: 250, cy: 100 },
+            { cx: 400, cy: 100 },
+            { cx: 175, cy: 250 },
+            { cx: 325, cy: 250 }
+        ];
+
+        // Draw circles using D3
+        svg.selectAll("circle")
+            .data(circleData)
+            .enter()
+            .append("circle")
+            .attr("cx", d =&gt; d.cx)
+            .attr("cy", d =&gt; d.cy)
+            .attr("r", 40)
+            .attr("fill", "#64b5f6")
+            .attr("stroke", "#1976d2")
+            .attr("stroke-width", 2);
+
+        // Click counter
+        let clickCount = 0;
+
+        // Function to generate random color
+        function randomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i &lt; 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Button click handler
+        d3.select("#change-colors").on("click", function() {
+            // Increment counter
+            clickCount++;
+            
+            // Update click count display
+            d3.select("#click-count").text("Button clicked: " + clickCount + " times");
+            
+            // Change all circle colors
+            svg.selectAll("circle")
+                .transition()
+                .duration(500)
+                .attr("fill", randomColor);
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</details>
+<hr>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./d3-example-1"><span>D3 example</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="./_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>

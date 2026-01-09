@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="modulepreload" href="./_observablehq/client.28f3e803.js">
+<link rel="modulepreload" href="./_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.73a8ec5a.js">
+<link rel="icon" href="./_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "./_observablehq/client.28f3e803.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Lets learn D3</a></li>
+  </ol>
+  <section>
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="./basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="./basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="./basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="./basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="./d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="./exercises-1">Exercises</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div class="hero">
+  <h1>Lets learn D3</h1>
+  <h2>D3 demystified: No wizardry required (though you'll feel like a wizard)</h2>
+</div>
+<h3 id="session-1-web-development-basics" tabindex="-1"><a class="observablehq-header-anchor" href="#session-1-web-development-basics">Session 1: Web Development Basics</a></h3>
+<p>Before diving into D3, you'll need to understand the core web technologies it's built on. This session covers:</p>
+<ol>
+<li><a href="./initial-setup">Initial Setup</a> - Get your development environment ready</li>
+<li><a href="./basic-html">Basic HTML</a> - Learn the structure of web pages</li>
+<li><a href="./basic-css">Basic CSS</a> - Style and layout fundamentals</li>
+<li><a href="./basic-svg">Basic SVG</a> - Scalable Vector Graphics for data visualization</li>
+<li><a href="./basic-js">Basic JavaScript</a> - The programming language that powers D3</li>
+<li><a href="./d3-example-1">D3 Example</a> - See what's possible with D3</li>
+<li><a href="./exercises-1">Exercises</a> - Practice what you've learned</li>
+</ol>
+<hr>
+<h3 id="session-2-d3-basics" tabindex="-1"><a class="observablehq-header-anchor" href="#session-2-d3-basics">Session 2: D3 Basics</a></h3>
+<p><em>Coming soon - Understanding D3 fundamentals, selections, and data binding</em></p>
+<hr>
+<h3 id="session-3-d3-simple-charts" tabindex="-1"><a class="observablehq-header-anchor" href="#session-3-d3-simple-charts">Session 3: D3 Simple Charts</a></h3>
+<p><em>Coming soon - Bar charts, line charts, and basic visualizations</em></p>
+<hr>
+<h3 id="session-4-d3-intermediate-charts" tabindex="-1"><a class="observablehq-header-anchor" href="#session-4-d3-intermediate-charts">Session 4: D3 Intermediate Charts</a></h3>
+<p><em>Coming soon - Scatter plots, area charts, and more complex visualizations</em></p>
+<hr>
+<h3 id="session-5-d3-advanced-charts" tabindex="-1"><a class="observablehq-header-anchor" href="#session-5-d3-advanced-charts">Session 5: D3 Advanced Charts</a></h3>
+<p><em>Coming soon - Hierarchical data, force layouts, and advanced techniques</em></p>
+<hr>
+<h3 id="session-6-d3-custom-charts" tabindex="-1"><a class="observablehq-header-anchor" href="#session-6-d3-custom-charts">Session 6: D3 Custom Charts</a></h3>
+<p><em>Coming soon - Building your own custom visualizations from scratch</em></p>
+<hr>
+<h3 id="session-7-d3-and-observable-notebooks" tabindex="-1"><a class="observablehq-header-anchor" href="#session-7-d3-and-observable-notebooks">Session 7: D3 and Observable Notebooks</a></h3>
+<p><em>Coming soon - Working with Observable for interactive data exploration</em></p>
+<hr>
+<h3 id="session-8-modern-web-development-with-d3" tabindex="-1"><a class="observablehq-header-anchor" href="#session-8-modern-web-development-with-d3">Session 8: Modern Web Development with D3</a></h3>
+<p><em>Coming soon - Integrating D3 with modern JavaScript workflows</em></p>
+<hr>
+<h3 id="session-9-git-hub-git-and-git-pages" tabindex="-1"><a class="observablehq-header-anchor" href="#session-9-git-hub-git-and-git-pages">Session 9: GitHub, Git, and Git Pages</a></h3>
+<p><em>Coming soon - Version control and deploying your visualizations</em></p>
+<hr>
+<h3 id="session-10-d3-and-vue-js" tabindex="-1"><a class="observablehq-header-anchor" href="#session-10-d3-and-vue-js">Session 10: D3 and Vue.js</a></h3>
+<p><em>Coming soon - Combining D3 with the Vue.js framework</em></p>
+<hr>
+<h3 id="session-11-d3-and-svelte-js" tabindex="-1"><a class="observablehq-header-anchor" href="#session-11-d3-and-svelte-js">Session 11: D3 and Svelte.js</a></h3>
+<p><em>Coming soon - Integrating D3 with Svelte for reactive visualizations</em></p>
+<hr>
+<style>
+
+  * {
+        font-family: sans-serif;
+    }
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--sans-serif);
+  margin: 4rem 0 8rem;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 1rem 0;
+  padding: 1rem 0;
+  max-width: none;
+  font-size: 14vw;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(30deg, var(--theme-foreground-focus), currentColor);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero h2 {
+  margin: 0;
+  max-width: 34em;
+  font-size: 20px;
+  font-style: initial;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--theme-foreground-muted);
+}
+
+@media (min-width: 640px) {
+  .hero h1 {
+    font-size: 90px;
+  }
+}
+
+</style>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="next" href="./initial-setup"><span>Initial setup</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="./_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Basic CSS | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="modulepreload" href="./_observablehq/client.28f3e803.js">
+<link rel="modulepreload" href="./_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.73a8ec5a.js">
+<link rel="icon" href="./_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "./_observablehq/client.28f3e803.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Lets learn D3</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="./basic-html">Basic HTML</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="./basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="./basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="./d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="./exercises-1">Exercises</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#what-is-css">What is CSS?</a></li>
+<li class="observablehq-secondary-link"><a href="#why-css-matters-for-d3">Why CSS Matters for D3</a></li>
+<li class="observablehq-secondary-link"><a href="#css-syntax">CSS Syntax</a></li>
+<li class="observablehq-secondary-link"><a href="#css-selectors">CSS Selectors</a></li>
+<li class="observablehq-secondary-link"><a href="#three-ways-to-add-css">Three Ways to Add CSS</a></li>
+<li class="observablehq-secondary-link"><a href="#key-concepts-checklist">Key Concepts Checklist</a></li>
+<li class="observablehq-secondary-link"><a href="#quick-reference">Quick Reference</a></li>
+<li class="observablehq-secondary-link"><a href="#practice-exercises">Practice Exercises</a></li>
+<li class="observablehq-secondary-link"><a href="#additional-resources">Additional Resources</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h3 id="web-development-basics-css" tabindex="-1"><a class="observablehq-header-anchor" href="#web-development-basics-css">Web Development Basics: CSS</a></h3>
+<p>CSS, created in 1996 by Håkon Wium Lie, styles web content. D3.js uses CSS to control colors, sizes, fonts, and visual styling of SVG elements and charts.</p>
+<hr>
+<h2 id="what-is-css" tabindex="-1"><a class="observablehq-header-anchor" href="#what-is-css">What is CSS?</a></h2>
+<p>CSS (Cascading Style Sheets) is the styling language of the web. While HTML provides structure, CSS makes it look good.</p>
+<p>Think of it like this:</p>
+<ul>
+<li>HTML is the house structure (walls, rooms, doors)</li>
+<li>CSS is the interior design (paint colors, furniture style, decorations)</li>
+<li>JavaScript is the functionality (lights turning on, doors opening)</li>
+</ul>
+<hr>
+<h2 id="why-css-matters-for-d3" tabindex="-1"><a class="observablehq-header-anchor" href="#why-css-matters-for-d3">Why CSS Matters for D3</a></h2>
+<p>When you create D3 visualizations, CSS controls:</p>
+<ul>
+<li>Colors of your chart elements</li>
+<li>Sizes of text and shapes</li>
+<li>Fonts and typography</li>
+<li>Spacing and layout</li>
+<li>Hover effects and interactivity</li>
+<li>Responsive design for different screen sizes</li>
+</ul>
+<hr>
+<h2 id="css-syntax" tabindex="-1"><a class="observablehq-header-anchor" href="#css-syntax">CSS Syntax</a></h2>
+<p>CSS follows a simple pattern:</p>
+<pre><code>selector {
+    property: value;
+    property: value;
+}
+</code></pre>
+<p><strong>Breaking it down:</strong></p>
+<ul>
+<li><strong>Selector</strong> - Which HTML element(s) to style</li>
+<li><strong>Property</strong> - What aspect to change (color, size, etc.)</li>
+<li><strong>Value</strong> - What to change it to</li>
+<li><strong>Curly braces</strong> <code>{}</code> - Wrap all the styles for that selector</li>
+<li><strong>Semicolon</strong> <code>;</code> - Ends each property-value pair</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code>svg {
+    background-color: #2b2b2b;
+    width: 800px;
+    height: 600px;
+}
+</code></pre>
+<p>This says: "For all SVG elements, make the background dark gray, width 800 pixels, and height 600 pixels."</p>
+<hr>
+<h2 id="css-selectors" tabindex="-1"><a class="observablehq-header-anchor" href="#css-selectors">CSS Selectors</a></h2>
+<p>Selectors tell CSS which elements to style. Here are the most common:</p>
+<p><strong>Element Selector</strong></p>
+<p>Targets all elements of a specific type:</p>
+<pre><code>svg {
+    background-color: white;
+}
+
+circle {
+    fill: blue;
+}
+
+text {
+    font-size: 14px;
+}
+</code></pre>
+<p><strong>Class Selector</strong></p>
+<p>Targets elements with a specific class (use a dot <code>.</code>):</p>
+<pre><code>.chartContainer {
+    margin: 20px;
+    padding: 10px;
+}
+
+.dandelionSeed {
+    stroke: orange;
+    opacity: 0.7;
+}
+</code></pre>
+<p><strong>ID Selector</strong></p>
+<p>Targets a single element with a specific ID (use a hash <code>#</code>):</p>
+<pre><code>#mainChart {
+    border: 2px solid black;
+}
+</code></pre>
+<p><strong>Multiple Selectors</strong></p>
+<p>Style multiple elements at once (use commas):</p>
+<pre><code>h1, h2, h3 {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+</code></pre>
+<p><strong>Descendant Selector</strong></p>
+<p>Target elements inside other elements (use space):</p>
+<pre><code>.chartContainer svg {
+    border: 1px solid gray;
+}
+</code></pre>
+<p>This means: "Style SVG elements that are inside an element with class 'chartContainer'"</p>
+<hr>
+<h2 id="three-ways-to-add-css" tabindex="-1"><a class="observablehq-header-anchor" href="#three-ways-to-add-css">Three Ways to Add CSS</a></h2>
+<p><strong>1. Internal CSS (in the HTML file)</strong></p>
+<p>In the <code>&lt;head&gt;</code> section:</p>
+<pre><code>&lt;head&gt;
+    &lt;style&gt;
+        svg {
+            background-color: #2b2b2b;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+</code></pre>
+<p><strong>Pros:</strong> Everything in one file, good for small projects
+<strong>Cons:</strong> Harder to reuse styles across multiple pages</p>
+<p><strong>2. External CSS (separate file)</strong></p>
+<p>Create a file called <code>styles.css</code>:</p>
+<pre><code>svg {
+    background-color: #2b2b2b;
+}
+
+.chartContainer {
+    margin: 20px auto;
+}
+</code></pre>
+<p>Link it in your HTML <code>&lt;head&gt;</code>:</p>
+<pre><code>&lt;head&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+</code></pre>
+<p><strong>Pros:</strong> Clean separation, reusable, better for large projects
+<strong>Cons:</strong> Extra HTTP request (usually not a problem)</p>
+<p><strong>3. Inline CSS (directly on elements)</strong></p>
+<pre><code>&lt;div style="background-color: blue; padding: 10px;"&gt;
+    Content here
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h2 id="key-concepts-checklist" tabindex="-1"><a class="observablehq-header-anchor" href="#key-concepts-checklist">Key Concepts Checklist</a></h2>
+<p>Before moving on, make sure you understand:</p>
+<ul>
+<li><strong>CSS Syntax</strong> - <code>selector { property: value; }</code></li>
+<li><strong>Selectors</strong> - Element, class (<code>.name</code>), ID (<code>#name</code>)</li>
+<li><strong>Common properties</strong> - <code>color</code>, <code>background-color</code>, <code>width</code>, <code>height</code></li>
+<li><strong>Where to put CSS</strong> - Internal <code>&lt;style&gt;</code> vs external file</li>
+</ul>
+<hr>
+<h2 id="quick-reference" tabindex="-1"><a class="observablehq-header-anchor" href="#quick-reference">Quick Reference</a></h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>What It Does</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>color</code></td>
+<td>Text color</td>
+<td><code>color: blue;</code></td>
+</tr>
+<tr>
+<td><code>background-color</code></td>
+<td>Background color</td>
+<td><code>background-color: #f5f5f5;</code></td>
+</tr>
+<tr>
+<td><code>fill</code></td>
+<td>SVG interior color</td>
+<td><code>fill: orange;</code></td>
+</tr>
+<tr>
+<td><code>stroke</code></td>
+<td>SVG outline color</td>
+<td><code>stroke: black;</code></td>
+</tr>
+<tr>
+<td><code>stroke-width</code></td>
+<td>SVG outline thickness</td>
+<td><code>stroke-width: 2px;</code></td>
+</tr>
+<tr>
+<td><code>opacity</code></td>
+<td>Transparency (0-1)</td>
+<td><code>opacity: 0.7;</code></td>
+</tr>
+<tr>
+<td><code>font-size</code></td>
+<td>Text size</td>
+<td><code>font-size: 16px;</code></td>
+</tr>
+<tr>
+<td><code>font-family</code></td>
+<td>Font type</td>
+<td><code>font-family: Arial;</code></td>
+</tr>
+<tr>
+<td><code>margin</code></td>
+<td>Space outside</td>
+<td><code>margin: 20px;</code></td>
+</tr>
+<tr>
+<td><code>padding</code></td>
+<td>Space inside</td>
+<td><code>padding: 10px;</code></td>
+</tr>
+<tr>
+<td><code>width</code></td>
+<td>Element width</td>
+<td><code>width: 600px;</code></td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>Element height</td>
+<td><code>height: 400px;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="practice-exercises" tabindex="-1"><a class="observablehq-header-anchor" href="#practice-exercises">Practice Exercises</a></h2>
+<p><strong>Exercise 1: Style Your First Page</strong></p>
+<ol>
+<li>Open your <code>my-first-page.html</code> from the HTML exercises</li>
+<li>Add a <code>&lt;style&gt;</code> section in the <code>&lt;head&gt;</code></li>
+<li>Style the page:
+<ul>
+<li>Change body background to light gray</li>
+<li>Make h1 text blue and centered</li>
+<li>Give paragraphs a bigger font size (18px)</li>
+<li>Add padding to the body (20px)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Exercise 2: Create a Styled Container</strong></p>
+<ol>
+<li>Create <code>styled-chart.html</code></li>
+<li>Add a div with <code>class="chartContainer"</code></li>
+<li>Style the container:
+<ul>
+<li>Width: 800px</li>
+<li>Background: white</li>
+<li>Border: 2px solid #333</li>
+<li>Padding: 30px</li>
+<li>Margin: 50px auto (this centers it!)</li>
+<li>Border-radius: 10px (rounded corners)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Exercise 3: SVG Color Experiment</strong></p>
+<ol>
+<li>Create <code>svg-colors.html</code></li>
+<li>Add this in the body:</li>
+</ol>
+<pre><code>&lt;svg width="600" height="400"&gt;
+    &lt;circle cx="100" cy="100" r="50" class="circle1"&gt;&lt;/circle&gt;
+    &lt;circle cx="250" cy="100" r="50" class="circle2"&gt;&lt;/circle&gt;
+    &lt;circle cx="400" cy="100" r="50" class="circle3"&gt;&lt;/circle&gt;
+&lt;/svg&gt;
+</code></pre>
+<ol start="3">
+<li>
+<p>In CSS, give each circle a different:</p>
+<ul>
+<li>Fill color</li>
+<li>Stroke color</li>
+<li>Stroke width</li>
+<li>Opacity</li>
+</ul>
+</li>
+<li>
+<p>Add hover effects that change the fill color</p>
+</li>
+</ol>
+<hr>
+<h2 id="additional-resources" tabindex="-1"><a class="observablehq-header-anchor" href="#additional-resources">Additional Resources</a></h2>
+<ol>
+<li><a href="https://www.codecademy.com/learn/learn-css-introduction" target="_blank" rel="noopener noreferrer">Codeacademy - Learn CSS: Introduction</a></li>
+<li><a href="https://www.freecodecamp.org/news/css-style-sheets-basics/" target="_blank" rel="noopener noreferrer">Free code camp - CSS basics</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics" target="_blank" rel="noopener noreferrer">MDN CSS basics</a></li>
+<li><a href="https://www.freecodecamp.org/news/css-box-model-b3e68ceea756/" target="_blank" rel="noopener noreferrer">Free code camp - CSS box model</a></li>
+<li><a href="https://www.freecodecamp.org/news/learn-css-in-11-hours/" target="_blank" rel="noopener noreferrer">freeCodeCamp CSS Course</a></li>
+<li><a href="https://css-tricks.com/" target="_blank" rel="noopener noreferrer">CSS Tricks - Complete Guide</a></li>
+</ol>
+<hr>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./basic-html"><span>Basic HTML</span></a><a rel="next" href="./basic-svg"><span>Basic SVG</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="./_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>

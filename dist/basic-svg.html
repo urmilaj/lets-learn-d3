@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Basic SVG | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="./_observablehq/client.28f3e803.js">
+<link rel="modulepreload" href="./_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="icon" href="./_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.28f3e803.js";
+
+define({id: "8e665961", inputs: ["view","Inputs"], outputs: ["svgWidth","svgHeight","svgColor"], body: (view,Inputs) => {
+const svgWidth = view(Inputs.range([50, 500], {label: "SVG width", step: 1}));
+
+const svgHeight = view(Inputs.range([50, 500], {label: "SVG height", step: 1}));
+
+const svgColor = view(Inputs.color({label: "SVG background color", value: "#cee2f3"}));
+
+return {svgWidth,svgHeight,svgColor};
+}});
+
+define({id: "006eb0eb", mode: "inline", inputs: ["svgWidth","display"], body: async (svgWidth,display) => {
+display(await(
+svgWidth
+))
+}});
+
+define({id: "772c56f8", mode: "inline", inputs: ["svgHeight","display"], body: async (svgHeight,display) => {
+display(await(
+svgHeight
+))
+}});
+
+define({id: "f9941821", mode: "inline", inputs: ["svgColor","display"], body: async (svgColor,display) => {
+display(await(
+svgColor
+))
+}});
+
+define({id: "c5e810d6", mode: "inline", inputs: ["svgWidth","display"], body: async (svgWidth,display) => {
+display(await(
+svgWidth/2
+))
+}});
+
+define({id: "95b6c658", mode: "inline", inputs: ["svgHeight","display"], body: async (svgHeight,display) => {
+display(await(
+svgHeight/2
+))
+}});
+
+define({id: "eb06fb64", mode: "inline", inputs: ["svg","svgWidth","svgHeight","svgColor","display"], body: async (svg,svgWidth,svgHeight,svgColor,display) => {
+display(await(
+svg`<svg width=${svgWidth} height=${svgHeight} style="background-color:${svgColor}"><text x=${svgWidth/2} y=${svgHeight/2} text-anchor="middle" style="font-weight:bold">Hi</text></svg>`
+))
+}});
+
+define({id: "006eb0eb-1", mode: "inline", inputs: ["svgWidth","display"], body: async (svgWidth,display) => {
+display(await(
+svgWidth
+))
+}});
+
+define({id: "772c56f8-1", mode: "inline", inputs: ["svgHeight","display"], body: async (svgHeight,display) => {
+display(await(
+svgHeight
+))
+}});
+
+define({id: "f9941821-1", mode: "inline", inputs: ["svgColor","display"], body: async (svgColor,display) => {
+display(await(
+svgColor
+))
+}});
+
+define({id: "1a028ef0", mode: "inline", inputs: ["svg","svgWidth","svgHeight","svgColor","display"], body: async (svg,svgWidth,svgHeight,svgColor,display) => {
+display(await(
+svg`<svg width=${svgWidth} height=${svgHeight} style="background-color:${svgColor}"><circle cx=136 cy=136 r=50 fill="#353535ff"/></svg>`
+))
+}});
+
+define({id: "573c6f01", inputs: ["view","Inputs"], outputs: ["viewBoxMinX","viewBoxMinY","viewBoxWidth","viewBoxHeight"], body: (view,Inputs) => {
+const viewBoxMinX = view(Inputs.range([0, 200], {label: "svg viewBox min-x", step: 1, value: 0}));
+
+const viewBoxMinY = view(Inputs.range([0, 200], {label: "svg viewBox min-y", step: 1, value: 0}));
+
+const viewBoxWidth = view(Inputs.range([50, 500], {label: "svg viewBox width", step: 1, value: 400}));
+
+const viewBoxHeight = view(Inputs.range([50, 500], {label: "svg viewBox height", step: 1, value: 300}));
+return {viewBoxMinX,viewBoxMinY,viewBoxWidth,viewBoxHeight};
+}});
+
+define({id: "8a4cbd6e", mode: "inline", inputs: ["viewBoxMinX","display"], body: async (viewBoxMinX,display) => {
+display(await(
+viewBoxMinX
+))
+}});
+
+define({id: "ae58714b", mode: "inline", inputs: ["viewBoxMinY","display"], body: async (viewBoxMinY,display) => {
+display(await(
+viewBoxMinY
+))
+}});
+
+define({id: "cc8b1fe0", mode: "inline", inputs: ["viewBoxWidth","display"], body: async (viewBoxWidth,display) => {
+display(await(
+viewBoxWidth
+))
+}});
+
+define({id: "8de10aed", mode: "inline", inputs: ["viewBoxHeight","display"], body: async (viewBoxHeight,display) => {
+display(await(
+viewBoxHeight
+))
+}});
+
+define({id: "9f6ae66a", mode: "inline", inputs: ["svg","viewBoxMinX","viewBoxMinY","viewBoxWidth","viewBoxHeight","display"], body: async (svg,viewBoxMinX,viewBoxMinY,viewBoxWidth,viewBoxHeight,display) => {
+display(await(
+svg`<svg width="400" height="300" viewBox="${viewBoxMinX} ${viewBoxMinY} ${viewBoxWidth} ${viewBoxHeight}" style="border: 0.1px solid #dbdbdbff;"> <rect x="50" y="50" width="100" height="80" fill="#3a5cbc"/> <circle cx="250" cy="150" r="60" fill="#95cae1"/> <text x="200" y="250" font-size="24" text-anchor="middle">ViewBox Demo</text> </svg>`
+))
+}});
+
+define({id: "223c428c", inputs: ["view","Inputs"], outputs: ["circleX","circleY"], body: (view,Inputs) => {
+const circleX = view(Inputs.range([0, 400], {label: "Circle x position", step: 1, value: 200}));
+
+const circleY = view(Inputs.range([0, 300], {label: "Circle y position", step: 1, value: 150}));
+return {circleX,circleY};
+}});
+
+define({id: "6e30dc6b", mode: "inline", inputs: ["svg","circleX","circleY","display"], body: async (svg,circleX,circleY,display) => {
+display(await(
+svg`<svg width="400" height="300" style="background-color: #f5f5f5; border: 1px solid #333;">
+<line x1="0" y1="0" x2="400" y2="0" stroke="#ddd" stroke-width="1"/>
+<line x1="0" y1="0" x2="0" y2="300" stroke="#ddd" stroke-width="1"/>
+        <line x1="0" y1="50" x2="400" y2="50" stroke="#eee" stroke-width="1"/>
+        <line x1="0" y1="100" x2="400" y2="100" stroke="#eee" stroke-width="1"/>
+        <line x1="0" y1="150" x2="400" y2="150" stroke="#eee" stroke-width="1"/>
+        <line x1="0" y1="200" x2="400" y2="200" stroke="#eee" stroke-width="1"/>
+        <line x1="0" y1="250" x2="400" y2="250" stroke="#eee" stroke-width="1"/>
+        <!-- Vertical grid lines -->
+        <line x1="50" y1="0" x2="50" y2="300" stroke="#eee" stroke-width="1"/>
+        <line x1="100" y1="0" x2="100" y2="300" stroke="#eee" stroke-width="1"/>
+        <line x1="150" y1="0" x2="150" y2="300" stroke="#eee" stroke-width="1"/>
+        <line x1="200" y1="0" x2="200" y2="300" stroke="#eee" stroke-width="1"/>
+        <line x1="250" y1="0" x2="250" y2="300" stroke="#eee" stroke-width="1"/>
+        <line x1="300" y1="0" x2="300" y2="300" stroke="#eee" stroke-width="1"/>
+        <line x1="350" y1="0" x2="350" y2="300" stroke="#eee" stroke-width="1"/>
+        <!-- Your circle -->
+        <circle cx=${circleX} cy=${circleY} r="15" fill="#f8bc93ff" stroke="black"/>
+        <text x=${circleX + 10} y=${circleY + 28} text-anchor="middle" font-size="14" fill="#333" font-weight="bold">
+            (${circleX}, ${circleY})
+        </text>
+        <text x="5" y="15" font-size="12" fill="#666">(0, 0)</text>
+        <text x="360" y="15" font-size="12" fill="#666">(400, 0)</text>
+        <text x="5" y="295" font-size="12" fill="#666">(0, 300)</text>
+        <text x="340" y="295" font-size="12" fill="#666">(400, 300)</text>
+</svg>`
+))
+}});
+
+define({id: "a89b0d98", inputs: ["view","Inputs"], outputs: ["translateX","translateY"], body: (view,Inputs) => {
+const translateX = view(Inputs.range([0, 350], {label: "Translate X", step: 1, value: 100}));
+
+const translateY = view(Inputs.range([0, 250], {label: "Translate Y", step: 1, value: 100}));
+return {translateX,translateY};
+}});
+
+define({id: "2bddc4c9", mode: "inline", inputs: ["svg","translateX","translateY","display"], body: async (svg,translateX,translateY,display) => {
+display(await(
+svg`<svg width="400" height="300" style="background-color: #353535ff; border: 1px solid #333;"> <rect x="0" y="0" width="50" height="50" fill="#96aff5ff" transform="translate(${translateX}, ${translateY})" /> <text x="${translateX + 25}" y="${translateY + 70}" font-size="12" text-anchor="middle" fill="#e2e2e2ff">translate(${translateX}, ${translateY})</text> <circle cx="0" cy="0" r="3" fill="red"/> <text x="5" y="15" font-size="12" fill="#e2e2e2ff">Origin (0,0)</text> </svg>`
+))
+}});
+
+define({id: "f969e9b7", inputs: ["view","Inputs"], outputs: ["rotateAngle"], body: (view,Inputs) => {
+const rotateAngle = view(Inputs.range([0, 360], {label: "Rotate degrees", step: 1, value: 45}));
+return {rotateAngle};
+}});
+
+define({id: "46b3e3c0", mode: "inline", inputs: ["svg","rotateAngle","display"], body: async (svg,rotateAngle,display) => {
+display(await(
+svg`<svg width="400" height="300" style="background-color: #353535ff; border: 1px solid #333;"> <g transform="translate(200, 150)"> <circle cx="0" cy="0" r="3" fill="red"/> <rect x="-25" y="-25" width="50" height="50" fill="#96aff5ff" transform="rotate(${rotateAngle})" /> <text x="0" y="50" font-size="12" text-anchor="middle" fill="#e2e2e2ff">rotate(${rotateAngle}°)</text> </g> </svg>`
+))
+}});
+
+define({id: "34227530", inputs: ["view","Inputs"], outputs: ["scaleValue"], body: (view,Inputs) => {
+const scaleValue = view(Inputs.range([0.5, 8], {label: "Scale factor", step: 0.1, value: 1}));
+return {scaleValue};
+}});
+
+define({id: "cd92c8fb", mode: "inline", inputs: ["svg","scaleValue","display"], body: async (svg,scaleValue,display) => {
+display(await(
+svg`<svg width="400" height="300" style="background-color: #353535ff; border: 1px solid #333;"> <g transform="translate(200, 150)"><circle cx="0" cy="0" r="40" fill="#6892ce" opacity="0.2"/> <circle cx="0" cy="0" r="20" fill="#96aff5ff" transform="scale(${scaleValue})" /> <text x="0" y="80" font-size="12" text-anchor="middle" fill="#e2e2e2ff">scale(${scaleValue.toFixed(1)})</text> </g> </svg>`
+))
+}});
+
+define({id: "e3e94e42", inputs: ["view","Inputs"], outputs: ["combineTranslateX","combineRotate","combineScale"], body: (view,Inputs) => {
+const combineTranslateX = view(Inputs.range([0, 300], {label: "Translate X", step: 1, value: 150}));
+
+const combineRotate = view(Inputs.range([0, 360], {label: "Rotate", step: 1, value: 0}));
+
+const combineScale = view(Inputs.range([0.5, 2], {label: "Scale", step: 0.1, value: 1}));
+return {combineTranslateX,combineRotate,combineScale};
+}});
+
+define({id: "0c247dc3", mode: "inline", inputs: ["svg","combineTranslateX","combineRotate","combineScale","display"], body: async (svg,combineTranslateX,combineRotate,combineScale,display) => {
+display(await(
+svg`<svg width="400" height="300" style="background-color: #353535ff; border: 1px solid #333;"> <rect x="0" y="125" width="50" height="50" fill="#ff944dff" transform="translate(${combineTranslateX}, 0) rotate(${combineRotate}, 25, 25) scale(${combineScale})" stroke="#e2e2e2ff" stroke-width="2"/> <text x="200" y="250" font-size="12" text-anchor="middle" fill="#e2e2e2ff">translate(${combineTranslateX}) rotate(${combineRotate}°) scale(${combineScale.toFixed(1)})</text> <circle cx="0" cy="0" r="3" fill="red"/> <text x="5" y="15" font-size="12" fill="#e2e2e2ff">Origin</text> </svg>`
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Lets learn D3</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="./basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="./basic-css">Basic CSS</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="./basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="./d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="./exercises-1">Exercises</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#what-is-svg">What is SVG?</a></li>
+<li class="observablehq-secondary-link"><a href="#svg-attribute-basics">SVG attribute basics</a></li>
+<li class="observablehq-secondary-link"><a href="#svg-viewbox">SVG viewbox</a></li>
+<li class="observablehq-secondary-link"><a href="#svg-coordinate-system">SVG coordinate system</a></li>
+<li class="observablehq-secondary-link"><a href="#svg-shapes">SVG shapes</a></li>
+<li class="observablehq-secondary-link"><a href="#svg-styling">SVG Styling</a></li>
+<li class="observablehq-secondary-link"><a href="#grouping-elements">Grouping Elements</a></li>
+<li class="observablehq-secondary-link"><a href="#svg-transforms">SVG Transforms</a></li>
+<li class="observablehq-secondary-link"><a href="#additional-resources">Additional Resources</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h3 id="web-development-basics-svg" tabindex="-1"><a class="observablehq-header-anchor" href="#web-development-basics-svg">Web Development Basics: SVG</a></h3>
+<p>SVG (Scalable Vector Graphics), standardized in 2001 by W3C, creates resolution-independent graphics. D3.js uses SVG to draw data-driven shapes, charts, and interactive visualizations in browsers.</p>
+<hr>
+<h2 id="what-is-svg" tabindex="-1"><a class="observablehq-header-anchor" href="#what-is-svg">What is SVG?</a></h2>
+<p>SVG (Scalable Vector Graphics) is a way to draw graphics using code instead of pixels. Unlike regular images (JPG, PNG) that are made of tiny colored squares, SVG graphics are made of mathematical shapes that stay crisp at any size.</p>
+<p>Think of it like this:</p>
+<ul>
+<li>Regular images are like mosaics - made of tiny tiles that get blurry when you zoom in</li>
+<li>SVG is like using a ruler and compass - the shapes stay perfect no matter how close you look</li>
+</ul>
+<p><strong>Why SVG matters for D3</strong>:</p>
+<ul>
+<li>D3 creates visualizations by drawing SVG shapes</li>
+<li>SVG shapes can be styled with CSS</li>
+<li>SVG elements can be manipulated with JavaScript</li>
+<li>SVG graphics scale perfectly on any screen size</li>
+</ul>
+<hr>
+<h2 id="svg-attribute-basics" tabindex="-1"><a class="observablehq-header-anchor" href="#svg-attribute-basics">SVG attribute basics</a></h2>
+<p>Every SVG graphic starts with an svg tag that creates a canvas to draw on:</p>
+<pre><code>&lt;svg width="500" height="300"&gt;
+  &lt;!-- shapes go here --&gt;
+&lt;/svg&gt;
+</code></pre>
+<p>The width and height define the drawing area in pixels. <strong>Everything you draw must fit inside this container</strong>.</p>
+<p><strong>Interactive SVG Playground</strong></p>
+<p><em>Try adjusting the controls below to see how SVG attributes work in real-time. Play with the sliders to change the width and height, and pick different background colors. Notice how the SVG canvas and the elements inside it respond to your changes. This is exactly how D3.js manipulates SVG elements based on your data!</em></p>
+<div class="observablehq observablehq--block"><!--:8e665961:--></div>
+<div>
+    <div class="card">
+        <div>
+            <pre><code>&lt;svg width="<observablehq-loading></observablehq-loading><!--:006eb0eb:-->" height="<observablehq-loading></observablehq-loading><!--:772c56f8:-->" style="background-color:<observablehq-loading></observablehq-loading><!--:f9941821:-->"&gt;
+    &lt;text x="<observablehq-loading></observablehq-loading><!--:c5e810d6:-->" y="<observablehq-loading></observablehq-loading><!--:95b6c658:-->" text-anchor="middle"&gt;
+    Hi
+    &lt;/text&gt;
+&lt;/svg&gt;</code></pre>
+        </div>
+        <div><observablehq-loading></observablehq-loading><!--:eb06fb64:--></div>
+    </div>
+    <div class="card">
+        <div><pre><code>&lt;svg width="<observablehq-loading></observablehq-loading><!--:006eb0eb-1:-->" height="<observablehq-loading></observablehq-loading><!--:772c56f8-1:-->" style="background-color:<observablehq-loading></observablehq-loading><!--:f9941821-1:-->"&gt;
+    &lt;circle cx="136" cy="136" r=50 fill="#353535ff"/&gt;
+&lt;/svg&gt;</code></pre>
+        </div>
+        <div><observablehq-loading></observablehq-loading><!--:1a028ef0:--></div>
+    </div>
+</div>
+<hr>
+<h2 id="svg-viewbox" tabindex="-1"><a class="observablehq-header-anchor" href="#svg-viewbox">SVG viewbox</a></h2>
+<p>The viewbox is a powerful SVG attribute that defines what portion of the SVG canvas is visible. Think of it like a camera lens - it determines what part of your drawing you're looking at and how zoomed in or out you are.</p>
+<p><strong>Why viewbox matters</strong>:</p>
+<p>Makes SVG truly scalable and responsive
+Lets you zoom in/out without changing element sizes
+Allows you to focus on specific parts of your drawing
+Essential for creating responsive D3 visualizations</p>
+<p><strong>Interactive ViewBox Playground</strong></p>
+<p><em>Adjust the controls below to see how viewBox changes what you see. The SVG container size stays the same, but the viewBox controls what portion of the drawing is visible and how zoomed in it appears.</em></p>
+<div class="observablehq observablehq--block"><!--:573c6f01:--></div>
+<div>
+    <div class="card">
+        <div><pre><code>&lt;svg width="400" height="300" viewBox="<observablehq-loading></observablehq-loading><!--:8a4cbd6e:--> <observablehq-loading></observablehq-loading><!--:ae58714b:--> <observablehq-loading></observablehq-loading><!--:cc8b1fe0:--> <observablehq-loading></observablehq-loading><!--:8de10aed:-->"&gt;
+    &lt;rect x="50" y="50" width="100" height="80" fill="#3a5cbc"/&gt;
+    &lt;circle cx="250" cy="150" r="60" fill="#95cae1"/&gt;
+    &lt;text x="200" y="250" font-size="24" text-anchor="middle"&gt;ViewBox Demo&lt;/text&gt;
+&lt;/svg&gt;</code></pre>
+        </div>
+        <div><observablehq-loading></observablehq-loading><!--:9f6ae66a:-->
+        </div>
+    </div>
+</div>
+<hr>
+<h2 id="svg-coordinate-system" tabindex="-1"><a class="observablehq-header-anchor" href="#svg-coordinate-system">SVG coordinate system</a></h2>
+<p>SVG uses a coordinate system where:</p>
+<ul>
+<li>The origin (0, 0) is the top-left corner</li>
+<li>x increases going right</li>
+<li>y increases going down</li>
+</ul>
+<pre><code>(0,0) -----&gt; x increases
+  |
+  |
+  v
+y increases
+</code></pre>
+<p>This means:</p>
+<ul>
+<li>(0, 0) is top-left</li>
+<li>(500, 0) is top-right</li>
+<li>(0, 300) is bottom-left</li>
+<li>(500, 300) is bottom-right</li>
+</ul>
+<p><strong>Interactive coordinate system playground</strong></p>
+<p><em>Move the sliders below to position a circle anywhere on the SVG canvas. Watch how the x and y coordinates change and notice that y increases downward!</em></p>
+<div class="observablehq observablehq--block"><!--:223c428c:--></div>
+<div><observablehq-loading></observablehq-loading><!--:6e30dc6b:--></div>
+
+<hr>
+<h2 id="svg-shapes" tabindex="-1"><a class="observablehq-header-anchor" href="#svg-shapes">SVG shapes</a></h2>
+<p>SVG provides several basic shapes you can draw:</p>
+<p><strong>Rectangle</strong></p>
+<pre><code>&lt;rect x="10" y="20" width="100" height="50" fill="blue" /&gt;
+</code></pre>
+<ul>
+<li>x and y set the top-left corner position</li>
+<li>width and height set the size</li>
+<li>fill sets the color inside</li>
+</ul>
+<p><strong>Circle</strong></p>
+<pre><code>&lt;circle cx="100" cy="100" r="50" fill="red" /&gt;
+</code></pre>
+<ul>
+<li>cx and cy set the center position</li>
+<li>r sets the radius</li>
+<li>fill sets the color</li>
+</ul>
+<p><strong>Line</strong></p>
+<pre><code>&lt;line x1="0" y1="0" x2="100" y2="100" stroke="black" stroke-width="2" /&gt;
+</code></pre>
+<ul>
+<li>
+<p>x1, y1 is the start point</p>
+</li>
+<li>
+<p>x2, y2 is the end point</p>
+</li>
+<li>
+<p>stroke sets the line color</p>
+</li>
+<li>
+<p>stroke-width sets the line thickness</p>
+</li>
+<li>
+<p>x and y set where the text starts</p>
+</li>
+<li>
+<p>font-size controls text size</p>
+</li>
+<li>
+<p>Content goes between the tags</p>
+</li>
+</ul>
+<p><strong>Path</strong></p>
+<pre><code>&lt;path d="M 10 10 L 100 100 L 10 100 Z" fill="green" /&gt;
+</code></pre>
+<ul>
+<li>d contains drawing commands (M = move, L = line, Z = close)</li>
+<li>Most flexible shape - can draw anything</li>
+<li>Used for complex shapes and custom graphics</li>
+</ul>
+<p><strong>Text</strong></p>
+<pre><code>&lt;text x="50" y="50" font-size="20" fill="black"&gt;Hello&lt;/text&gt;
+</code></pre>
+<hr>
+<h2 id="svg-styling" tabindex="-1"><a class="observablehq-header-anchor" href="#svg-styling">SVG Styling</a></h2>
+<p>You can style SVG elements using attributes or CSS:</p>
+<p>Using attributes:</p>
+<pre><code>&lt;circle cx="50" cy="50" r="40" fill="blue" stroke="black" stroke-width="2" /&gt;
+</code></pre>
+<p>Using CSS:</p>
+<pre><code>&lt;style&gt;
+  .my-circle {
+    fill: blue;
+    stroke: black;
+    stroke-width: 2px;
+  }
+&lt;/style&gt;
+
+&lt;circle cx="50" cy="50" r="40" class="my-circle" /&gt;
+</code></pre>
+<p>Common style properties:</p>
+<ul>
+<li>fill - interior color</li>
+<li>stroke - border color</li>
+<li>stroke-width - border thickness</li>
+<li>opacity - transparency (0 to 1)</li>
+<li>fill-opacity - just the fill transparency</li>
+<li>stroke-opacity - just the stroke transparency</li>
+</ul>
+<hr>
+<h2 id="grouping-elements" tabindex="-1"><a class="observablehq-header-anchor" href="#grouping-elements">Grouping Elements</a></h2>
+<p>SVG <code>&lt;g&gt;</code> Element. Use g (group) to organize and transform multiple shapes together:</p>
+<pre><code>&lt;g transform="translate(50, 50)"&gt;
+  &lt;circle cx="0" cy="0" r="20" fill="red" /&gt;
+  &lt;circle cx="30" cy="0" r="20" fill="blue" /&gt;
+&lt;/g&gt;
+</code></pre>
+<p>Groups let you:</p>
+<ul>
+<li>Move multiple shapes together</li>
+<li>Apply transforms to many elements at once</li>
+<li>Organize your SVG structure</li>
+<li>Apply styles to multiple elements</li>
+</ul>
+<hr>
+<h2 id="svg-transforms" tabindex="-1"><a class="observablehq-header-anchor" href="#svg-transforms">SVG Transforms</a></h2>
+<p>Transforms let you move, rotate, and scale elements:</p>
+<p><strong>Translate (move)</strong>:</p>
+<pre><code>&lt;rect x="0" y="0" width="50" height="50" transform="translate(100, 100)" /&gt;
+</code></pre>
+<p>Moves the rectangle 100 pixels right and 100 pixels down.</p>
+<p><em>Adjust the sliders to move the rectangle around the canvas.</em></p>
+<div class="observablehq observablehq--block"><!--:a89b0d98:--></div>
+<div><observablehq-loading></observablehq-loading><!--:2bddc4c9:--></div>
+<p><strong>Rotate</strong>:</p>
+<pre><code>&lt;rect x="0" y="0" width="50" height="50" transform="rotate(45)" /&gt;
+</code></pre>
+<p>Rotates 45 degrees around the origin (0,0).</p>
+<p><em>Adjust the slider to rotate the rectangle.</em></p>
+<div class="observablehq observablehq--block"><!--:f969e9b7:--></div>
+<div><observablehq-loading></observablehq-loading><!--:46b3e3c0:--></div>
+<p><strong>Scale</strong>:</p>
+<pre><code>&lt;circle cx="50" cy="50" r="20" transform="scale(1)" /&gt;
+</code></pre>
+<p>Makes the circle twice as big.</p>
+<p><em>Adjust the slider to scale the circle.</em></p>
+<div class="observablehq observablehq--block"><!--:34227530:--></div>
+<div><observablehq-loading></observablehq-loading><!--:cd92c8fb:--></div>
+<p>Combining transforms:</p>
+<pre><code>&lt;rect x="0" y="0" width="50" height="50" transform="translate(100, 100) rotate(45)" /&gt;
+</code></pre>
+<p>You can apply multiple transforms to the same element!</p>
+<p>Adjust all three sliders to see combined transforms in action.</p>
+<div class="observablehq observablehq--block"><!--:e3e94e42:--></div>
+<div><observablehq-loading></observablehq-loading><!--:0c247dc3:--></div>
+<div class="note">Note: The order of transforms matters! Transforms are applied from right to left.</div>
+<hr>
+<h2 id="additional-resources" tabindex="-1"><a class="observablehq-header-anchor" href="#additional-resources">Additional Resources</a></h2>
+<ol>
+<li>MDN SVG Guide - <a href="https://developer.mozilla.org/en-US/docs/Web/SVG" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/en-US/docs/Web/SVG</a></li>
+</ol>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./basic-css"><span>Basic CSS</span></a><a rel="next" href="./basic-js"><span>Basic Javascript</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="./_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>

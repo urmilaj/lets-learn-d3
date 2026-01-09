@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Initial setup | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="modulepreload" href="./_observablehq/client.28f3e803.js">
+<link rel="modulepreload" href="./_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.73a8ec5a.js">
+<link rel="icon" href="./_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "./_observablehq/client.28f3e803.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Lets learn D3</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="./basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="./basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="./basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="./basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="./d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="./exercises-1">Exercises</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<h1 id="getting-started-with-d3-js-setup-guide-for-beginners" tabindex="-1"><a class="observablehq-header-anchor" href="#getting-started-with-d3-js-setup-guide-for-beginners">Getting Started with D3.js: Setup Guide for Beginners</a></h1>
+<p>Welcome! This guide will help you set up everything you need to start creating amazing data visualizations with D3.js. Don't worry if you're new to coding - we'll walk through each step together.</p>
+<hr>
+<h2 id="basic-tool-requirement-install-visual-studio-code-vs-code" tabindex="-1"><a class="observablehq-header-anchor" href="#basic-tool-requirement-install-visual-studio-code-vs-code">Basic tool requirement: Install Visual Studio Code (VS Code)</a></h2>
+<p><strong>What is VS Code?</strong> It's a free, user-friendly text editor where you'll write your D3.js code.</p>
+<ol>
+<li>Visit <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com/</a></li>
+<li>Click the big <strong>Download</strong> button for your operating system (Windows/Mac/Linux)</li>
+<li>Run the installer and follow the setup wizard</li>
+<li>Open VS Code once installation is complete</li>
+</ol>
+<h3 id="helpful-vs-code-extensions" tabindex="-1"><a class="observablehq-header-anchor" href="#helpful-vs-code-extensions">Helpful VS Code Extensions</a></h3>
+<p>Once VS Code is installed, add these extensions to make your life easier:</p>
+<ul>
+<li>
+<p><strong>Live Server</strong> - See your visualizations update in real-time as you code</p>
+<ul>
+<li>Click the Extensions icon (four squares) on the left sidebar</li>
+<li>Search for "Live Server" by Ritwick Dey</li>
+<li>Click Install</li>
+</ul>
+</li>
+<li>
+<p><strong>Prettier</strong> (Optional) - Automatically formats your code to look neat and organized</p>
+<ul>
+<li>Search for "Prettier - Code formatter"</li>
+<li>Click Install</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="advanced-tools-required-later-install-node-js" tabindex="-1"><a class="observablehq-header-anchor" href="#advanced-tools-required-later-install-node-js">Advanced tools (Required later): Install Node.js</a></h2>
+<div class="note">
+Node.js is required when we work on advanced data visualization projects with modern frontend libraries like Vue.js, Svelte, Vite etc. Right now, you can ignore this step, you can come back to it when we work on a project that requires these tools.
+</div>
+<p><strong>What is Node.js?</strong> It's a tool that lets you run JavaScript code on your computer (not just in a web browser). We need it to manage our D3.js project.</p>
+<ol>
+<li>Visit <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">https://nodejs.org/</a></li>
+<li>Download the <strong>LTS version</strong> (Long Term Support - the stable one)</li>
+<li>Run the installer with default settings</li>
+<li>To verify it worked, open a terminal/command prompt and type:<pre data-language="bash"><code class="language-bash">node --version
+npm --version
+</code></pre>
+You should see version numbers appear!</li>
+</ol>
+<p><strong>What is npm?</strong> It stands for Node Package Manager. Think of it as an app store for code - it helps you install and manage tools like D3.js.</p>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./"><span>Lets learn D3</span></a><a rel="next" href="./basic-html"><span>Basic HTML</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="./_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>

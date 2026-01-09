@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Basic JavaScript | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="modulepreload" href="./_observablehq/client.28f3e803.js">
+<link rel="modulepreload" href="./_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.73a8ec5a.js">
+<link rel="icon" href="./_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "./_observablehq/client.28f3e803.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Lets learn D3</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="./basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="./basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="./basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="./d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="./exercises-1">Exercises</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#what-is-java-script">What is JavaScript?</a></li>
+<li class="observablehq-secondary-link"><a href="#console">Console</a></li>
+<li class="observablehq-secondary-link"><a href="#comments">Comments</a></li>
+<li class="observablehq-secondary-link"><a href="#variables">Variables</a></li>
+<li class="observablehq-secondary-link"><a href="#data-types">Data Types</a></li>
+<li class="observablehq-secondary-link"><a href="#operators">Operators</a></li>
+<li class="observablehq-secondary-link"><a href="#conditional-statements">Conditional Statements</a></li>
+<li class="observablehq-secondary-link"><a href="#loops">Loops</a></li>
+<li class="observablehq-secondary-link"><a href="#functions">Functions</a></li>
+<li class="observablehq-secondary-link"><a href="#document-object-model">Document Object Model</a></li>
+<li class="observablehq-secondary-link"><a href="#additional-resources">Additional Resources</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h3 id="web-development-basics-java-script" tabindex="-1"><a class="observablehq-header-anchor" href="#web-development-basics-java-script">Web Development Basics: JavaScript</a></h3>
+<p>JavaScript, created in 1995 by Brendan Eich, adds interactivity to web pages. D3.js is built with JavaScript to dynamically create, manipulate, and animate data visualizations.</p>
+<hr>
+<h2 id="what-is-java-script" tabindex="-1"><a class="observablehq-header-anchor" href="#what-is-java-script">What is JavaScript?</a></h2>
+<p>JavaScript is a programming language that brings websites to life. While HTML creates structure and CSS adds styling, JavaScript adds behavior and interactivity.</p>
+<p>Think of it like this:</p>
+<ul>
+<li>HTML is the skeleton</li>
+<li>CSS is the appearance</li>
+<li>JavaScript is the actions and reactions</li>
+</ul>
+<hr>
+<h2 id="console" tabindex="-1"><a class="observablehq-header-anchor" href="#console">Console</a></h2>
+<ol>
+<li>Console.log (Your Best Friend)</li>
+</ol>
+<p>The <strong>console</strong> is a tool that lets you see messages and test code. It's like a notebook for developers.</p>
+<pre><code>console.log("Hello, World!");
+console.log(123);
+console.log("The answer is:", 42);
+</code></pre>
+<p><strong>To see the console:</strong></p>
+<ul>
+<li>Press <code>F12</code> in your browser</li>
+<li>Click on the <strong>Console</strong> tab</li>
+<li>You'll see your messages there!</li>
+</ul>
+<hr>
+<h2 id="comments" tabindex="-1"><a class="observablehq-header-anchor" href="#comments">Comments</a></h2>
+<p>Comments are notes for yourself (or other programmers). JavaScript ignores them.</p>
+<pre><code>// This is a single-line comment
+
+/* This is a
+   multi-line comment */
+
+console.log("This code runs"); 
+// console.log("This comment doesn't run") This comment doesn't run
+</code></pre>
+<hr>
+<h2 id="variables" tabindex="-1"><a class="observablehq-header-anchor" href="#variables">Variables</a></h2>
+<p>Variables (storing information) are like labeled boxes where you store information to use later.</p>
+<p>Creating Variables</p>
+<pre><code>// let: for variables that can change
+let age = 25;
+let name = "Alice";
+
+// const: for variables that DON'T change
+const PI = 3.14159;
+const birthYear = 1998;
+
+// var: old way (try to avoid)
+var oldVariable = "outdated";
+</code></pre>
+<p><strong>Use:</strong></p>
+<ul>
+<li><code>let</code> when the value might change</li>
+<li><code>const</code> when the value stays the same</li>
+</ul>
+<p>Variable Naming Rules:</p>
+<p>✅ <strong>Valid:</strong></p>
+<pre><code>let userName = "John";
+let user_name = "John";
+let userName2 = "John";
+let $price = 99;
+</code></pre>
+<p>❌ <strong>Invalid:</strong></p>
+<pre><code>let 2userName = "John";    // Can't start with number
+let user-name = "John";     // Can't use hyphens
+let let = "John";           // Can't use reserved words
+</code></pre>
+<p><strong>Convention:</strong> Use camelCase (first word lowercase, rest uppercase)</p>
+<hr>
+<h2 id="data-types" tabindex="-1"><a class="observablehq-header-anchor" href="#data-types">Data Types</a></h2>
+<p>JavaScript has different types of data:</p>
+<p><strong>1. Numbers</strong></p>
+<pre><code>let age = 30;
+let price = 19.99;
+let negative = -5;
+</code></pre>
+<p><strong>2. Strings (Text)</strong></p>
+<pre><code>let name = "Alice";
+let message = 'Hello, World!';
+let sentence = "She said, 'Hello!'";
+let age = '30';
+
+// Combining strings (concatenation)
+let greeting = "Hello, " + name + "!";  // "Hello, Alice!"
+
+// Template literals (modern way)
+let greeting2 = `Hello, ${name}!`;      // "Hello, Alice!"
+</code></pre>
+<p><strong>Note:</strong> Template literals use backticks (<code>`</code>) and <code>${}</code> to insert variables</p>
+<p><strong>3. Booleans (True/False)</strong></p>
+<pre><code>let isStudent = true;
+let hasLicense = false;
+let isAdult = age &gt;= 18;  // true if age is 18 or more
+</code></pre>
+<p><strong>4. Arrays (Lists)</strong></p>
+<pre><code>let fruits = ["apple", "banana", "orange"];
+let numbers = [1, 2, 3, 4, 5];
+let mixed = ["text", 42, true];
+
+// Accessing items (counting starts at 0!)
+console.log(fruits[0]);  // "apple"
+console.log(fruits[1]);  // "banana"
+console.log(fruits[2]);  // "orange"
+
+// Array properties and methods
+console.log(fruits.length);      // 3 (how many items)
+fruits.push("grape");            // Add to end
+fruits.pop();                    // Remove from end
+</code></pre>
+<p><strong>Remember:</strong> Array indexes start at 0, not 1!</p>
+<p><strong>5. Objects (Collections of Properties)</strong></p>
+<pre><code>let person = {
+    name: "Alice",
+    age: 25,
+    isStudent: true,
+    city: "New York"
+};
+
+// Accessing properties (two ways)
+console.log(person.name);        // "Alice"
+console.log(person["age"]);      // 25
+
+// Adding or changing properties
+person.job = "Developer";        // Add new property
+person.age = 26;                 // Change existing property
+</code></pre>
+<p>Think of objects like real-world objects - a person has a name, age, etc.</p>
+<hr>
+<h2 id="operators" tabindex="-1"><a class="observablehq-header-anchor" href="#operators">Operators</a></h2>
+<p>Operators are symbols that perform operations on values and variables. Think of them as the mathematical and logical tools that let you calculate, compare, and combine data in your programs.</p>
+<p><strong>Arithmetic Operators</strong></p>
+<pre><code>let a = 10;
+let b = 3;
+
+console.log(a + b);   // 13 (addition)
+console.log(a - b);   // 7  (subtraction)
+console.log(a * b);   // 30 (multiplication)
+console.log(a / b);   // 3.333... (division)
+console.log(a % b);   // 1  (remainder/modulo)
+
+// Increment/Decrement
+let count = 5;
+count++;              // count = count + 1 (now 6)
+count--;              // count = count - 1 (now 5)
+</code></pre>
+<p><strong>Comparison Operators</strong></p>
+<pre><code>let x = 5;
+let y = 10;
+
+console.log(x == y);   // false (equal value)
+console.log(x != y);   // true  (not equal)
+console.log(x === y);  // false (equal value AND type)
+console.log(x !== y);  // true  (not equal value OR type)
+console.log(x &lt; y);    // true  (less than)
+console.log(x &gt; y);    // false (greater than)
+console.log(x &lt;= y);   // true  (less than or equal)
+console.log(x &gt;= y);   // false (greater than or equal)
+</code></pre>
+<p><strong>Important:</strong> Use <code>===</code> (strict equality) instead of <code>==</code> to avoid surprises!</p>
+<p><strong>Logical Operators</strong></p>
+<pre><code>let age = 20;
+let hasID = true;
+
+// AND (&amp;&amp;): Both must be true
+console.log(age &gt;= 18 &amp;&amp; hasID);     // true
+
+// OR (||): At least one must be true
+console.log(age &gt;= 18 || hasID);     // true
+
+// NOT (!): Flips true to false or false to true
+console.log(!hasID);                 // false
+</code></pre>
+<hr>
+<h2 id="conditional-statements" tabindex="-1"><a class="observablehq-header-anchor" href="#conditional-statements">Conditional Statements</a></h2>
+<p>Conditional statements let your code make decisions based on conditions. Think of them as "if this is true, then do that" instructions. They're how programs choose different actions depending on the situation, just like you decide whether to bring an umbrella based on whether it's raining.</p>
+<p>If Statements</p>
+<pre><code>let age = 18;
+
+if (age &gt;= 18) {
+    console.log("You are an adult");
+}
+
+// If-Else
+if (age &gt;= 18) {
+    console.log("You can vote");
+} else {
+    console.log("You cannot vote yet");
+}
+
+// If-Else If-Else
+let score = 85;
+
+if (score &gt;= 90) {
+    console.log("Grade: A");
+} else if (score &gt;= 80) {
+    console.log("Grade: B");
+} else if (score &gt;= 70) {
+    console.log("Grade: C");
+} else {
+    console.log("Grade: F");
+}
+</code></pre>
+<p><strong>How it works:</strong></p>
+<ol>
+<li>JavaScript checks the first condition</li>
+<li>If it's true, it runs that code block and stops</li>
+<li>If it's false, it moves to the next condition</li>
+<li><code>else</code> is the "if nothing else worked" option</li>
+</ol>
+<hr>
+<h2 id="loops" tabindex="-1"><a class="observablehq-header-anchor" href="#loops">Loops</a></h2>
+<p>Loops let you repeat code multiple times without writing it over and over. Think of them as instructions that say "do this action X times" or "keep doing this until something changes." They're essential for working with lists of data, which is exactly what you'll do constantly in D3 visualizations.</p>
+<p><strong>For Loop</strong> (when you know how many times to repeat)</p>
+<pre><code>// Print numbers 0 to 4
+for (let i = 0; i &lt; 5; i++) {
+    console.log(i);
+}
+
+// Breaking it down:
+// let i = 0       - Start with i at 0
+// i &lt; 5           - Keep going while i is less than 5
+// i++             - Add 1 to i after each loop
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>0
+1
+2
+3
+4
+</code></pre>
+<p>Looping Through Arrays</p>
+<pre><code>let fruits = ["apple", "banana", "orange"];
+
+// Method 1: For loop
+for (let i = 0; i &lt; fruits.length; i++) {
+    console.log(fruits[i]);
+}
+
+// Method 2: For...of loop (easier!)
+for (let fruit of fruits) {
+    console.log(fruit);
+}
+</code></pre>
+<p><strong>While Loop</strong> (keep going while condition is true)</p>
+<pre><code>let count = 0;
+
+while (count &lt; 5) {
+    console.log(count);
+    count++;
+}
+</code></pre>
+<p><strong>Be careful!</strong> Make sure your condition eventually becomes false, or you'll create an infinite loop!</p>
+<hr>
+<h2 id="functions" tabindex="-1"><a class="observablehq-header-anchor" href="#functions">Functions</a></h2>
+<p>Functions are like recipes - you define them once, then use them many times.</p>
+<p><strong>Basic Function</strong></p>
+<pre><code>// Define the function
+function greet() {
+    console.log("Hello!");
+}
+
+// Use the function (called "calling" or "invoking")
+greet();  // Prints: Hello!
+greet();  // Prints: Hello! again
+</code></pre>
+<p><strong>Functions with Parameters</strong> (Inputs)</p>
+<pre><code>function greetPerson(name) {
+    console.log("Hello, " + name + "!");
+}
+
+greetPerson("Alice");  // Hello, Alice!
+greetPerson("Bob");    // Hello, Bob!
+</code></pre>
+<p><code>name</code> is a <strong>parameter</strong> - a variable that receives a value when you call the function.</p>
+<p><strong>Functions that Return Values</strong></p>
+<pre><code>function add(a, b) {
+    return a + b;
+}
+
+let result = add(5, 3);
+console.log(result);  // 8
+
+// Use directly
+console.log(add(10, 20));  // 30
+</code></pre>
+<p>The <code>return</code> keyword sends a value back when the function is called.</p>
+<p><strong>Arrow Functions</strong> (Modern Shorter Syntax)</p>
+<pre><code>// Traditional function
+function add(a, b) {
+    return a + b;
+}
+
+// Arrow function (does the same thing)
+const add = (a, b) =&gt; {
+    return a + b;
+};
+
+// Even shorter (if just one return statement)
+const add = (a, b) =&gt; a + b;
+</code></pre>
+<hr>
+<h2 id="document-object-model" tabindex="-1"><a class="observablehq-header-anchor" href="#document-object-model">Document Object Model</a></h2>
+<p>The <strong>DOM</strong> is how JavaScript interacts with your HTML. Think of it as a bridge between JavaScript and your webpage.</p>
+<p><strong>Selecting Elements</strong></p>
+<pre><code>// By ID
+let header = document.getElementById("header");
+
+// By class name (gets all elements with that class)
+let boxes = document.getElementsByClassName("box");
+
+// By tag name
+let paragraphs = document.getElementsByTagName("p");
+
+// Modern way (recommended)
+let header = document.querySelector("header");        // First match
+let boxes = document.querySelectorAll(".box");         // All matches
+</code></pre>
+<p><strong>Changing Content</strong></p>
+<pre><code>// Change text
+let heading = document.querySelector("h1");
+heading.textContent = "New Heading!";
+
+// Change HTML
+let div = document.querySelector("myDiv");
+div.innerHTML = "&lt;p&gt;New &lt;strong&gt;content&lt;/strong&gt;!&lt;/p&gt;";
+</code></pre>
+<p><strong>Changing Styles</strong></p>
+<pre><code>let box = document.querySelector(".box");
+
+// Change one style
+box.style.color = "red";
+box.style.backgroundColor = "yellow";
+box.style.fontSize = "20px";
+
+// Note: CSS properties with hyphens become camelCase
+// background-color → backgroundColor
+// font-size → fontSize
+</code></pre>
+<p><strong>Adding/Removing Classes</strong></p>
+<pre><code>let button = document.querySelector("myButton");
+
+button.classList.add("active");       // Add a class
+button.classList.remove("hidden");    // Remove a class
+button.classList.toggle("highlight"); // Add if missing, remove if present
+</code></pre>
+<p><strong>Creating and Adding Elements</strong></p>
+<pre><code>// Create a new element
+let newParagraph = document.createElement("p");
+newParagraph.textContent = "This is a new paragraph!";
+
+// Add it to the page
+let container = document.querySelector("container");
+container.appendChild(newParagraph);
+</code></pre>
+<hr>
+<p><strong>Events</strong> (Responding to User Actions)</p>
+<p>Events are things that happen on your webpage - clicks, mouse movements, key presses, etc.</p>
+<p>Click Events</p>
+<pre><code>let button = document.querySelector("myButton");
+
+button.addEventListener("click", function() {
+    console.log("Button was clicked!");
+});
+
+// Or with an arrow function
+button.addEventListener("click", () =&gt; {
+    console.log("Button was clicked!");
+});
+</code></pre>
+<p><strong>Common Events</strong></p>
+<pre><code>let input = document.querySelector("myInput");
+
+// When user types
+input.addEventListener("input", () =&gt; {
+    console.log("User is typing:", input.value);
+});
+
+// When user focuses on input
+input.addEventListener("focus", () =&gt; {
+    console.log("Input is focused");
+});
+
+// When user clicks away
+input.addEventListener("blur", () =&gt; {
+    console.log("Input lost focus");
+});
+
+// When mouse moves over element
+let box = document.querySelector(".box");
+box.addEventListener("mouseenter", () =&gt; {
+    console.log("Mouse entered the box");
+});
+
+box.addEventListener("mouseleave", () =&gt; {
+    console.log("Mouse left the box");
+});
+</code></pre>
+<h2 id="additional-resources" tabindex="-1"><a class="observablehq-header-anchor" href="#additional-resources">Additional Resources</a></h2>
+<ol>
+<li>Codeacademy: Learn JavaScript: Fundamentals - <a href="https://www.codecademy.com/learn/learn-javascript-fundamentals" target="_blank" rel="noopener noreferrer">https://www.codecademy.com/learn/learn-javascript-fundamentals</a></li>
+<li>JavaScript.info - <a href="https://javascript.info/" target="_blank" rel="noopener noreferrer">https://javascript.info/</a></li>
+<li>Eloquent JavaScript (free book) - <a href="https://eloquentjavascript.net/" target="_blank" rel="noopener noreferrer">https://eloquentjavascript.net/</a></li>
+<li>MDN JavaScript Guide - <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide</a></li>
+</ol>
+<hr>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./basic-svg"><span>Basic SVG</span></a><a rel="next" href="./d3-example-1"><span>D3 example</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="./_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>

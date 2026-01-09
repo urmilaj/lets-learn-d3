@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Basic HTML | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="modulepreload" href="./_observablehq/client.28f3e803.js">
+<link rel="modulepreload" href="./_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.73a8ec5a.js">
+<link rel="icon" href="./_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "./_observablehq/client.28f3e803.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Lets learn D3</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./initial-setup">Initial setup</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="./basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="./basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="./basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="./d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="./exercises-1">Exercises</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#what-is-html">What is HTML?</a></li>
+<li class="observablehq-secondary-link"><a href="#basic-html-structure">Basic HTML structure</a></li>
+<li class="observablehq-secondary-link"><a href="#document-type-declaration">Document Type Declaration</a></li>
+<li class="observablehq-secondary-link"><a href="#the-root-element">The Root Element</a></li>
+<li class="observablehq-secondary-link"><a href="#the-head-section">The Head Section</a></li>
+<li class="observablehq-secondary-link"><a href="#the-body-section">The Body Section</a></li>
+<li class="observablehq-secondary-link"><a href="#complete-flow">Complete flow</a></li>
+<li class="observablehq-secondary-link"><a href="#key-concepts-checklist">Key Concepts Checklist</a></li>
+<li class="observablehq-secondary-link"><a href="#quick-reference">Quick Reference</a></li>
+<li class="observablehq-secondary-link"><a href="#faq">FAQ</a></li>
+<li class="observablehq-secondary-link"><a href="#practice-exercises">Practice Exercises</a></li>
+<li class="observablehq-secondary-link"><a href="#challenge">Challenge</a></li>
+<li class="observablehq-secondary-link"><a href="#additional-resources">Additional Resources</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h3 id="web-development-basics-html" tabindex="-1"><a class="observablehq-header-anchor" href="#web-development-basics-html">Web Development Basics: HTML</a></h3>
+<p>HTML, created in 1991 by Tim Berners-Lee, structures web content. D3.js needs HTML to provide a document structure where it can insert and manipulate SVG visualizations.</p>
+<hr>
+<h2 id="what-is-html" tabindex="-1"><a class="observablehq-header-anchor" href="#what-is-html">What is HTML?</a></h2>
+<p>HTML (HyperText Markup Language) is the skeleton of every webpage. It defines the structure and content using tags - special keywords wrapped in angle brackets like <code>&lt;tag&gt;</code>.</p>
+<p>Think of it like building with blocks:</p>
+<ul>
+<li>Each block (tag) has a specific purpose</li>
+<li>Blocks can contain other blocks</li>
+<li>Together they create the structure of your page</li>
+</ul>
+<hr>
+<h2 id="basic-html-structure" tabindex="-1"><a class="observablehq-header-anchor" href="#basic-html-structure">Basic HTML structure</a></h2>
+<p>Here's the basic HTML structure used in our D3 visualization: Let's break down each part!</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;!-- Information about the page --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Visible content goes here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr>
+<h2 id="document-type-declaration" tabindex="-1"><a class="observablehq-header-anchor" href="#document-type-declaration">Document Type Declaration</a></h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+</code></pre>
+<p><strong>What it does</strong>: Tells the browser "Hey, this is an HTML5 document!"</p>
+<p><strong>Why we need it</strong>:</p>
+<ul>
+<li>Without this, browsers might display your page in "quirks mode" (old, buggy behavior)</li>
+<li>Must be the very first line in every HTML file</li>
+<li>Not case-sensitive, but conventionally written in uppercase</li>
+</ul>
+<p>Think of it as: The label on a food package telling you what's inside</p>
+<hr>
+<h2 id="the-root-element" tabindex="-1"><a class="observablehq-header-anchor" href="#the-root-element">The Root Element</a></h2>
+<pre><code>&lt;html lang="en"&gt;
+</code></pre>
+<p><strong>What it does</strong>: Wraps all the content on the entire page</p>
+<p>Breaking it down:</p>
+<ul>
+<li><code>&lt;html&gt;</code> - The opening tag</li>
+<li><code>lang="en"</code> - An attribute that sets the language to English</li>
+<li>Everything else goes inside this element</li>
+<li>Closed at the very end with <code>&lt;/html&gt;</code></li>
+</ul>
+<p>Why <code>lang="en"</code> matters:</p>
+<ul>
+<li>Helps screen readers pronounce text correctly</li>
+<li>Helps search engines understand your content</li>
+<li>Improves accessibility for users with disabilities</li>
+</ul>
+<hr>
+<h2 id="the-head-section" tabindex="-1"><a class="observablehq-header-anchor" href="#the-head-section">The Head Section</a></h2>
+<pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+    &lt;title&gt;How to create a chart with D3.js&lt;/title&gt;
+    &lt;style&gt;
+        /* CSS styles */
+    &lt;/style&gt;
+&lt;/head&gt;
+</code></pre>
+<p><strong>What it does</strong>: Contains metadata (information about the page, not shown on the page)</p>
+<p>Character Encoding</p>
+<pre><code>&lt;meta charset="UTF-8"&gt;
+</code></pre>
+<p><strong>What it does</strong>: Defines how text is encoded</p>
+<p><strong>Why we need it</strong>:</p>
+<ul>
+<li>UTF-8 supports all characters from all languages (emojis too! 🎉)</li>
+<li>Without it, special characters might display as � or weird symbols</li>
+<li>Should be one of the first elements in <code>&lt;head&gt;</code></li>
+</ul>
+<p>Think of it as: Making sure your computer and the browser speak the same language</p>
+<p>Viewport Meta Tag</p>
+<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+</code></pre>
+<p><strong>What it does</strong>: Controls how the page displays on mobile devices</p>
+<p>Breaking it down:</p>
+<ul>
+<li><code>width=device-width</code> - Makes the page width match the device's screen width</li>
+<li><code>initial-scale=1.0</code> - Sets initial zoom level to 100%</li>
+</ul>
+<p><strong>Why we need it</strong>:</p>
+<ul>
+<li>Without this, mobile browsers assume your page is desktop-sized and shrink it down</li>
+<li>Makes your D3 chart responsive and readable on phones/tablets</li>
+<li>Essential for modern web development</li>
+</ul>
+<p>Think of it as: Auto-adjusting your chart to fit any screen size</p>
+<p>Loading External Scripts</p>
+<pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+</code></pre>
+<p><strong>What it does</strong>: Loads the D3.js library from a CDN (Content Delivery Network)</p>
+<p>Breaking it down:</p>
+<ul>
+<li><code>&lt;script&gt;</code> - Used to include JavaScript</li>
+<li><code>src="..."</code> - The <strong>source</strong> attribute points to where the code lives</li>
+<li><code>d3@7</code> - Loads version 7 of D3.js</li>
+</ul>
+<p>Why in the <code>&lt;head&gt;</code>:</p>
+<ul>
+<li>D3 needs to load <em>before</em> our code tries to use it</li>
+<li>The browser loads this first, making D3 available for our script later</li>
+</ul>
+<p>CDN Benefits:</p>
+<ul>
+<li>Fast loading (servers worldwide)</li>
+<li>Cached by browsers (faster on repeat visits)</li>
+<li>No need to download and host the file yourself</li>
+</ul>
+<p>Think of it as: Importing a tool you need before you start your project</p>
+<p>Page Title</p>
+<pre><code>&lt;title&gt;How to create a chart with D3.js&lt;/title&gt;
+</code></pre>
+<p><strong>What it does</strong>: Sets the text that appears in:</p>
+<ul>
+<li>Browser tab</li>
+<li>Bookmarks</li>
+<li>Search engine results</li>
+</ul>
+<p><strong>Why it matters</strong>:</p>
+<ul>
+<li>First thing users see in their tabs</li>
+<li>Important for SEO (search engine optimization)</li>
+<li>Should be descriptive and concise (50-60 characters)</li>
+</ul>
+<p>Internal Styles</p>
+<pre><code>&lt;style&gt;
+    svg {
+        background-color: #2b2b2b;
+    }
+&lt;/style&gt;
+</code></pre>
+<p><strong>What it does</strong>: Contains CSS to style your page</p>
+<p>In our example:</p>
+<ul>
+<li>Makes the SVG background dark gray (<code>#2b2b2b</code>)</li>
+<li>CSS selectors target HTML elements</li>
+<li>Curly braces <code>{}</code> contain the style rules</li>
+</ul>
+<div class="note">
+    Alternative: You could put styles in a separate `.css` file
+</div>
+<hr>
+<h2 id="the-body-section" tabindex="-1"><a class="observablehq-header-anchor" href="#the-body-section">The Body Section</a></h2>
+<pre><code>&lt;body&gt;
+    &lt;div class="chartContainer"&gt;&lt;/div&gt;
+    &lt;script&gt;
+        // JavaScript code for D3 visualization
+    &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p><strong>What it does</strong>: Contains everything visible on the webpage</p>
+<p>The Container Div</p>
+<pre><code>&lt;div class="chartContainer"&gt;&lt;/div&gt;
+</code></pre>
+<p><strong>What it does</strong>: Creates a container where D3 will insert the SVG chart</p>
+<p>Breaking it down:</p>
+<ul>
+<li><code>&lt;div&gt;</code> - A generic container element (like an empty box)</li>
+<li><code>class="chartContainer"</code> - Gives it a name we can reference in JavaScript</li>
+<li>Self-closing (no content initially)</li>
+</ul>
+<p><strong>Why we need it</strong>:</p>
+<ul>
+<li>D3 needs a place to "attach" the SVG</li>
+<li>Using a class lets us target this specific div</li>
+<li>Keeps our chart separate from other page content</li>
+</ul>
+<p>In JavaScript, D3 finds it like this:</p>
+<pre data-language="javascript"><code class="language-javascript">d3.<span class="hljs-title function_">select</span>(<span class="hljs-string">".chartContainer"</span>)  <span class="hljs-comment">// The dot means "class"</span>
+</code></pre>
+<p>Think of it as: An empty frame where you'll hang your artwork</p>
+<p>Internal JavaScript</p>
+<pre><code>&lt;script&gt;
+    const width = 600;
+    // ... rest of JavaScript code
+&lt;/script&gt;
+</code></pre>
+<p><strong>What it does</strong>: Contains the JavaScript that creates your D3 visualization</p>
+<p>Why at the end of <code>&lt;body&gt;</code>:</p>
+<ul>
+<li>HTML loads from top to bottom</li>
+<li>JavaScript needs the <code>&lt;div class="chartContainer"&gt;</code> to exist first</li>
+<li>Placing <code>&lt;script&gt;</code> at the end ensures all HTML is loaded before code runs</li>
+</ul>
+<div class="note">
+    <p>
+        Alternative approach: This html code below loads JavaScript from a separate file (cleaner for large projects)
+    </p>
+    <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code>
+</div>
+<hr>
+<h2 id="complete-flow" tabindex="-1"><a class="observablehq-header-anchor" href="#complete-flow">Complete flow</a></h2>
+<p>Here's the flow when someone visits your page:</p>
+<ol>
+<li><strong>Browser reads <code>&lt;!DOCTYPE html&gt;</code></strong> → "This is HTML5"</li>
+<li><strong>Browser reads <code>&lt;head&gt;</code></strong> → Loads D3 library, sets page title, applies styles</li>
+<li><strong>Browser reads <code>&lt;body&gt;</code></strong> → Creates the empty <code>&lt;div class="chartContainer"&gt;</code></li>
+<li><strong>Browser runs <code>&lt;script&gt;</code></strong> → D3 code executes:
+<ul>
+<li>Selects the <code>.chartContainer</code> div</li>
+<li>Creates an SVG element inside it</li>
+<li>Draws your chart</li>
+</ul>
+</li>
+</ol>
+<pre><code>┌─────────────────────────────────────┐
+│ &lt;!DOCTYPE html&gt;                     │ ← Declares HTML5
+├─────────────────────────────────────┤
+│ &lt;html&gt;                              │
+│   ┌─────────────────────────────┐   │
+│   │ &lt;head&gt;                      │   │ ← Setup &amp; resources
+│   │   - Meta tags               │   │
+│   │   - Load D3                 │   │
+│   │   - Title                   │   │
+│   │   - Styles                  │   │
+│   └─────────────────────────────┘   │
+│   ┌─────────────────────────────┐   │
+│   │ &lt;body&gt;                      │   │ ← Visible content
+│   │   &lt;div class="chartContainer"&gt;  │
+│   │     [D3 creates SVG here]   │   │
+│   │   &lt;/div&gt;                    │   │
+│   │   &lt;script&gt; D3 code &lt;/script&gt;│   │
+│   └─────────────────────────────┘   │
+│ &lt;/html&gt;                             │
+└─────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2 id="key-concepts-checklist" tabindex="-1"><a class="observablehq-header-anchor" href="#key-concepts-checklist">Key Concepts Checklist</a></h2>
+<p>Before moving on, make sure you understand:</p>
+<ul>
+<li><strong>Tags</strong> - <code>&lt;tagname&gt;content&lt;/tagname&gt;</code> create elements</li>
+<li><strong>Attributes</strong> - Add extra info: <code>&lt;div class="chartContainer"&gt;</code></li>
+<li><strong>Head vs Body</strong> - Head = setup, Body = visible content</li>
+<li><strong>Classes</strong> - Names that let CSS and JavaScript find elements</li>
+<li><strong>Script tags</strong> - Where JavaScript code lives</li>
+<li><strong>Order matters</strong> - Load resources before using them</li>
+</ul>
+<hr>
+<h2 id="quick-reference" tabindex="-1"><a class="observablehq-header-anchor" href="#quick-reference">Quick Reference</a></h2>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Purpose</th>
+<th>Why It's Here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;!DOCTYPE html&gt;</code></td>
+<td>Declares HTML5</td>
+<td>Required first line</td>
+</tr>
+<tr>
+<td><code>&lt;html lang="en"&gt;</code></td>
+<td>Root container</td>
+<td>Wraps everything</td>
+</tr>
+<tr>
+<td><code>&lt;meta charset="UTF-8"&gt;</code></td>
+<td>Character encoding</td>
+<td>Supports all characters</td>
+</tr>
+<tr>
+<td><code>&lt;meta name="viewport"&gt;</code></td>
+<td>Mobile responsiveness</td>
+<td>Makes chart work on phones</td>
+</tr>
+<tr>
+<td><code>&lt;script src="d3@7"&gt;</code></td>
+<td>Loads D3 library</td>
+<td>We need D3 to create charts</td>
+</tr>
+<tr>
+<td><code>&lt;title&gt;</code></td>
+<td>Page title</td>
+<td>Shows in browser tab</td>
+</tr>
+<tr>
+<td><code>&lt;style&gt;</code></td>
+<td>CSS styling</td>
+<td>Makes SVG background dark</td>
+</tr>
+<tr>
+<td><code>&lt;body&gt;</code></td>
+<td>Visible content</td>
+<td>Where our chart appears</td>
+</tr>
+<tr>
+<td><code>&lt;div class="chartContainer"&gt;</code></td>
+<td>Chart container</td>
+<td>D3 puts SVG here</td>
+</tr>
+<tr>
+<td><code>&lt;script&gt;</code></td>
+<td>D3 code</td>
+<td>Creates the visualization</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="faq" tabindex="-1"><a class="observablehq-header-anchor" href="#faq">FAQ</a></h2>
+<p>Q: Why can't I just write JavaScript without HTML?
+A: JavaScript for web pages needs HTML to run in a browser. HTML is the foundation, JavaScript adds behavior.</p>
+<p>Q: Can I change the class name <code>chartContainer</code>?
+A: Yes! Just make sure to update it in your JavaScript: <code>d3.select(".yourNewName")</code></p>
+<p>Q: What if I skip the <code>&lt;meta viewport&gt;</code> tag?
+A: Your chart will look tiny on mobile devices because the browser will assume it's a desktop site and zoom out.</p>
+<hr>
+<h2 id="practice-exercises" tabindex="-1"><a class="observablehq-header-anchor" href="#practice-exercises">Practice Exercises</a></h2>
+<p>Let's get hands-on! Complete these exercises to solidify your HTML knowledge.</p>
+<p><strong>Goal:</strong> Build a simple webpage from scratch and view it in your browser.</p>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Open VS Code</li>
+<li>Create a new file: <code>File → New File</code> (or <code>Ctrl+N</code>)</li>
+<li>Save it as <code>my-first-page.html</code> in your project folder</li>
+<li>Type (don't copy-paste!) this code:</li>
+</ol>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My First Webpage&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is my first HTML page.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+---
+</code></pre>
+<ol start="5">
+<li>Right-click in the editor and select "Open with Live Server"</li>
+</ol>
+<ul>
+<li>If you don't see this option, install the "Live Server" extension:</li>
+<li>Click the Extensions icon in the left sidebar (or Ctrl+Shift+X)</li>
+<li>Search for "Live Server" by Ritwick Dey</li>
+<li>Click Install</li>
+<li>Try step 5 again</li>
+</ul>
+<ol start="6">
+<li>Your page should open in your browser! 🎉</li>
+</ol>
+<hr>
+<h2 id="challenge" tabindex="-1"><a class="observablehq-header-anchor" href="#challenge">Challenge</a></h2>
+<p>Modify the page to include:</p>
+<ul>
+<li>Your name in the <code>&lt;h1&gt;</code> tag</li>
+<li>Three paragraphs about your favorite hobbies</li>
+<li>A different page title</li>
+</ul>
+<hr>
+<h2 id="additional-resources" tabindex="-1"><a class="observablehq-header-anchor" href="#additional-resources">Additional Resources</a></h2>
+<ol>
+<li><a href="https://www.freecodecamp.org/news/html-crash-course/" target="_blank" rel="noopener noreferrer">Free code camp - HTML for Beginners</a></li>
+<li><a href="https://www.codecademy.com/learn/learn-html-fundamentals" target="_blank" rel="noopener noreferrer">Codeacademy - Learn HTML: Fundamentals</a></li>
+<li><a href="https://www.codecademy.com/learn/learn-html" target="_blank" rel="noopener noreferrer">Codeacademy - Learn HTML</a></li>
+</ol>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./initial-setup"><span>Initial setup</span></a><a rel="next" href="./basic-css"><span>Basic CSS</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="./_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>
