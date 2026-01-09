@@ -24,7 +24,7 @@ export default {
   // ],
 
   // Content to add to the head of the page, e.g. for a favicon:
-  head: '<link rel="icon" href="uj.png" type="image/png" sizes="32x32">',
+  head: '<link rel="icon" href="icon.png" type="image/png" sizes="32x32">',
 
   // The path to the source root.
   root: "src",
@@ -34,7 +34,7 @@ export default {
   // header: "", // what to show in the header (HTML)
   footer: `<div style="display: flex; align-items: center; ">
   <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
-    <img src="uj.png" width="32" height="32"/>
+    <img src="icon.png" width="32" height="32"/>
     <span style="font-size: 15px; margin-top: 7px;">Lets learn D3 | Urmila J</span>
   </a>
   </div>`, // what to show in the footer (HTML)
