@@ -9,6 +9,7 @@ export default {
   pages: [
     {name: "Initial setup", path: "/initial-setup"},
     {name: "Basic HTML", path: "/basic-html"},
+    {name: "Basic CSS", path: "/basic-css"},
   ],
   // pages: [
   //   {
