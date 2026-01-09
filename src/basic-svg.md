@@ -362,7 +362,9 @@ const combineScale = view(Inputs.range([0.5, 2], {label: "Scale", step: 0.1, val
 
 ---
 
+## Additional Resources
 
+1. MDN SVG Guide - https://developer.mozilla.org/en-US/docs/Web/SVG
 
 
 
