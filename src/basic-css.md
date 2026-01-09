@@ -1,5 +1,5 @@
 ---
-title Basic CSS
+title: Basic CSS
 ---
 
 ### Web Development Basics: CSS

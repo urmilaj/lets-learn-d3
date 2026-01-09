@@ -1,5 +1,5 @@
 ---
-title Basic HTML
+title: Basic HTML
 ---
 
 ### Web Development Basics: HTML

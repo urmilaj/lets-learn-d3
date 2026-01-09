@@ -10,6 +10,8 @@ export default {
     {name: "Initial setup", path: "/initial-setup"},
     {name: "Basic HTML", path: "/basic-html"},
     {name: "Basic CSS", path: "/basic-css"},
+    {name: "Basic SVG", path: "/basic-svg"},
+    {name: "Basic Javascript", path: "/basic-js"},
   ],
   // pages: [
   //   {
