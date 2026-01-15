@@ -5,13 +5,13 @@ export default {
     {
       name: "Session 1: Web development basics",
       pages: [
-        { name: "Initial setup", path: "/initial-setup" },
-        { name: "Basic HTML", path: "/basic-html" },
-        { name: "Basic CSS", path: "/basic-css" },
-        { name: "Basic SVG", path: "/basic-svg" },
-        { name: "Basic Javascript", path: "/basic-js" },
-        { name: "D3 example", path: "/d3-example-1" },
-        {name: "Exercises", path: "/exercises-1"}
+        { name: "Initial setup", path: "/sessions/session-1/initial-setup" },
+        { name: "Basic HTML", path: "/sessions/session-1/basic-html" },
+        { name: "Basic CSS", path: "/sessions/session-1/basic-css" },
+        { name: "Basic SVG", path: "/sessions/session-1/basic-svg" },
+        { name: "Basic Javascript", path: "/sessions/session-1/basic-js" },
+        { name: "D3 example", path: "/sessions/session-1/d3-example-1" },
+        {name: "Exercises", path: "/sessions/session-1/exercises-1"}
       ]
     },
     {

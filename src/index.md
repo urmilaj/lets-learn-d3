@@ -12,13 +12,13 @@ toc: false
 
 Before diving into D3, you'll need to understand the core web technologies it's built on. This session covers:
 
-1. [Initial Setup](initial-setup) - Get your development environment ready
-2. [Basic HTML](basic-html) - Learn the structure of web pages
-3. [Basic CSS](basic-css) - Style and layout fundamentals
-4. [Basic SVG](basic-svg) - Scalable Vector Graphics for data visualization
-5. [Basic JavaScript](basic-js) - The programming language that powers D3
-6. [D3 Example](d3-example-1) - See what's possible with D3
-7. [Exercises](exercises-1) - Practice what you've learned
+1. [Initial Setup](sessions/session-1/initial-setup) - Get your development environment ready
+2. [Basic HTML](sessions/session-1/basic-html) - Learn the structure of web pages
+3. [Basic CSS](sessions/session-1/basic-css) - Style and layout fundamentals
+4. [Basic SVG](sessions/session-1/basic-svg) - Scalable Vector Graphics for data visualization
+5. [Basic JavaScript](sessions/session-1/basic-js) - The programming language that powers D3
+6. [D3 Example](sessions/session-1/d3-example-1) - See what's possible with D3
+7. [Exercises](sessions/session-1/exercises-1) - Practice what you've learned
 
 ---
 
