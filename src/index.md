@@ -8,7 +8,7 @@ toc: false
 </div>
 
 
-### Session 1: Web Development Basics
+### Session 1: Web Development Basics (Completed on 10th Jan, 2026)
 
 Before diving into D3, you'll need to understand the core web technologies it's built on. This session covers:
 

@@ -38,7 +38,7 @@ Lets try and create this chart.
 Ofcourse, we do not have the exact dataset that the original chart uses, but dont worry lets create a dummy dataset based on the image. Here's the dummy data table below.
 
 ```js
-const dandelionData = await FileAttachment("./data/dandelion-example.csv").csv()
+const dandelionData = await FileAttachment("../../data/dandelion-example.csv").csv()
 ```
 
 <div class="card">${Inputs.table(dandelionData)}</div>
