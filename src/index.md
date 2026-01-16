@@ -24,8 +24,10 @@ Before diving into D3, you'll need to understand the core web technologies it's 
 
 ### Session 2: D3 Basics
 
-*Coming soon - Understanding D3 fundamentals, selections, and data binding*
-
+1. [D3 initial setup](sessions/session-2/d3-initial-setup) - Add D3 to your project
+2. [D3 selection](sessions/session-2/d3-selection) - Select, modify, and bind data to HTML/DOM elements
+3. [D3 data binding](sessions/session-2/d3-data-binding) - Bind your data to HTML/DOM elements and create data-driven visualizations
+4. [D3 scales](sessions/session-2/d3-scales) - Transform data values into visual properties (positions, sizes, colors)
 ---
 
 ### Session 3: D3 Simple Charts
