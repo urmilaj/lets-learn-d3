@@ -12,12 +12,17 @@ export default {
         { name: "Basic Javascript", path: "/sessions/session-1/basic-js" },
         { name: "D3 example", path: "/sessions/session-1/d3-example-1" },
         {name: "Exercises", path: "/sessions/session-1/exercises-1"}
-      ]
+      ],
+      open: false,
     },
     {
       name: "Session 2: D3 basics",
-      open: false,
-      pages: []
+      pages: [
+        { name: "D3 initial setup", path: "/sessions/session-2/d3-initial-setup" },
+        { name: "D3 selection", path: "/sessions/session-2/d3-selection" },
+        { name: "D3 data binding", path: "/sessions/session-2/d3-data-binding" },
+        { name: "D3 scales", path: "/sessions/session-2/d3-scales" }
+      ]
     },
     {
       name: "Session 3: D3 simple charts",
