@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>D3 data binding | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="preload" as="style" href="../../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="../../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../../_observablehq/client.6d4b40e3.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="../../_npm/@observablehq/plot@0.6.17/d761ef9b.js">
+<link rel="modulepreload" href="../../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../../_npm/d3@7.9.0/e780feca.js">
+<link rel="modulepreload" href="../../_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="../../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../../_npm/d3-format@3.1.0/86074ef6.js">
+<link rel="modulepreload" href="../../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../../_npm/d3-scale@4.0.2/843b6a76.js">
+<link rel="modulepreload" href="../../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../../_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="../../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../../_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../../_observablehq/client.6d4b40e3.js";
+
+define({id: "db3c9690", inputs: ["view","Inputs"], outputs: ["circleData"], body: (view,Inputs) => {
+const circleData = view(
+  Inputs.text({
+    label: "Enter circle radii (comma-separated):",
+    value: "5, 50, 150, 10, 80, 100, 10"
+  })
+)
+return {circleData};
+}});
+
+define({id: "d462f81b", inputs: ["htl","Plot","circleData","display"], body: async (htl,Plot,circleData,display) => {
+display(await(
+htl.svg`<svg width="800" height="350">
+  <g>
+    ${Plot.dot(circleData.split(",").map(d => parseFloat(d.trim())), {x:(d,i) => i*10, r:d=>d, fill:d=>d>25?'rebeccaPurple':'orange'}).plot({margin: 20, width: 800, height: 350, x: {axis: null}, y: {axis: null}, r: {range: [5, 50]}})}
+  </g>
+</svg>`
+))
+}});
+
+define({id: "d310a7b8", inputs: ["circleData"], outputs: ["data"], body: (circleData) => {
+const data = circleData.split(",").map(d => parseFloat(d.trim())).filter(d => !isNaN(d));
+return {data};
+}});
+
+define({id: "ed9de648", inputs: ["html","data","display"], body: async (html,data,display) => {
+display(await(
+html`<div style="margin-top: 20px;">
+  <div style="background: #f5f5f5; padding: 15px; border-radius: 5px;">
+    <strong>Generated D3 Code:</strong>
+    <pre style="margin-top: 10px; background: white; padding: 15px; border-radius: 3px; overflow-x: auto;"><code>const data = [${data.join(", ")}];
+
+d3.select("svg")
+  .selectAll("circle")
+  .data(data)
+  .join("circle")
+    .attr("cx", (d, i) => 50 + i * 80)
+    .attr("cy", 175)
+    .attr("r", d => d)
+    .attr("fill", d => d > 25 ? "rebeccaPurple" : "orange");</code></pre>
+  </div>
+</div>`
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Lets learn D3</a></li>
+  </ol>
+  <details>
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-1/initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="../session-1/d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="../session-1/exercises-1">Exercises</a></li>
+    </ol>
+  </details>
+  <section class="observablehq-section-active">
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./d3-initial-setup">D3 initial setup</a></li>
+    <li class="observablehq-link"><a href="./d3-selection">D3 selection</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./d3-data-binding">D3 data binding</a></li>
+    <li class="observablehq-link"><a href="./d3-scales">D3 scales</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#binding-your-data">Binding Your Data</a></li>
+<li class="observablehq-secondary-link"><a href="#creating-elements">Creating Elements</a></li>
+<li class="observablehq-secondary-link"><a href="#select-then-bind">Select then bind</a></li>
+<li class="observablehq-secondary-link"><a href="#interactive-playground">Interactive Playground</a></li>
+<li class="observablehq-secondary-link"><a href="#practice-exercises">Practice Exercises</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="d3-data-binding" tabindex="-1"><a class="observablehq-header-anchor" href="#d3-data-binding">D3 data binding</a></h1>
+<p><strong>Data binding</strong> is D3's superpower! It's how you connect your data (like numbers in an array) to visual elements on your page (like circles or rectangles). Instead of manually creating elements one by one, D3 can automatically create, update, or remove elements based on your data.</p>
+<hr>
+<h2 id="binding-your-data" tabindex="-1"><a class="observablehq-header-anchor" href="#binding-your-data">Binding Your Data</a></h2>
+<p>The <code>.data()</code> method is the <strong>essential step</strong> that attaches your data array to a selection. This is always needed for data binding!</p>
+<p><strong>Basic concept:</strong></p>
+<pre><code>const numbers = [10, 20, 30];
+
+d3.select("svg") // this assumes you already have an svg element with width and height in your html
+  .selectAll("circle")
+  .data(numbers)  // Bind the data - this step is essential!
+</code></pre>
+<p><strong>What <code>.data()</code> does:</strong></p>
+<ul>
+<li>Attaches each data point to elements in your selection</li>
+<li>D3 tries to match each data point to an existing element</li>
+<li>Sets up the relationship between data and DOM elements</li>
+</ul>
+<hr>
+<h2 id="creating-elements" tabindex="-1"><a class="observablehq-header-anchor" href="#creating-elements">Creating Elements</a></h2>
+<p>The <code>.join()</code> method is the <strong>simple way</strong> to create, update, and remove elements based on your bound data.</p>
+<p><strong>Basic concept:</strong></p>
+<pre><code>const numbers = [10, 20, 30];
+
+d3.select("svg") // this assumes you already have an svg element with width and height in your html
+  .selectAll("circle")
+  .data(numbers)      // Step 1: Bind data
+  .join("circle")     // Step 2: Create circles for the data
+    .attr("r", d =&gt; d);  // Use data to set radius
+</code></pre>
+<p><strong>Why <code>.join()</code> is great:</strong></p>
+<ul>
+<li>✅ Automatically creates elements for new data</li>
+<li>✅ Updates existing elements</li>
+<li>✅ Removes elements when data is removed</li>
+</ul>
+<h3 id="key-concept-the-d-parameter" tabindex="-1"><a class="observablehq-header-anchor" href="#key-concept-the-d-parameter">Key Concept: The <code>d</code> Parameter</a></h3>
+<p>When you bind data, D3 gives you access to each data point through a function parameter (usually called d):</p>
+<pre><code>const data = [5, 10, 15, 20];
+
+d3.selectAll("circle")
+  .data(data)
+  .join("circle")
+  .attr("r", d =&gt; d)  // 'd' is each number: 5, then 10, then 15, then 20
+  .attr("fill", d =&gt; d &gt; 10 ? "red" : "blue");  // Use data to make decisions!
+
+</code></pre>
+<p><strong>What <code>d</code> represents:</strong></p>
+<ul>
+<li>First circle: <code>d = 5</code></li>
+<li>Second circle: <code>d = 10</code></li>
+<li>Third circle: <code>d = 15</code></li>
+<li>Fourth circle: <code>d = 20</code></li>
+</ul>
+<hr>
+<h2 id="select-then-bind" tabindex="-1"><a class="observablehq-header-anchor" href="#select-then-bind">Select then bind</a></h2>
+<p>You need to <strong>FIRST</strong> select or selectAll the shape (eg: circle, rect, line) you would like to create, join your data, then use join. <br>
+<strong>Key takeaway</strong> - <code>.selectAll() -&gt; .data() --&gt; .join()</code></p>
+<h3 id="wait-selecting-elements-that-dont-exist-yet" tabindex="-1"><a class="observablehq-header-anchor" href="#wait-selecting-elements-that-dont-exist-yet">Wait... Selecting Elements That Don't Exist Yet?</a></h3>
+<p>This might seem strange at first: <strong>Why do we <code>.selectAll("circle")</code> when there are no circles yet?</strong></p>
+<p>This is one of D3's unique patterns! Here's what's happening:</p>
+<pre data-language="javascript"><code class="language-javascript">d3.<span class="hljs-title function_">select</span>(<span class="hljs-string">"svg"</span>) <span class="hljs-comment">// this assumes you already have an svg element with width and height in your html</span>
+  .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">"circle"</span>)  <span class="hljs-comment">// 🤔 No circles exist yet - this is an empty selection</span>
+  .<span class="hljs-title function_">data</span>(numbers)        <span class="hljs-comment">// Bind data to this empty selection</span>
+  .<span class="hljs-title function_">join</span>(<span class="hljs-string">"circle"</span>)       <span class="hljs-comment">// NOW create the circles!</span>
+</code></pre>
+<p><strong>Think of it like this:</strong></p>
+<ol>
+<li><code>.selectAll("circle")</code> creates an <strong>empty placeholder</strong> for circles</li>
+<li><code>.data()</code> says "I have 3 data points that need circles"</li>
+<li><code>.join("circle")</code> says "Okay, let me create 3 circles to match those data points!"</li>
+</ol>
+<p><strong>Why this pattern?</strong></p>
+<ul>
+<li>D3 needs to know <strong>what type of element</strong> you want to create</li>
+<li>By selecting first, you're telling D3: "I want to work with circles"</li>
+<li>Then <code>.join()</code> knows to create <code>&lt;circle&gt;</code> elements (not rectangles, not text, etc.)</li>
+</ul>
+<p><strong>Bottom line:</strong> It's okay that nothing exists yet! This is the standard D3 pattern for creating new elements from data.</p>
+<hr>
+<h2 id="interactive-playground" tabindex="-1"><a class="observablehq-header-anchor" href="#interactive-playground">Interactive Playground</a></h2>
+<p>Try it yourself! Enter comma-separated numbers to create circles with those radii:</p>
+<div class="observablehq observablehq--block"><!--:db3c9690:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d462f81b:--></div>
+<div class="observablehq observablehq--block"><!--:d310a7b8:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:ed9de648:--></div>
+<p><strong>Try these experiments:</strong></p>
+<ul>
+<li>Change the numbers to see different sized circles</li>
+<li>Add more numbers (separated by commas) to create more circles</li>
+<li>Remove numbers to see circles disappear</li>
+<li>Notice how circles larger than 25 are purple, smaller ones are orange!</li>
+</ul>
+<hr>
+<h2 id="practice-exercises" tabindex="-1"><a class="observablehq-header-anchor" href="#practice-exercises">Practice Exercises</a></h2>
+<p>Now it's time to practice! Work through these exercises to master data binding with D3.</p>
+<h3 id="exercise-1-simple-number-array-with-rectangles" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-1-simple-number-array-with-rectangles">🟢 Exercise 1: Simple Number Array with Rectangles</a></h3>
+<p>Create rectangles from an array of numbers. Each number represents the height of a rectangle.</p>
+<details>
+<summary>✅ Solution</summary>
+<pre><code>const heights = [20, 40, 60, 80, 30];
+
+d3.select("svg")
+  .selectAll("rect")
+  .data(heights)
+  .join("rect")
+    .attr("x", (d, i) =&gt; i * 50)
+    .attr("y", d =&gt; 100 - d)
+    .attr("width", 40)
+    .attr("height", d =&gt; d)
+    .attr("fill", "steelblue");
+</code></pre>
+</details>
+<hr>
+<h3 id="exercise-2-array-of-strings" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-2-array-of-strings">🟢 Exercise 2: Array of Strings</a></h3>
+<p>Create text elements from an array of fruit names.</p>
+<details>
+<summary>✅ Solution</summary>
+<pre><code>const fruits = ["🍎", "🍊", "🍋", "🍇", "🍓"];
+
+d3.select("svg")
+  .selectAll("text")
+  .data(fruits)
+  .join("text")
+    .attr("x", (d, i) =&gt; 20 + i * 70)
+    .attr("y", 35)
+    .attr("font-size", 30)
+    .text(d =&gt; d);
+</code></pre>
+</details>
+<hr>
+<h3 id="exercise-3-array-of-objects" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-3-array-of-objects">🟡 Exercise 3: Array of Objects</a></h3>
+<p>Create circles from an array of objects where each object has <code>x</code>, <code>y</code>, and <code>radius</code> properties.</p>
+<details>
+<summary>✅ Solution</summary>
+<pre><code>const points = [
+  { x: 50, y: 50, radius: 10 },
+  { x: 100, y: 80, radius: 20 },
+  { x: 150, y: 40, radius: 15 },
+  { x: 200, y: 70, radius: 25 }
+];
+
+d3.select("svg")
+  .selectAll("circle")
+  .data(points)
+  .join("circle")
+    .attr("cx", d =&gt; d.x)
+    .attr("cy", d =&gt; d.y)
+    .attr("r", d =&gt; d.radius)
+    .attr("fill", "coral")
+    .attr("opacity", 0.7);
+</code></pre>
+</details>
+<hr>
+<h3 id="exercise-4-mixed-data-create-a-bar-chart" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-4-mixed-data-create-a-bar-chart">🟡 Exercise 4: Mixed Data - Create a Bar Chart</a></h3>
+<p>Create a bar chart from an array of objects representing sales data.</p>
+<details>
+<summary>✅ Solution</summary>
+<pre><code>const sales = [
+  { product: "Laptop", amount: 1200 },
+  { product: "Phone", amount: 800 },
+  { product: "Tablet", amount: 500 },
+  { product: "Watch", amount: 300 }
+];
+
+const svg = d3.select("svg");
+
+// Create bars
+svg.selectAll("rect")
+  .data(sales)
+  .join("rect")
+    .attr("x", 80)
+    .attr("y", (d, i) =&gt; i * 40 + 10)
+    .attr("width", d =&gt; d.amount / 5)
+    .attr("height", 30)
+    .attr("fill", "steelblue");
+
+// Create labels
+svg.selectAll("text")
+  .data(sales)
+  .join("text")
+    .attr("x", 5)
+    .attr("y", (d, i) =&gt; i * 40 + 30)
+    .attr("font-size", 14)
+    .text(d =&gt; d.product);
+</code></pre>
+</details>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./d3-selection"><span>D3 selection</span></a><a rel="next" href="./d3-scales"><span>D3 scales</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="../../_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>D3 scales | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="preload" as="style" href="../../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="../../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../../_observablehq/client.6d4b40e3.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../../_npm/d3@7.9.0/e780feca.js">
+<link rel="modulepreload" href="../../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="../../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../../_npm/d3-format@3.1.0/86074ef6.js">
+<link rel="modulepreload" href="../../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../../_npm/d3-scale@4.0.2/843b6a76.js">
+<link rel="modulepreload" href="../../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../../_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../../_observablehq/client.6d4b40e3.js";
+
+define({id: "21484a1b", inputs: ["view","Inputs"], outputs: ["circleData"], body: (view,Inputs) => {
+const circleData = view(Inputs.range([0, 50], {label: 'Circle Data Value', step: 1, value: 25}));
+return {circleData};
+}});
+
+define({id: "71c8fd80", inputs: ["d3"], outputs: ["circleXscale"], body: (d3) => {
+const circleXscale = d3.scaleLinear()
+  .domain([0, 50])    // Data: 0 to 50
+  .range([50, 750]);  // Pixels: 50 to 750 (with padding)
+return {circleXscale};
+}});
+
+define({id: "33536898", inputs: ["html","circleData","circleXscale","display"], body: async (html,circleData,circleXscale,display) => {
+display(await(
+html`<div style="background: #f9f9f9; padding: 0px;">
+  <div style="font-family: monospace; margin-bottom: 15px; padding: 10px;">
+    <strong>Scale Translation:</strong><br/>
+    <span style="color: #0066cc;">Data Value: ${circleData}</span> 
+    → 
+    <span style="color: #cc0066;">Pixel Position: ${Math.round(circleXscale(circleData))}px</span>
+  </div>
+  
+  <svg width="800" height="300" style="background-color: #f5f5f5; border: 2px solid #333;">
+    <!-- Domain labels -->
+    <text x="50" y="30" text-anchor="middle" font-size="12" fill="#0066cc">Data: 0</text>
+    <text x="400" y="30" text-anchor="middle" font-size="12" fill="#0066cc">Data: 25</text>
+    <text x="750" y="30" text-anchor="middle" font-size="12" fill="#0066cc">Data: 50</text>
+    
+    <!-- Range labels -->
+    <text x="50" y="280" text-anchor="middle" font-size="12" fill="#cc0066">Pixel: 50</text>
+    <text x="400" y="280" text-anchor="middle" font-size="12" fill="#cc0066">Pixel: 400</text>
+    <text x="750" y="280" text-anchor="middle" font-size="12" fill="#cc0066">Pixel: 750</text>
+    
+    <!-- SVG dimensions -->
+    <text x="10" y="150" font-size="11" fill="#666">SVG Height: 300px</text>
+    <text x="350" y="15" font-size="11" fill="#666">SVG Width: 800px</text>
+    
+    <!-- Vertical line showing current position -->
+    <line x1="${circleXscale(circleData)}" y1="50" 
+          x2="${circleXscale(circleData)}" y2="250" 
+          stroke="#cc0066" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+    
+    <!-- The circle -->
+    <circle cx="${circleXscale(circleData)}" cy="150" r="15" 
+            fill="#0066cc" stroke="black" stroke-width="2"/>
+
+    <text x="${circleXscale(circleData)}" y="80" text-anchor="middle" 
+          font-size="14" font-weight="bold" fill="#cc0066">
+      Data: ${circleData}
+    </text>
+    
+    <!-- Current position label -->
+    <text x="${circleXscale(circleData)}" y="200" text-anchor="middle" 
+          font-size="14" font-weight="bold" fill="#cc0066">
+      ${Math.round(circleXscale(circleData))}px
+    </text>
+  </svg>
+</div>`
+))
+}});
+
+define({id: "2350a51d", inputs: ["view","Inputs"], outputs: ["categories","selectedCategory"], body: (view,Inputs) => {
+const categories = ["A", "D", "Tony", "Wendy", "Krishna"];
+const selectedCategory = view(Inputs.select(categories, {label: 'Select Category', value: "Cherry"}));
+return {categories,selectedCategory};
+}});
+
+define({id: "f5aeb19f", inputs: ["d3","categories"], outputs: ["categoryColorScale"], body: (d3,categories) => {
+const categoryColorScale = d3.scaleOrdinal()
+  .domain(categories)
+  .range(["red", "blue", "green", "orange", "purple"]);
+return {categoryColorScale};
+}});
+
+define({id: "872d42c2", inputs: ["categories","d3","categoryColorScale","selectedCategory"], outputs: ["textData","svgScaleOrdinal","legend"], body: (categories,d3,categoryColorScale,selectedCategory) => {
+// Generate consistent positions for text elements using a simple hash
+const textData = [];
+categories.forEach((cat, catIndex) => {
+  const count = 10; // Fixed count for consistency
+  for (let i = 0; i < count; i++) {
+    // Use category index and item index to generate consistent positions
+    const seed = catIndex * 100 + i;
+    textData.push({
+      category: cat,
+      x: 50 + ((seed * 7919) % 700), // Use prime number for better distribution
+      y: 80 + ((seed * 7901) % 180)
+    });
+  }
+});
+
+const svgScaleOrdinal = d3.create("svg")
+  .attr("width", 800)
+  .attr("height", 300)
+  .style("background-color", "#f5f5f5")
+  .style("border", "2px solid #333");
+
+// Title
+svgScaleOrdinal.append("text")
+  .attr("x", 400)
+  .attr("y", 30)
+  .attr("text-anchor", "middle")
+  .attr("font-size", 14)
+  .attr("fill", "#666")
+  .attr("font-weight", "bold")
+  .text("Scatter Plot: Categories mapped to Colors");
+
+// Legend
+const legend = svgScaleOrdinal.append("g")
+  .attr("transform", "translate(20, 270)");
+
+categories.forEach((cat, i) => {
+  const legendItem = legend.append("g")
+    .attr("transform", `translate(${i * 120}, 0)`);
+  
+  legendItem.append("circle")
+    .attr("r", 5)
+    .attr("fill", categoryColorScale(cat));
+  
+  legendItem.append("text")
+    .attr("x", 10)
+    .attr("y", 5)
+    .attr("font-size", 11)
+    .text(`${cat} (${categoryColorScale(cat)})`);
+});
+
+// Draw all text elements
+svgScaleOrdinal.selectAll("text.scatter")
+  .data(textData)
+  .join("text")
+  .attr("class", "scatter")
+  .attr("x", d => d.x)
+  .attr("y", d => d.y)
+  .attr("text-anchor", "middle")
+  .attr("font-size", d => d.category === selectedCategory ? 18 : 14)
+  .attr("font-weight", d => d.category === selectedCategory ? "bold" : "normal")
+  .attr("fill", d => d.category === selectedCategory ? categoryColorScale(d.category) : "#999")
+  .attr("opacity", d => d.category === selectedCategory ? 1 : 0.3)
+  .text(d => d.category);
+return {textData,svgScaleOrdinal,legend};
+}});
+
+define({id: "50ad5197", mode: "inline", inputs: ["selectedCategory","display"], body: async (selectedCategory,display) => {
+display(await(
+selectedCategory
+))
+}});
+
+define({id: "e1708f57", mode: "inline", inputs: ["categoryColorScale","selectedCategory","display"], body: async (categoryColorScale,selectedCategory,display) => {
+display(await(
+categoryColorScale(selectedCategory)
+))
+}});
+
+define({id: "6e708952", mode: "inline", inputs: ["svgScaleOrdinal","display"], body: async (svgScaleOrdinal,display) => {
+display(await(
+svgScaleOrdinal.node()
+))
+}});
+
+define({id: "5a1bb8b7", inputs: ["view","Inputs"], outputs: ["monthValue"], body: (view,Inputs) => {
+const monthValue = view(Inputs.range([0, 11], {label: 'Select Month (0 = Jan, 11 = Dec)', step: 1, value: 5}));
+return {monthValue};
+}});
+
+define({id: "82210e63", inputs: ["d3"], outputs: ["dateTimeScale"], body: (d3) => {
+const dateTimeScale = d3.scaleTime()
+  .domain([new Date(2024, 0, 1), new Date(2024, 11, 31)])  // Jan 1 to Dec 31, 2024
+  .range([50, 750]);  // Pixels: 50 to 750 (with padding)
+return {dateTimeScale};
+}});
+
+define({id: "1d47a969", inputs: ["monthValue"], outputs: ["selectedDate","monthNames"], body: (monthValue) => {
+const selectedDate = new Date(2024, monthValue, 15); // 15th of selected month
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+return {selectedDate,monthNames};
+}});
+
+define({id: "a3313e92", inputs: ["html","monthNames","monthValue","dateTimeScale","selectedDate","display"], body: async (html,monthNames,monthValue,dateTimeScale,selectedDate,display) => {
+display(await(
+html`<div style="background: #f9f9f9; padding: 0px;">
+  <div style="font-family: monospace; margin-bottom: 15px; padding: 10px;">
+    <strong>Scale Translation:</strong><br/>
+    <span style="color: #0066cc;">Date: ${monthNames[monthValue]} 15, 2024</span> 
+    → 
+    <span style="color: #cc0066;">Pixel Position: ${Math.round(dateTimeScale(selectedDate))}px</span>
+  </div>
+  
+  <svg width="800" height="300" style="background-color: #f5f5f5; border: 2px solid #333;">
+    <!-- Domain labels (months) -->
+    <text x="50" y="30" text-anchor="middle" font-size="12" fill="#0066cc">Jan 1, 2024</text>
+    <text x="400" y="30" text-anchor="middle" font-size="12" fill="#0066cc">Jun 30, 2024</text>
+    <text x="750" y="30" text-anchor="middle" font-size="12" fill="#0066cc">Dec 31, 2024</text>
+    
+    <!-- Range labels -->
+    <text x="50" y="280" text-anchor="middle" font-size="12" fill="#cc0066">Pixel: 50</text>
+    <text x="400" y="280" text-anchor="middle" font-size="12" fill="#cc0066">Pixel: 400</text>
+    <text x="750" y="280" text-anchor="middle" font-size="12" fill="#cc0066">Pixel: 750</text>
+    
+    <!-- SVG dimensions -->
+    <text x="10" y="150" font-size="11" fill="#666">SVG Height: 300px</text>
+    <text x="350" y="15" font-size="11" fill="#666">SVG Width: 800px</text>
+    
+    <!-- Month markers -->
+    ${Array.from({length: 12}, (_, i) => {
+      const date = new Date(2024, i, 15);
+      const x = dateTimeScale(date);
+      return `
+        <circle cx="${x}" cy="150" r="4" fill="#999"/>
+        <text x="${x}" y="135" text-anchor="middle" font-size="10" fill="#999">${monthNames[i]}</text>
+      `;
+    }).join('')}
+    
+    <!-- Vertical line showing current position -->
+    <line x1="${dateTimeScale(selectedDate)}" y1="110" 
+          x2="${dateTimeScale(selectedDate)}" y2="190" 
+          stroke="#cc0066" stroke-width="2" stroke-dasharray="2,2" opacity="0.5"/>
+    
+    <!-- The circle -->
+    <circle cx="${dateTimeScale(selectedDate)}" cy="150" r="15" 
+            fill="#0066cc" stroke="black" stroke-width="2"/>
+
+    <text x="${dateTimeScale(selectedDate)}" y="100" text-anchor="middle" 
+          font-size="14" font-weight="bold" fill="#0066cc">
+      ${monthNames[monthValue]} 15
+    </text>
+    
+    <!-- Current position label -->
+    <text x="${dateTimeScale(selectedDate)}" y="210" text-anchor="middle" 
+          font-size="14" font-weight="bold" fill="#cc0066">
+      ${Math.round(dateTimeScale(selectedDate))}px
+    </text>
+  </svg>
+</div>`
+))
+}});
+
+define({id: "41acc797", outputs: ["temperatures"], body: () => {
+const temperatures = [
+  { city: "New York", temp: 72 },
+  { city: "London", temp: 65 },
+  { city: "Tokyo", temp: 78 },
+  { city: "Mumbai", temp: 95 },
+  { city: "Sydney", temp: 68 }
+];
+return {temperatures};
+}});
+
+define({id: "720cfc01", outputs: ["fruits"], body: () => {
+const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
+return {fruits};
+}});
+
+define({id: "3615e835", outputs: ["events"], body: () => {
+const events = [
+  { date: new Date(2024, 0, 15), name: "New Year Event" },
+  { date: new Date(2024, 3, 10), name: "Spring Festival" },
+  { date: new Date(2024, 6, 4), name: "Summer Camp" },
+  { date: new Date(2024, 9, 31), name: "Halloween" },
+  { date: new Date(2024, 11, 25), name: "Christmas" }
+];
+return {events};
+}});
+
+define({id: "f88a6431", outputs: ["students"], body: () => {
+const students = [
+  { name: "Alice", score: 85, grade: "A" },
+  { name: "Bob", score: 72, grade: "B" },
+  { name: "Charlie", score: 90, grade: "A" },
+  { name: "Diana", score: 65, grade: "C" },
+  { name: "Eve", score: 78, grade: "B" }
+];
+return {students};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Lets learn D3</a></li>
+  </ol>
+  <details>
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-1/initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="../session-1/d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="../session-1/exercises-1">Exercises</a></li>
+    </ol>
+  </details>
+  <section class="observablehq-section-active">
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./d3-initial-setup">D3 initial setup</a></li>
+    <li class="observablehq-link"><a href="./d3-selection">D3 selection</a></li>
+    <li class="observablehq-link"><a href="./d3-data-binding">D3 data binding</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./d3-scales">D3 scales</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#scales-importance">Scales importance</a></li>
+<li class="observablehq-secondary-link"><a href="#types-of-d3-scales">Types of D3 Scales</a></li>
+<li class="observablehq-secondary-link"><a href="#how-to-create-a-d3-scale">How to Create a D3 Scale</a></li>
+<li class="observablehq-secondary-link"><a href="#scale-linear-interactive-playground">scaleLinear Interactive playground</a></li>
+<li class="observablehq-secondary-link"><a href="#scale-ordinal-interactive-playground">scaleOrdinal Interactive playground</a></li>
+<li class="observablehq-secondary-link"><a href="#scale-time-interactive-playground">scaleTime Interactive playground</a></li>
+<li class="observablehq-secondary-link"><a href="#practice-exercises">Practice Exercises</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="d3-scales" tabindex="-1"><a class="observablehq-header-anchor" href="#d3-scales">D3 scales</a></h1>
+<p><strong>Scales</strong> are one of D3's most important concepts. They help you translate your data values into visual properties like position, size, and color.</p>
+<p>Think of a scale as a <strong>translator</strong> or <strong>converter</strong>:</p>
+<ul>
+<li>Your data might be numbers like <code>[1, 50, 100]</code></li>
+<li>But your SVG canvas might be 500 pixels wide</li>
+<li>A scale helps you convert data values into pixel positions</li>
+</ul>
+<p>Scales are the bridge between your <strong>data world</strong> and your <strong>visual world</strong>:</p>
+<pre><code>Data World              Scale               Visual World
+-----------            -------             -------------
+0 to 100       →  [scaleLinear]   →      0px to 500px
+"Mon", "Tue"   →  [scaleOrdinal]  →      "red", "blue", "green"
+Date objects   →  [scaleTime]     →      0px to 500px
+</code></pre>
+<hr>
+<h2 id="scales-importance" tabindex="-1"><a class="observablehq-header-anchor" href="#scales-importance">Scales importance</a></h2>
+<p>Why Are Scales Important? Without scales, you'd need to manually calculate positions and sizes:</p>
+<pre><code>// ❌ Without scales - manual math is tedious and error-prone
+const data = [10, 50, 100, 200];
+
+svg.selectAll("circle")
+  .data(data)
+  .join("circle")
+    .attr("cx", (d, i) =&gt; i * 100)  // Hardcoded spacing
+    .attr("r", d =&gt; d / 4);         // Manual size calculation
+</code></pre>
+<p>With scales, D3 does the math for you.</p>
+<hr>
+<h2 id="types-of-d3-scales" tabindex="-1"><a class="observablehq-header-anchor" href="#types-of-d3-scales">Types of D3 Scales</a></h2>
+<p>D3 offers different types of scales for different types of data. We'll focus on three essential ones:</p>
+<h3 id="1-scale-linear-for-continuous-numbers" tabindex="-1"><a class="observablehq-header-anchor" href="#1-scale-linear-for-continuous-numbers">1. <strong>scaleLinear</strong> - For Continuous Numbers</a></h3>
+<p>Use when your data is <strong>linear</strong> i.e <strong>continuous numerical values</strong> (like temperatures, prices, ages).</p>
+<pre><code>const linearScale = d3.scaleLinear()
+</code></pre>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Converting temperatures to bar heights</li>
+<li>Mapping ages to circle sizes</li>
+<li>Positioning points on a line chart</li>
+</ul>
+<h3 id="2-scale-ordinal-for-categories" tabindex="-1"><a class="observablehq-header-anchor" href="#2-scale-ordinal-for-categories">2. <strong>scaleOrdinal</strong> - For Categories</a></h3>
+<p>Use when your data is <strong>categorical</strong> (like names, groups).</p>
+<pre><code>const ordinalScale = d3.scaleOrdinal()
+</code></pre>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Assigning colors to different categories</li>
+<li>Mapping product names to colors</li>
+<li>Assigning patterns to groups</li>
+</ul>
+<h3 id="3-scale-time-for-dates" tabindex="-1"><a class="observablehq-header-anchor" href="#3-scale-time-for-dates">3. <strong>scaleTime</strong> - For Dates</a></h3>
+<p>Use when your data is <strong>dates or time values</strong>.</p>
+<pre><code>const timeScale = d3.scaleTime()
+</code></pre>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Creating timelines</li>
+<li>Plotting time-series data</li>
+<li>X-axis for date-based charts</li>
+</ul>
+<h3 id="quick-comparison" tabindex="-1"><a class="observablehq-header-anchor" href="#quick-comparison">Quick Comparison</a></h3>
+<table>
+<thead>
+<tr>
+<th>Scale Type</th>
+<th>Data Type</th>
+<th>Example Input</th>
+<th>Example Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scaleLinear</code></td>
+<td>Continuous numbers</td>
+<td><code>0, 50, 100</code></td>
+<td><code>0px, 250px, 500px</code></td>
+</tr>
+<tr>
+<td><code>scaleOrdinal</code></td>
+<td>Categories</td>
+<td><code>"Mon", "Tue"</code></td>
+<td><code>"red", "blue"</code></td>
+</tr>
+<tr>
+<td><code>scaleTime</code></td>
+<td>Dates</td>
+<td><code>new Date(2024, 0, 1)</code></td>
+<td><code>0px, 300px, 600px</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="how-to-create-a-d3-scale" tabindex="-1"><a class="observablehq-header-anchor" href="#how-to-create-a-d3-scale">How to Create a D3 Scale</a></h2>
+<p>Every D3 scale has two essential parts: <strong>domain</strong> and <strong>range</strong>.</p>
+<h3 id="the-basic-syntax" tabindex="-1"><a class="observablehq-header-anchor" href="#the-basic-syntax">The Basic Syntax</a></h3>
+<pre><code>const myScale = d3.scaleLinear()
+  .domain([minData, maxData])    // Input: your data values
+  .range([minPixels, maxPixels]); // Output: visual values (pixels, colors, etc.)
+</code></pre>
+<h3 id="understanding-domain-and-range" tabindex="-1"><a class="observablehq-header-anchor" href="#understanding-domain-and-range">Understanding Domain and Range</a></h3>
+<p><strong><code>.domain()</code></strong> - The input side (your data world)</p>
+<ul>
+<li>Defines the minimum and maximum values in your data</li>
+<li>Example: <code>[0, 100]</code> means your data goes from 0 to 100</li>
+</ul>
+<p><strong><code>.range()</code></strong> - The output side (your visual world)</p>
+<ul>
+<li>Defines the minimum and maximum visual values</li>
+<li>Example: <code>[0, 500]</code> means map to pixels from 0 to 500</li>
+</ul>
+<h3 id="how-it-works" tabindex="-1"><a class="observablehq-header-anchor" href="#how-it-works">How It Works</a></h3>
+<pre><code>// Create a scale
+const xScale = d3.scaleLinear()
+  .domain([0, 100])   // Data ranges from 0 to 100
+  .range([0, 500]);   // Map to 0 to 500 pixels
+
+// Use the scale to convert data to pixels
+xScale(0);    // Returns: 0 pixels
+xScale(50);   // Returns: 250 pixels (middle)
+xScale(100);  // Returns: 500 pixels
+xScale(25);   // Returns: 125 pixels
+</code></pre>
+<hr>
+<h2 id="scale-linear-interactive-playground" tabindex="-1"><a class="observablehq-header-anchor" href="#scale-linear-interactive-playground">scaleLinear Interactive playground</a></h2>
+<p><strong>scaleLinear</strong> - For Continuous Numbers</p>
+<pre><code>const scale = d3.scaleLinear()
+  .domain([0, 100])      // Data: 0 to 100
+  .range([0, 500]);      // Pixels: 0 to 500
+</code></pre>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Converting temperatures to bar heights</li>
+<li>Mapping ages to circle sizes</li>
+<li>Positioning points on a line chart</li>
+</ul>
+<p>Move the slider to see how the scale converts data values to pixel positions!</p>
+<div class="observablehq observablehq--block"><!--:21484a1b:--></div>
+<div class="observablehq observablehq--block"><!--:71c8fd80:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> circleXscale = d3.<span class="hljs-title function_">scaleLinear</span>()
+  .<span class="hljs-title function_">domain</span>([<span class="hljs-number">0</span>, <span class="hljs-number">50</span>])    <span class="hljs-comment">// Data: 0 to 50</span>
+  .<span class="hljs-title function_">range</span>([<span class="hljs-number">50</span>, <span class="hljs-number">750</span>]);  <span class="hljs-comment">// Pixels: 50 to 750 (with padding)</span>
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:33536898:--></div>
+<p><strong>What's happening:</strong></p>
+<ul>
+<li><strong>Blue text</strong> shows the data domain (0 to 50)</li>
+<li><strong>Pink text</strong> shows the pixel range (50 to 750)</li>
+<li>The dotted line shows where your data value maps to</li>
+<li>The circle moves as you change the slider!</li>
+</ul>
+<p><strong>Key Concept:</strong> Once you create a scale, you use it like a function - pass in a data value, get back a visual value!</p>
+<hr>
+<h2 id="scale-ordinal-interactive-playground" tabindex="-1"><a class="observablehq-header-anchor" href="#scale-ordinal-interactive-playground">scaleOrdinal Interactive playground</a></h2>
+<p><strong>scaleOrdinal</strong> - For Categories</p>
+<p>Use when your data is <strong>categorical</strong> (like names, groups).</p>
+<pre><code>const colorScale = d3.scaleOrdinal()
+  .domain(["A", "D", "Tony", "Wendy", "Krishna"])
+  .range(["red", "blue", "green", "orange", "purple"]);
+</code></pre>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Assigning colors to different categories</li>
+<li>Mapping product names to colors</li>
+<li>Assigning patterns to groups</li>
+</ul>
+<p>Select a category to see how the scale maps it to a color!</p>
+<pre><code>const categories = ["A", "D", "Tony", "Wendy", "Krishna"];
+</code></pre>
+<div class="observablehq observablehq--block"><!--:2350a51d:--></div>
+<div class="observablehq observablehq--block"><!--:f5aeb19f:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> categoryColorScale = d3.<span class="hljs-title function_">scaleOrdinal</span>()
+  .<span class="hljs-title function_">domain</span>(categories)
+  .<span class="hljs-title function_">range</span>([<span class="hljs-string">"red"</span>, <span class="hljs-string">"blue"</span>, <span class="hljs-string">"green"</span>, <span class="hljs-string">"orange"</span>, <span class="hljs-string">"purple"</span>]);
+</code></pre>
+<div class="observablehq observablehq--block"><!--:872d42c2:--></div>
+<div style="background: #f9f9f9; padding: 0px;">
+  <div style="font-family: monospace; margin-bottom: 15px; padding: 10px;">
+    <strong>Scale Translation:</strong><br>
+    <span style="color: #0066cc;">Category: "<observablehq-loading></observablehq-loading><!--:50ad5197:-->"</span> 
+    → 
+    <span style="color: ${categoryColorScale(selectedCategory)};">Color: <observablehq-loading></observablehq-loading><!--:e1708f57:--></span>
+  </div><observablehq-loading></observablehq-loading><!--:6e708952:--></div>
+<p><strong>What's happening:</strong></p>
+<ul>
+<li>Each category word appears <strong>10 times</strong> scattered across the SVG</li>
+<li>When you select a category from the dropdown:
+<ul>
+<li>Selected words become <strong>larger, bold, and colored</strong> with their mapped color</li>
+<li>Non-selected words are <strong>small, gray, and faded</strong> (30% opacity)</li>
+</ul>
+</li>
+<li>The legend at the bottom shows the color mapping for each category</li>
+<li>Word positions stay consistent - they don't move when you change selections</li>
+<li>Try selecting different categories to see them highlight!</li>
+</ul>
+<p><strong>Key Concept:</strong> <code>scaleOrdinal</code> creates a one-to-one mapping between categories and values.</p>
+<hr>
+<h2 id="scale-time-interactive-playground" tabindex="-1"><a class="observablehq-header-anchor" href="#scale-time-interactive-playground">scaleTime Interactive playground</a></h2>
+<p><strong>scaleTime</strong> - For Dates</p>
+<p>Use when your data is <strong>dates or time values</strong>.</p>
+<pre><code>const timeScale = d3.scaleTime()
+  .domain([new Date(2024, 0, 1), new Date(2024, 11, 31)])  // Jan 1 to Dec 31, 2024
+  .range([0, 600]);                                         // 600 pixels wide
+</code></pre>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Creating timelines</li>
+<li>Plotting time-series data</li>
+<li>X-axis for date-based charts</li>
+</ul>
+<p>Move the slider to see how the scale converts dates to pixel positions!</p>
+<div class="observablehq observablehq--block"><!--:5a1bb8b7:--></div>
+<div class="observablehq observablehq--block"><!--:82210e63:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> dateTimeScale = d3.<span class="hljs-title function_">scaleTime</span>()
+  .<span class="hljs-title function_">domain</span>([<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-number">2024</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-number">2024</span>, <span class="hljs-number">11</span>, <span class="hljs-number">31</span>)])  <span class="hljs-comment">// Jan 1 to Dec 31, 2024</span>
+  .<span class="hljs-title function_">range</span>([<span class="hljs-number">50</span>, <span class="hljs-number">750</span>]);  <span class="hljs-comment">// Pixels: 50 to 750 (with padding)</span>
+</code></pre>
+<div class="observablehq observablehq--block"><!--:1d47a969:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:a3313e92:--></div>
+<p><strong>What's happening:</strong></p>
+<ul>
+<li><strong>Blue text</strong> shows the date domain (Jan 1 to Dec 31, 2024)</li>
+<li><strong>Pink text</strong> shows the pixel range (50 to 750)</li>
+<li>Small gray circles show each month along the timeline</li>
+<li>The dotted line shows where your selected date maps to</li>
+<li>The blue circle moves as you change the month!</li>
+</ul>
+<p><strong>Key Concept:</strong> <code>scaleTime</code> works just like <code>scaleLinear</code>, but it understands dates! It automatically handles the irregular spacing of months and can work with any time interval.</p>
+<hr>
+<h2 id="practice-exercises" tabindex="-1"><a class="observablehq-header-anchor" href="#practice-exercises">Practice Exercises</a></h2>
+<br>
+<h3 id="exercise-1-temperature-bar-chart-with-scale-linear" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-1-temperature-bar-chart-with-scale-linear">🟢 Exercise 1: Temperature Bar Chart with scaleLinear</a></h3>
+<p>Create a bar chart showing temperatures for different cities. Use <code>scaleLinear</code> to convert temperatures to bar heights.</p>
+<p><strong>Data:</strong></p>
+<div class="observablehq observablehq--block"><!--:41acc797:--></div>
+<p><strong>Tasks:</strong></p>
+<ul>
+<li>Create a <code>scaleLinear</code> with domain <code>[0, 100]</code> (temperature range) and range <code>[0, 200]</code> (pixel height)</li>
+<li>Draw rectangles with heights based on the temperature</li>
+<li>Position bars at x: 50, 150, 250, 350, 450</li>
+</ul>
+<details>
+<summary>✅ Solution</summary>
+<pre><code>const temperatures = [
+  { city: "New York", temp: 72 },
+  { city: "London", temp: 65 },
+  { city: "Tokyo", temp: 78 },
+  { city: "Mumbai", temp: 95 },
+  { city: "Sydney", temp: 68 }
+];
+
+// Create the scale
+const tempScale = d3.scaleLinear()
+  .domain([0, 100])
+  .range([0, 200]);
+
+const svg = d3.create("svg")
+  .attr("width", 600)
+  .attr("height", 250);
+
+svg.selectAll("rect")
+  .data(temperatures)
+  .join("rect")
+    .attr("x", (d, i) =&gt; 50 + i * 100)
+    .attr("y", d =&gt; 250 - tempScale(d.temp) - 20)  // Flip for bottom-up bars
+    .attr("width", 60)
+    .attr("height", d =&gt; tempScale(d.temp))
+    .attr("fill", "steelblue");
+
+// Add city labels
+svg.selectAll("text")
+  .data(temperatures)
+  .join("text")
+    .attr("x", (d, i) =&gt; 80 + i * 100)
+    .attr("y", 245)
+    .attr("text-anchor", "middle")
+    .attr("font-size", 12)
+    .text(d =&gt; d.city);
+</code></pre>
+</details>
+<hr>
+<h3 id="exercise-2-category-colors-with-scale-ordinal" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-2-category-colors-with-scale-ordinal">🟢 Exercise 2: Category Colors with scaleOrdinal</a></h3>
+<p>Create circles for different fruit categories, each with a unique color using <code>scaleOrdinal</code>.</p>
+<p><strong>Data:</strong></p>
+<div class="observablehq observablehq--block"><!--:720cfc01:--></div>
+<p><strong>Tasks:</strong></p>
+<ul>
+<li>Create a <code>scaleOrdinal</code> with domain as fruit names and range as colors: <code>["#e74c3c", "#f39c12", "#e91e63", "#9b59b6", "#3498db"]</code></li>
+<li>Draw 5 circles positioned at y: 100</li>
+<li>Use the scale to assign colors based on fruit names</li>
+</ul>
+<details>
+<summary>✅ Solution</summary>
+<pre><code>const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
+
+const fruitColorScale = d3.scaleOrdinal()
+  .domain(fruits)
+  .range(["#e74c3c", "#f39c12", "#e91e63", "#9b59b6", "#3498db"]);
+
+const svg = d3.create("svg")
+  .attr("width", 600)
+  .attr("height", 200);
+
+svg.selectAll("circle")
+  .data(fruits)
+  .join("circle")
+    .attr("cx", (d, i) =&gt; 80 + i * 100)
+    .attr("cy", 100)
+    .attr("r", 30)
+    .attr("fill", d =&gt; fruitColorScale(d));
+
+// Add labels
+svg.selectAll("text")
+  .data(fruits)
+  .join("text")
+    .attr("x", (d, i) =&gt; 80 + i * 100)
+    .attr("y", 160)
+    .attr("text-anchor", "middle")
+    .attr("font-size", 12)
+    .text(d =&gt; d);
+</code></pre>
+</details>
+<hr>
+<h3 id="exercise-3-timeline-with-scale-time" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-3-timeline-with-scale-time">🟡 Exercise 3: Timeline with scaleTime</a></h3>
+<p>Create a timeline showing major events in 2024 using <code>scaleTime</code>.</p>
+<p><strong>Data:</strong></p>
+<div class="observablehq observablehq--block"><!--:3615e835:--></div>
+<p><strong>Tasks:</strong></p>
+<ul>
+<li>Create a <code>scaleTime</code> with domain from Jan 1, 2024 to Dec 31, 2024 and range <code>[50, 750]</code></li>
+<li>Draw circles at positions based on event dates</li>
+<li>Add text labels for event names</li>
+</ul>
+<details>
+<summary>✅ Solution</summary>
+<pre><code>const events = [
+  { date: new Date(2024, 0, 15), name: "New Year Event" },
+  { date: new Date(2024, 3, 10), name: "Spring Festival" },
+  { date: new Date(2024, 6, 4), name: "Summer Camp" },
+  { date: new Date(2024, 9, 31), name: "Halloween" },
+  { date: new Date(2024, 11, 25), name: "Christmas" }
+];
+
+const timelineScale = d3.scaleTime()
+  .domain([new Date(2024, 0, 1), new Date(2024, 11, 31)])
+  .range([50, 750]);
+
+const svg = d3.create("svg")
+  .attr("width", 800)
+  .attr("height", 200);
+
+// Timeline bar
+svg.append("line")
+  .attr("x1", 50)
+  .attr("y1", 100)
+  .attr("x2", 750)
+  .attr("y2", 100)
+  .attr("stroke", "#999")
+  .attr("stroke-width", 2);
+
+// Event circles
+svg.selectAll("circle")
+  .data(events)
+  .join("circle")
+    .attr("cx", d =&gt; timelineScale(d.date))
+    .attr("cy", 100)
+    .attr("r", 8)
+    .attr("fill", "steelblue");
+
+// Event labels
+svg.selectAll("text")
+  .data(events)
+  .join("text")
+    .attr("x", d =&gt; timelineScale(d.date))
+    .attr("y", 130)
+    .attr("text-anchor", "middle")
+    .attr("font-size", 11)
+    .text(d =&gt; d.name);
+</code></pre>
+</details>
+<hr>
+<h3 id="exercise-4-multi-scale-scatter-plot" tabindex="-1"><a class="observablehq-header-anchor" href="#exercise-4-multi-scale-scatter-plot">🟡 Exercise 4: Multi-Scale Scatter Plot</a></h3>
+<p>Create a scatter plot using both <code>scaleLinear</code> for positioning and <code>scaleOrdinal</code> for coloring.</p>
+<p><strong>Data:</strong></p>
+<div class="observablehq observablehq--block"><!--:f88a6431:--></div>
+<p><strong>Tasks:</strong></p>
+<ul>
+<li>Create a <code>scaleLinear</code> for scores (domain: <code>[0, 100]</code>, range: <code>[50, 450]</code>)</li>
+<li>Create a <code>scaleOrdinal</code> for grades (domain: <code>["A", "B", "C"]</code>, range: <code>["green", "orange", "red"]</code>)</li>
+<li>Draw circles positioned by score (x-axis) and colored by grade</li>
+</ul>
+<details>
+<summary>✅ Solution</summary>
+<pre><code>const students = [
+  { name: "Alice", score: 85, grade: "A" },
+  { name: "Bob", score: 72, grade: "B" },
+  { name: "Charlie", score: 90, grade: "A" },
+  { name: "Diana", score: 65, grade: "C" },
+  { name: "Eve", score: 78, grade: "B" }
+];
+
+const scoreScale = d3.scaleLinear()
+  .domain([0, 100])
+  .range([50, 450]);
+
+const gradeColorScale = d3.scaleOrdinal()
+  .domain(["A", "B", "C"])
+  .range(["green", "orange", "red"]);
+
+const svg = d3.create("svg")
+  .attr("width", 500)
+  .attr("height", 200);
+
+svg.selectAll("circle")
+  .data(students)
+  .join("circle")
+    .attr("cx", d =&gt; scoreScale(d.score))
+    .attr("cy", 100)
+    .attr("r", 15)
+    .attr("fill", d =&gt; gradeColorScale(d.grade))
+    .attr("opacity", 0.7);
+
+// Add student names
+svg.selectAll("text")
+  .data(students)
+  .join("text")
+    .attr("x", d =&gt; scoreScale(d.score))
+    .attr("y", 140)
+    .attr("text-anchor", "middle")
+    .attr("font-size", 11)
+    .text(d =&gt; d.name);
+</code></pre>
+</details>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./d3-data-binding"><span>D3 data binding</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="../../_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>

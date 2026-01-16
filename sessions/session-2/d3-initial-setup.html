@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>D3 initial setup | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="modulepreload" href="../../_observablehq/client.6d4b40e3.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.73a8ec5a.js">
+<link rel="icon" href="../../_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../../_observablehq/client.6d4b40e3.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Lets learn D3</a></li>
+  </ol>
+  <details>
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-1/initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="../session-1/d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="../session-1/exercises-1">Exercises</a></li>
+    </ol>
+  </details>
+  <section class="observablehq-section-active">
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./d3-initial-setup">D3 initial setup</a></li>
+    <li class="observablehq-link"><a href="./d3-selection">D3 selection</a></li>
+    <li class="observablehq-link"><a href="./d3-data-binding">D3 data binding</a></li>
+    <li class="observablehq-link"><a href="./d3-scales">D3 scales</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#d3-is-a-java-script-library">D3 is a JavaScript library</a></li>
+<li class="observablehq-secondary-link"><a href="#steps-to-load-d3-library-in-your-project">Steps to load D3 library in your project</a></li>
+<li class="observablehq-secondary-link"><a href="#using-cdn">Using CDN</a></li>
+<li class="observablehq-secondary-link"><a href="#using-d3-locally">Using D3 Locally</a></li>
+<li class="observablehq-secondary-link"><a href="#using-npm">Using NPM</a></li>
+<li class="observablehq-secondary-link"><a href="#practice-exercise">Practice Exercise</a></li>
+<li class="observablehq-secondary-link"><a href="#quick-reference">Quick Reference</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="d3-library-setup" tabindex="-1"><a class="observablehq-header-anchor" href="#d3-library-setup">D3 library setup</a></h1>
+<p>Welcome to your first steps with D3! This section will help you to understand how to include D3 in your projects.</p>
+<hr>
+<h2 id="d3-is-a-java-script-library" tabindex="-1"><a class="observablehq-header-anchor" href="#d3-is-a-java-script-library">D3 is a JavaScript library</a></h2>
+<p>A <strong>library</strong> is a collection of pre-written code that someone else created to make your life easier. Instead of writing everything from scratch, you can use a library's ready-made functions.</p>
+<hr>
+<h2 id="steps-to-load-d3-library-in-your-project" tabindex="-1"><a class="observablehq-header-anchor" href="#steps-to-load-d3-library-in-your-project">Steps to load D3 library in your project</a></h2>
+<ol>
+<li><strong>Method 1: Using a CDN</strong> (Content Delivery Network) - The <strong>easiest and most common way</strong> to use D3 is by linking to it from a CDN - a server on the internet that hosts the D3 code.</li>
+<li><strong>Method 2: Downloading D3 Locally</strong> - Sometimes you want D3 saved on your computer (for offline work or projects you'll deploy).</li>
+<li><strong>Method 3: Using NPM</strong> (For Later) - As you advance, you might use <strong>NPM</strong> (Node Package Manager) to install D3. This is for more complex projects with build tools. We'll cover this later - just know it exists!</li>
+</ol>
+<hr>
+<h2 id="using-cdn" tabindex="-1"><a class="observablehq-header-anchor" href="#using-cdn">Using CDN</a></h2>
+<p>There are two ways to use D3 from a CDN, depending on how you want to write your JavaScript code:</p>
+<p><strong>Option A: UMD + CDN</strong> (Simpler, Traditional Method)</p>
+<p><strong>UMD</strong> stands for "Universal Module Definition" - this is the traditional way of loading libraries. D3 becomes available globally as <code>d3</code>.</p>
+<p>Create a new HTML file called <code>my-first-d3.html</code> and add this code:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My First D3 Project&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello D3!&lt;/h1&gt;
+
+    &lt;!-- Load D3 using UMD --&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+    
+    &lt;!-- Write your D3 code in a regular script tag --&gt;
+    &lt;script&gt;
+        // D3 is available globally
+        console.log("D3 version:", d3.version);
+        d3.select("body").append("p").text("D3 is working! 🎉");
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>When to use UMD:</strong></p>
+<ul>
+<li>✅ You're just starting out</li>
+<li>✅ You want simple, straightforward code</li>
+<li>✅ You're writing code directly in HTML files</li>
+<li>✅ <strong>Recommended for beginners!</strong></li>
+</ul>
+<p>Key Points:</p>
+<ol>
+<li><strong>The script tag with <code>src</code></strong> downloads D3 from the internet</li>
+<li><strong>Always place it before your own script</strong> - you need D3 loaded first!</li>
+<li><strong><code>v7.min.js</code></strong> means version 7, minified (compressed) version</li>
+</ol>
+<h3 id="why-use-a-cdn" tabindex="-1"><a class="observablehq-header-anchor" href="#why-use-a-cdn">Why use a CDN?</a></h3>
+<ul>
+<li>✅ No download needed</li>
+<li>✅ Fast (CDNs are optimized for speed)</li>
+<li>✅ Always up-to-date</li>
+<li>❌ Requires internet connection</li>
+</ul>
+<p><strong>Option B: ESM + CDN</strong> (Modern Module Method)</p>
+<p><strong>ESM</strong> stands for "ECMAScript Modules" - this is the modern way of importing JavaScript modules. You explicitly import D3 instead of having it globally available.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My First D3 Project - ESM&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello D3!&lt;/h1&gt;
+
+    &lt;!-- Notice type="module" --&gt;
+    &lt;script type="module"&gt;
+        // Import D3 from the CDN
+        import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+    
+        d3.select("body").append("p").text("D3 is working with ESM! 🎉");
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>Key differences:</strong></p>
+<ol>
+<li>Script tag has <code>type="module"</code></li>
+<li>You must <code>import</code> D3 before using it</li>
+<li>The URL ends with <code>/+esm</code></li>
+</ol>
+<p><strong>When to use ESM:</strong></p>
+<ul>
+<li>You're comfortable with modern JavaScript</li>
+<li>You want better code organization</li>
+<li>You're building larger applications</li>
+<li>You want to import only specific D3 modules (like <code>import { select } from "d3"</code>)</li>
+</ul>
+<p>Quick Comparison</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>UMD + CDN</th>
+<th>ESM + CDN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Syntax</strong></td>
+<td><code>&lt;script src="..."&gt;</code></td>
+<td><code>&lt;script type="module"&gt;</code></td>
+</tr>
+<tr>
+<td><strong>Import</strong></td>
+<td>Not needed</td>
+<td><code>import * as d3 from "..."</code></td>
+</tr>
+<tr>
+<td><strong>Global d3</strong></td>
+<td>Yes</td>
+<td>No (scoped to module)</td>
+</tr>
+<tr>
+<td><strong>Beginner-friendly</strong></td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Modern approach</strong></td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<p><strong>For this course, we'll use UMD + CDN</strong> because it's simpler to start with. Once you're comfortable, you can explore ESM!</p>
+<br>
+<p><strong>Testing if D3 is Loaded</strong></p>
+<p>Let's make sure D3 is working! Add this code inside your second <code>&lt;script&gt;</code> tag:</p>
+<pre><code>&lt;script&gt;
+    // Check if D3 is loaded
+    console.log("D3 version:", d3.version);
+    
+    // Your first D3 command!
+    d3.select("body").append("p").text("D3 is working! 🎉");
+&lt;/script&gt;
+</code></pre>
+<p>What to Do:</p>
+<ol>
+<li>Save your HTML file</li>
+<li>Open it in a web browser</li>
+<li>Open the browser's <strong>Console</strong> (Right-click → Inspect → Console tab)</li>
+<li>You should see:
+<ul>
+<li>The D3 version number in the console</li>
+<li>A new paragraph saying "D3 is working! 🎉" on the page</li>
+</ul>
+</li>
+</ol>
+<p>What Just Happened?</p>
+<pre><code>d3.select("body")      // Find the &lt;body&gt; element
+  .append("p")         // Add a new &lt;p&gt; paragraph
+  .text("D3 is working! 🎉");  // Put this text inside
+</code></pre>
+<p>This is <strong>method chaining</strong> - doing multiple things in one smooth line. Like saying "Pick up the pen, open the notebook, write hello" in one breath!</p>
+<hr>
+<h2 id="using-d3-locally" tabindex="-1"><a class="observablehq-header-anchor" href="#using-d3-locally">Using D3 Locally</a></h2>
+<p>Sometimes you want D3 saved on your computer (for offline work or projects you'll deploy). Here's how:</p>
+<p>Steps:</p>
+<ol>
+<li>
+<p><strong>Download D3:</strong></p>
+<ul>
+<li>Go to <a href="https://d3js.org/d3.v7.js" target="_blank" rel="noopener noreferrer">https://d3js.org/d3.v7.js</a></li>
+<li>This will download the <code>d3.v7.min.js</code> file</li>
+<li>Save it in the same folder as your HTML file</li>
+</ul>
+</li>
+<li>
+<p><strong>Update your HTML:</strong></p>
+</li>
+</ol>
+<pre><code>&lt;body&gt;
+    &lt;h1&gt;Hello D3!&lt;/h1&gt;
+
+    &lt;!-- Link to the LOCAL file --&gt;
+    &lt;script src="d3.v7.min.js"&gt;&lt;/script&gt;
+    
+    &lt;script&gt;
+        console.log("D3 version:", d3.version);
+    &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>When to Use Local Files:</p>
+<ul>
+<li>Working offline</li>
+<li>Building a project you'll deploy</li>
+<li>Want full control over the version</li>
+</ul>
+<hr>
+<h2 id="using-npm" tabindex="-1"><a class="observablehq-header-anchor" href="#using-npm">Using NPM</a></h2>
+<p>As you advance, you might use <strong>NPM</strong> (Node Package Manager) to install D3. This is for more complex projects with build tools. We'll cover this later - just know it exists!</p>
+<pre data-language="bash"><code class="language-bash">npm install d3
+</code></pre>
+<p>Then in your JavaScript:</p>
+<pre><code>import * as d3 from 'd3';
+</code></pre>
+<p><strong>Don't worry about this now!</strong> Start with the CDN method - it's perfect for learning.</p>
+<hr>
+<p>Common Mistakes &amp; Troubleshooting</p>
+<p>❌ Error: "d3 is not defined"</p>
+<p><strong>Problem:</strong> The script tag is in the wrong place or didn't load.</p>
+<p><strong>Solution:</strong> Make sure the D3 script tag comes BEFORE your code:</p>
+<pre><code>&lt;!-- WRONG ORDER --&gt;
+&lt;script&gt;
+    d3.select("body");  // Error! D3 not loaded yet
+&lt;/script&gt;
+&lt;script src="https://d3js.org/d3.v7.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- CORRECT ORDER --&gt;
+&lt;script src="https://d3js.org/d3.v7.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    d3.select("body");  // Works!
+&lt;/script&gt;
+</code></pre>
+<p>❌ Nothing shows up in the console</p>
+<p><strong>Problem:</strong> Console might be closed or filtering messages.</p>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>Right-click on the page → Inspect → Console tab</li>
+<li>Check if there's a filter hiding messages</li>
+<li>Try <code>console.log("Hello")</code> to test if console works at all</li>
+</ol>
+<hr>
+<h2 id="practice-exercise" tabindex="-1"><a class="observablehq-header-anchor" href="#practice-exercise">Practice Exercise</a></h2>
+<p>Create a file called <code>practice.html</code> and:</p>
+<ol>
+<li>Load D3 using a CDN</li>
+<li>Check the version in the console</li>
+<li>Use D3 to add THREE paragraphs to the page with different messages</li>
+<li>Change the color of one paragraph to blue using <code>.style("color", "blue")</code></li>
+</ol>
+<p><strong>Hint:</strong> You can run <code>d3.select()</code> multiple times, or select the body once and append multiple times!</p>
+<h3 id="solution-try-it-yourself-first" tabindex="-1"><a class="observablehq-header-anchor" href="#solution-try-it-yourself-first">Solution (try it yourself first!)</a></h3>
+<details>
+<summary>Click to see solution</summary>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;D3 Practice&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;D3 Practice&lt;/h1&gt;
+
+    &lt;script src="https://d3js.org/d3.v7.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        // Check version
+        console.log("D3 version:", d3.version);
+        
+        // Add three paragraphs
+        d3.select("body")
+          .append("p")
+          .text("This is paragraph 1");
+        
+        d3.select("body")
+          .append("p")
+          .text("This is paragraph 2")
+          .style("color", "blue");
+        
+        d3.select("body")
+          .append("p")
+          .text("This is paragraph 3");
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</details>
+<hr>
+<h2 id="quick-reference" tabindex="-1"><a class="observablehq-header-anchor" href="#quick-reference">Quick Reference</a></h2>
+<pre><code>&lt;!-- Basic D3 Setup Template --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;D3 Project&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+    &lt;!-- Your HTML content --&gt;
+    
+    &lt;!-- Load D3 from CDN --&gt;
+    &lt;script src="https://d3js.org/d3.v7.min.js"&gt;&lt;/script&gt;
+    
+    &lt;!-- Your D3 code --&gt;
+    &lt;script&gt;
+        // Write your D3 code here
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>Remember:</strong> Always load D3 BEFORE your code that uses it!</p>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="../session-1/exercises-1"><span>Exercises</span></a><a rel="next" href="./d3-selection"><span>D3 selection</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="../../_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>
