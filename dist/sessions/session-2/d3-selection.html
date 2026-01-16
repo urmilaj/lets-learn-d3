@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>D3 selection | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="modulepreload" href="../../_observablehq/client.6d4b40e3.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.73a8ec5a.js">
+<link rel="icon" href="../../_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../../_observablehq/client.6d4b40e3.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Lets learn D3</a></li>
+  </ol>
+  <details>
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-1/initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="../session-1/d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="../session-1/exercises-1">Exercises</a></li>
+    </ol>
+  </details>
+  <section class="observablehq-section-active">
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./d3-initial-setup">D3 initial setup</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./d3-selection">D3 selection</a></li>
+    <li class="observablehq-link"><a href="./d3-data-binding">D3 data binding</a></li>
+    <li class="observablehq-link"><a href="./d3-scales">D3 scales</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#d3-select">d3.select()</a></li>
+<li class="observablehq-secondary-link"><a href="#d3-select-all">d3.selectAll()</a></li>
+<li class="observablehq-secondary-link"><a href="#what-can-you-select">What Can You Select?</a></li>
+<li class="observablehq-secondary-link"><a href="#modification">Modification</a></li>
+<li class="observablehq-secondary-link"><a href="#common-questions">Common Questions</a></li>
+<li class="observablehq-secondary-link"><a href="#common-mistakes">Common Mistakes</a></li>
+<li class="observablehq-secondary-link"><a href="#key-takeaways">Key Takeaways</a></li>
+<li class="observablehq-secondary-link"><a href="#practice-exercise">Practice Exercise</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="d3-selection" tabindex="-1"><a class="observablehq-header-anchor" href="#d3-selection">D3 selection</a></h1>
+<p>D3 selection is how you <strong>pick</strong> HTML elements on your page so you can change them. Think of it like pointing at something before you modify it. We covered <strong><a href="../session-1/basic-js#document-object-model">DOM manipulation ↗</a></strong> in Session 1: Basic Javascript. D3 selections work very similarly to <code>document.querySelector()</code> and <code>document.querySelectorAll()</code>.</p>
+<hr>
+<p>The Two Main Selection Methods</p>
+<ol>
+<li><code>d3.select()</code> - Pick <strong>FIRST</strong> matching element</li>
+<li><code>d3.selectAll()</code> - Pick <strong>ALL</strong> matching element</li>
+</ol>
+<h2 id="d3-select" tabindex="-1"><a class="observablehq-header-anchor" href="#d3-select"><code>d3.select()</code></a></h2>
+<p><strong>What it does:</strong> Finds the <strong>first</strong> matching element on the page.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;D3 Select Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+    &lt;p&gt;First paragraph&lt;/p&gt;
+    &lt;p&gt;Second paragraph&lt;/p&gt;
+
+    &lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        // Select the first &lt;p&gt; element
+        d3.select("p")
+          .style("color", "blue");
+        
+        // Only the FIRST paragraph turns blue!
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="d3-select-all" tabindex="-1"><a class="observablehq-header-anchor" href="#d3-select-all"><code>d3.selectAll()</code></a></h2>
+<p><strong>What it does:</strong> Finds all elements that match.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;D3 SelectAll Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+    &lt;p&gt;First paragraph&lt;/p&gt;
+    &lt;p&gt;Second paragraph&lt;/p&gt;
+    &lt;p&gt;Third paragraph&lt;/p&gt;
+
+    &lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        // Select ALL &lt;p&gt; elements
+        d3.selectAll("p")
+          .style("color", "red");
+        
+        // ALL paragraphs turn red!
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Quick Comparison</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What It Picks</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>d3.select("p")</code></td>
+<td><strong>First</strong> <code>&lt;p&gt;</code> only</td>
+<td>Changes one element</td>
+<td>First paragraph changes</td>
+</tr>
+<tr>
+<td><code>d3.selectAll("p")</code></td>
+<td><strong>All</strong> <code>&lt;p&gt;</code> elements</td>
+<td>Changes all matches</td>
+<td>All paragraphs change</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="what-can-you-select" tabindex="-1"><a class="observablehq-header-anchor" href="#what-can-you-select">What Can You Select?</a></h2>
+<h3 id="1-by-tag-name" tabindex="-1"><a class="observablehq-header-anchor" href="#1-by-tag-name">1. By Tag Name</a></h3>
+<pre><code>d3.select("p")        // First &lt;p&gt; element
+d3.select("div")      // First &lt;div&gt; element
+d3.selectAll("h1")    // All &lt;h1&gt; elements
+</code></pre>
+<h3 id="2-by-class-name-starts-with" tabindex="-1"><a class="observablehq-header-anchor" href="#2-by-class-name-starts-with">2. By Class Name (starts with <code>.</code>)</a></h3>
+<pre><code>&lt;p class="highlight"&gt;Special paragraph&lt;/p&gt;
+</code></pre>
+<pre><code>d3.select(".highlight")       // Element with class="highlight"
+d3.selectAll(".highlight")    // All elements with that class
+</code></pre>
+<h3 id="3-by-id-starts-with" tabindex="-1"><a class="observablehq-header-anchor" href="#3-by-id-starts-with">3. By ID (starts with <code>#</code>)</a></h3>
+<pre><code>&lt;div id="chart"&gt;&lt;/div&gt;
+</code></pre>
+<pre><code>d3.select("#chart")    // Element with id="chart"
+// Note: IDs should be unique, so usually use d3.select() not selectAll()
+</code></pre>
+<h3 id="4-combining-selectors" tabindex="-1"><a class="observablehq-header-anchor" href="#4-combining-selectors">4. Combining Selectors</a></h3>
+<pre><code>&lt;p class="intro"&gt;First intro paragraph&lt;/p&gt;
+&lt;p class="intro"&gt;Second intro paragraph&lt;/p&gt;
+&lt;div class="intro"&gt;Not a paragraph&lt;/div&gt;
+</code></pre>
+<pre><code>// Select only &lt;p&gt; elements with class="intro"
+d3.selectAll("p.intro")
+  .style("font-weight", "bold");
+// Only the two &lt;p&gt; elements change, not the &lt;div&gt;
+</code></pre>
+<hr>
+<h2 id="modification" tabindex="-1"><a class="observablehq-header-anchor" href="#modification">Modification</a></h2>
+<h3 id="common-things-you-can-do-after-selecting" tabindex="-1"><a class="observablehq-header-anchor" href="#common-things-you-can-do-after-selecting">Common Things You Can Do After Selecting</a></h3>
+<p>Once you've selected elements, you can modify them:</p>
+<h3 id="1-change-text-content" tabindex="-1"><a class="observablehq-header-anchor" href="#1-change-text-content">1. Change Text Content</a></h3>
+<pre><code>d3.select("h1")
+  .text("New Title");
+</code></pre>
+<h3 id="2-change-html-content" tabindex="-1"><a class="observablehq-header-anchor" href="#2-change-html-content">2. Change HTML Content</a></h3>
+<pre><code>d3.select("div")
+  .html("&lt;strong&gt;Bold text&lt;/strong&gt;");
+</code></pre>
+<h3 id="3-change-styles" tabindex="-1"><a class="observablehq-header-anchor" href="#3-change-styles">3. Change Styles</a></h3>
+<pre><code>d3.selectAll("p")
+  .style("color", "blue")
+  .style("font-size", "20px");
+</code></pre>
+<h3 id="4-add-remove-classes" tabindex="-1"><a class="observablehq-header-anchor" href="#4-add-remove-classes">4. Add/Remove Classes</a></h3>
+<pre><code>d3.select("p")
+  .classed("highlight", true);   // Add class
+  
+d3.select("p")
+  .classed("highlight", false);  // Remove class
+</code></pre>
+<h3 id="5-change-attributes" tabindex="-1"><a class="observablehq-header-anchor" href="#5-change-attributes">5. Change Attributes</a></h3>
+<pre><code>d3.select("img")
+  .attr("src", "new-image.jpg")
+  .attr("alt", "New description");
+</code></pre>
+<hr>
+<h2 id="common-questions" tabindex="-1"><a class="observablehq-header-anchor" href="#common-questions">Common Questions</a></h2>
+<p><strong>Q: What happens if I use <code>d3.selectAll("body")</code> instead of <code>d3.select("body")</code>?</strong></p>
+<p><strong>A:</strong> In most cases, it works the same because there's only <strong>one</strong> <code>&lt;body&gt;</code> element!</p>
+<pre><code>// Both work for unique elements
+d3.select("body").append("svg");     // ✅ Recommended
+d3.selectAll("body").append("svg");  // ✅ Works, but unusual
+</code></pre>
+<p><strong>However, the difference matters when there are multiple elements:</strong></p>
+<pre><code>&lt;p&gt;First&lt;/p&gt;
+&lt;p&gt;Second&lt;/p&gt;
+&lt;p&gt;Third&lt;/p&gt;
+</code></pre>
+<pre><code>// Using select() - only affects FIRST paragraph
+d3.select("p")
+  .append("strong")
+  .text("!");
+
+// Result:
+// &lt;p&gt;First&lt;strong&gt;!&lt;/strong&gt;&lt;/p&gt;  ← Only this one changes
+// &lt;p&gt;Second&lt;/p&gt;
+// &lt;p&gt;Third&lt;/p&gt;
+
+// Using selectAll() - affects ALL paragraphs
+d3.selectAll("p")
+  .append("strong")
+  .text("!");
+
+// Result:
+// &lt;p&gt;First&lt;strong&gt;!&lt;/strong&gt;&lt;/p&gt;   ← All three
+// &lt;p&gt;Second&lt;strong&gt;!&lt;/strong&gt;&lt;/p&gt;  ← get the
+// &lt;p&gt;Third&lt;strong&gt;!&lt;/strong&gt;&lt;/p&gt;   ← exclamation mark
+</code></pre>
+<h3 id="rule-of-thumb" tabindex="-1"><a class="observablehq-header-anchor" href="#rule-of-thumb">Rule of Thumb</a></h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Use</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;body&gt;</code></td>
+<td><code>select()</code></td>
+<td>Only one exists</td>
+</tr>
+<tr>
+<td><code>#myId</code></td>
+<td><code>select()</code></td>
+<td>IDs are unique</td>
+</tr>
+<tr>
+<td><code>.myClass</code></td>
+<td><code>selectAll()</code></td>
+<td>Usually multiple elements</td>
+</tr>
+<tr>
+<td><code>&lt;p&gt;</code> tags</td>
+<td><code>selectAll()</code></td>
+<td>Usually multiple elements</td>
+</tr>
+<tr>
+<td>First element only</td>
+<td><code>select()</code></td>
+<td>Explicitly want just one</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When in doubt:</strong></p>
+<ul>
+<li>Use <code>select()</code> for unique elements (body, IDs)</li>
+<li>Use <code>selectAll()</code> when you want to change multiple things</li>
+</ul>
+<hr>
+<h2 id="common-mistakes" tabindex="-1"><a class="observablehq-header-anchor" href="#common-mistakes">Common Mistakes</a></h2>
+<p>❌ <strong>Using <code>d3.select()</code> when you want to change multiple elements</strong></p>
+<pre><code>// WRONG - only changes first paragraph
+d3.select("p").style("color", "red");
+
+// RIGHT - changes all paragraphs
+d3.selectAll("p").style("color", "red");
+</code></pre>
+<p>❌ <strong>Forgetting the <code>.</code> for classes or <code>#</code> for IDs</strong></p>
+<pre><code>// WRONG
+d3.select("myClass")     // Looks for &lt;myClass&gt; tag
+d3.select("myId")        // Looks for &lt;myId&gt; tag
+
+// RIGHT
+d3.select(".myClass")    // Looks for class="myClass"
+d3.select("#myId")       // Looks for id="myId"
+</code></pre>
+<p>❌ <strong>Trying to select before D3 is loaded</strong></p>
+<pre><code>// WRONG ORDER - D3 not loaded yet!
+&lt;script&gt;
+    d3.select("h1").text("Hello");
+&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+
+// RIGHT ORDER - Load D3 first!
+&lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+&lt;script&gt;
+    d3.select("h1").text("Hello");
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h2 id="key-takeaways" tabindex="-1"><a class="observablehq-header-anchor" href="#key-takeaways">Key Takeaways</a></h2>
+<p>✅ <strong><code>d3.select()</code></strong> = Pick <strong>ONE</strong> (the first match)<br>
+✅ <strong><code>d3.selectAll()</code></strong> = Pick <strong>ALL</strong> matches<br>
+✅ Use the same selectors as CSS (tag, <code>.class</code>, <code>#id</code>)<br>
+✅ Chain methods to modify selected elements<br>
+✅ Always load D3 before using it (see <a href="./d3-initial-setup.md">D3 Initial Setup</a>)</p>
+<hr>
+<h2 id="practice-exercise" tabindex="-1"><a class="observablehq-header-anchor" href="#practice-exercise">Practice Exercise</a></h2>
+<p>Create an HTML file with:</p>
+<ul>
+<li>An <code>&lt;h1&gt;</code> heading</li>
+<li>Three <code>&lt;p&gt;</code> paragraphs (give one a class="special")</li>
+<li>A <code>&lt;div&gt;</code> with an id="box"</li>
+</ul>
+<p>Then use D3 to:</p>
+<ol>
+<li>Change the heading text to "D3 Practice"</li>
+<li>Make all paragraphs blue</li>
+<li>Make the "special" paragraph bold</li>
+<li>Add text to the box div</li>
+</ol>
+<h3 id="solution-try-it-yourself-first" tabindex="-1"><a class="observablehq-header-anchor" href="#solution-try-it-yourself-first">Solution (try it yourself first!)</a></h3>
+<details>
+<summary>Click to see solution</summary>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;D3 Practice&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Original Heading&lt;/h1&gt;
+    &lt;p&gt;First paragraph&lt;/p&gt;
+    &lt;p class="special"&gt;Special paragraph&lt;/p&gt;
+    &lt;p&gt;Third paragraph&lt;/p&gt;
+    &lt;div id="box"&gt;&lt;/div&gt;
+
+    &lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        // 1. Change heading
+        d3.select("h1")
+          .text("D3 Practice");
+        
+        // 2. Make all paragraphs blue
+        d3.selectAll("p")
+          .style("color", "blue");
+        
+        // 3. Make special paragraph bold
+        d3.select(".special")
+          .style("font-weight", "bold");
+        
+        // 4. Add text to box
+        d3.select("#box")
+          .text("This is the box!");
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</details>
+<hr>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./d3-initial-setup"><span>D3 initial setup</span></a><a rel="next" href="./d3-data-binding"><span>D3 data binding</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="../../_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>
