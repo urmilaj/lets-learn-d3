@@ -266,7 +266,7 @@ d3.select("#myId")       // Looks for id="myId"
 ✅ **`d3.selectAll()`** = Pick **ALL** matches  
 ✅ Use the same selectors as CSS (tag, `.class`, `#id`)  
 ✅ Chain methods to modify selected elements  
-✅ Always load D3 before using it (see [D3 Initial Setup](d3-initial-setup.md))
+✅ Always load D3 before using it (see [D3 Initial Setup](d3-initial-setup))
 
 ---
 

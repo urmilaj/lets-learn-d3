@@ -21,7 +21,8 @@ export default {
         { name: "D3 initial setup", path: "/sessions/session-2/d3-initial-setup" },
         { name: "D3 selection", path: "/sessions/session-2/d3-selection" },
         { name: "D3 data binding", path: "/sessions/session-2/d3-data-binding" },
-        { name: "D3 scales", path: "/sessions/session-2/d3-scales" }
+        { name: "D3 scales", path: "/sessions/session-2/d3-scales" },
+        {name: "Session 2 demo code", path: "sessions/session-2/demo"}
       ]
     },
     {
