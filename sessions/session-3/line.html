@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Line chart | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="modulepreload" href="../../_observablehq/client.be619ba2.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../../_npm/d3@7.9.0/e324157d.js">
+<link rel="modulepreload" href="../../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../../_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="../../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../../_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="../../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../../_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../../_observablehq/client.be619ba2.js";
+import {registerFile} from "../../_observablehq/stdlib.73a8ec5a.js";
+
+registerFile("../../data/happiness.csv", {"name":"../../data/happiness.csv","mimeType":"text/csv","path":"../../_file/data/happiness.6919f563.csv","lastModified":1769174690892,"size":71808});
+
+define({id: "4c623d00", inputs: ["FileAttachment"], outputs: ["data"], body: async (FileAttachment) => {
+const data = await FileAttachment("../../data/happiness.csv").csv();
+return {data};
+}});
+
+define({id: "75d59bee", inputs: ["data","d3","display"], outputs: ["afghanistanData","parseYear","width","height","margin","xScale","yScale","line","svg"], body: (data,d3,display) => {
+ const afghanistanData = data.filter(d => d.Country === "Afghanistan");
+            console.log("Afghanistan Data:", afghanistanData);
+
+            // Time parser
+            const parseYear = d3.timeParse("%Y");
+
+            // Dimensions
+            const width = 500;
+            const height = 300;
+            const margin = { top: 20, right: 20, bottom: 50, left: 60 };
+
+            // Scales
+            const xScale = d3.scaleTime()
+                .domain(d3.extent(afghanistanData, d => parseYear(d.Year)))
+                .range([margin.left, width - margin.right]);
+
+            const yScale = d3.scaleLinear()
+                .domain([0, d3.max(afghanistanData, d => +d["Perceptions of corruption"])])
+                .range([height - margin.bottom, margin.top])
+                .nice();
+
+            // Line generator
+            const line = d3.line()
+                .x(d => xScale(parseYear(d.Year)))
+                .y(d => yScale(+d["Perceptions of corruption"]));
+
+                const svg = d3.create("svg")
+    .attr("width", width)
+    .attr("height", height)
+
+     // Add x-axis
+            svg.append("g")
+                .attr("transform", `translate(0,${height - margin.bottom})`)
+                .call(d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y")))
+                .call(g => g.select(".domain").remove());
+
+            // Add y-axis
+            svg.append("g")
+                .attr("transform", `translate(${margin.left},0)`)
+                .call(d3.axisLeft(yScale))
+                .call(g => g.select(".domain").remove())
+                .call(g => g.selectAll(".tick line")
+                    .attr("x2", width - margin.left - margin.right)
+                    .attr("stroke-width", 0.1))
+                .call(g => g.append("text")
+                    .attr("x", -margin.left)
+                    .attr("y", 10)
+                    .attr("fill", "currentColor")
+                    .attr("text-anchor", "start")
+                    .text("↑ Perceptions of corruption"));
+
+            // Draw line
+            svg.append("path")
+                .datum(afghanistanData)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", 2)
+                .attr("d", line);
+
+                display(svg.node());
+return {afghanistanData,parseYear,width,height,margin,xScale,yScale,line,svg};
+}});
+
+define({id: "834b0732", inputs: ["data","d3","display"], outputs: ["selectedCountries","filteredData","groupedData","countries","parseYear","width2","height2","margin2","xScale2","yScale2","line2","svg2"], body: (data,d3,display) => {
+const selectedCountries = ["Afghanistan", "Albania", "Algeria", "Argentina", "Australia", 
+                                       "Austria", "Belgium", "Brazil", "Canada", "Chile"];
+
+// Filter data for selected countries only
+const filteredData = data.filter(d => selectedCountries.includes(d.Country));
+
+// Group data by country
+const groupedData = d3.group(filteredData, d => d.Country);
+const countries = Array.from(groupedData.keys());
+
+// Time parser
+const parseYear = d3.timeParse("%Y")
+// Dimensions
+const width2 = 500;
+const height2 = 300;
+const margin2 = { top: 20, right: 20, bottom: 50, left: 60 }
+// Scales
+const xScale2 = d3.scaleTime()
+    .domain(d3.extent(filteredData, d => parseYear(d.Year)))
+    .range([margin2.left, width2 - margin2.right]);
+
+const yScale2 = d3.scaleLinear()
+    .domain([0, d3.max(filteredData, d => +d["Perceptions of corruption"])])
+    .range([height2 - margin2.bottom, margin2.top])
+    .nice()
+// Line generator
+const line2 = d3.line()
+    .x(d => xScale2(parseYear(d.Year)))
+    .y(d => yScale2(+d["Perceptions of corruption"]));
+
+
+const svg2 = d3.create("svg")
+    .attr("width", width2)
+    .attr("height", height2)
+
+// Add x-axis
+            svg2.append("g")
+                .attr("transform", `translate(0,${height2 - margin2.bottom})`)
+                .call(d3.axisBottom(xScale2).tickFormat(d3.timeFormat("%Y")))
+                .call(g => g.select(".domain").remove());
+
+            // Add y-axis
+            svg2.append("g")
+                .attr("transform", `translate(${margin2.left},0)`)
+                .call(d3.axisLeft(yScale2))
+                .call(g => g.select(".domain").remove())
+                .call(g => g.selectAll(".tick line")
+                    .attr("x2", width2 - margin2.left - margin2.right)
+                    .attr("stroke-width", 0.1))
+                .call(g => g.append("text")
+                    .attr("x", -margin2.left)
+                    .attr("y", 10)
+                    .attr("fill", "currentColor")
+                    .attr("text-anchor", "start")
+                    .text("↑ Perceptions of corruption"));
+
+            // Draw lines for each country
+            svg2.selectAll(".country-line")
+                .data(groupedData)
+                .join("path")
+                .attr("class", "country-line")
+                .attr("fill", "none")
+                .attr("stroke", d => d[0] === "Belgium" ? "#FF7F11" : "#909090")
+                .attr("stroke-width", d => d[0] === "Belgium" ? 2 : 0.3)
+                .attr("d", d => line2(d[1]))
+
+                display(svg2.node());
+
+return {selectedCountries,filteredData,groupedData,countries,parseYear,width2,height2,margin2,xScale2,yScale2,line2,svg2};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Lets learn D3</a></li>
+  </ol>
+  <details>
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-1/initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="../session-1/d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="../session-1/exercises-1">Exercises</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-2/d3-initial-setup">D3 initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-selection">D3 selection</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-data-binding">D3 data binding</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-scales">D3 scales</a></li>
+    <li class="observablehq-link"><a href="../session-2/demo">Session 2 demo code</a></li>
+    </ol>
+  </details>
+  <section class="observablehq-section-active">
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./vertical-bar">Vertical bar chart</a></li>
+    <li class="observablehq-link"><a href="./horizontal-bar">Horizontal bar chart</a></li>
+    <li class="observablehq-link"><a href="./grouped-bar">Grouped bar chart</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./line">Line chart</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#what-you-ll-learn">What You&#x27;ll Learn</a></li>
+<li class="observablehq-secondary-link"><a href="#the-data">The Data</a></li>
+<li class="observablehq-secondary-link"><a href="#step-1-loading-and-filtering-data">Step 1: Loading and Filtering Data</a></li>
+<li class="observablehq-secondary-link"><a href="#step-2-define-chart-dimensions">Step 2: Define Chart Dimensions</a></li>
+<li class="observablehq-secondary-link"><a href="#step-3-create-scales">Step 3: Create Scales</a></li>
+<li class="observablehq-secondary-link"><a href="#step-4-create-the-line-generator-the-magic">Step 4: Create the Line Generator (The Magic!)</a></li>
+<li class="observablehq-secondary-link"><a href="#step-5-create-svg-container">Step 5: Create SVG Container</a></li>
+<li class="observablehq-secondary-link"><a href="#step-6-add-x-axis">Step 6: Add X-axis</a></li>
+<li class="observablehq-secondary-link"><a href="#step-7-add-y-axis">Step 7: Add Y-axis</a></li>
+<li class="observablehq-secondary-link"><a href="#step-8-draw-the-line-path">Step 8: Draw the Line Path</a></li>
+<li class="observablehq-secondary-link"><a href="#simple-line-chart-output">Simple line chart output</a></li>
+<li class="observablehq-secondary-link"><a href="#simple-line-chart-complete-working-example">Simple line chart complete working example</a></li>
+<li class="observablehq-secondary-link"><a href="#multi-line-chart">Multi-Line Chart</a></li>
+<li class="observablehq-secondary-link"><a href="#multi-line-chart-complete-working-example">Multi line chart complete working example</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="line-chart" tabindex="-1"><a class="observablehq-header-anchor" href="#line-chart">Line Chart</a></h1>
+<p>Line charts are perfect for showing trends and changes over time. Unlike bar charts that use rectangles, line charts use SVG <code>&lt;path&gt;</code> elements to connect data points with a continuous line.</p>
+<ol>
+<li>We'll create a <strong>simple line chart</strong> showing Afghanistan's corruption perception over the years using the happiness dataset.</li>
+<li>A <strong>multi line chart</strong>, corruption perception for multiple countries.</li>
+</ol>
+<hr>
+<h2 id="what-you-ll-learn" tabindex="-1"><a class="observablehq-header-anchor" href="#what-you-ll-learn">What You'll Learn</a></h2>
+<ul>
+<li>Using <code>d3.line()</code> to generate SVG path data</li>
+<li>Using <code>d3.scaleTime()</code> for time-based x-axis</li>
+<li>Using <code>d3.scaleLinear()</code> for y-axis (continuous data)</li>
+<li>Using <code>d3.timeParse()</code> to convert strings to dates</li>
+<li>Using <code>d3.extent()</code> to find min and max values</li>
+<li>Using <code>.datum()</code> instead of <code>.data()</code> for single paths</li>
+<li>Drawing paths with <code>&lt;path&gt;</code> elements</li>
+<li>Formatting axis ticks with <code>d3.timeFormat()</code></li>
+</ul>
+<hr>
+<h2 id="the-data" tabindex="-1"><a class="observablehq-header-anchor" href="#the-data">The Data</a></h2>
+<p>We're using the <code>happiness.csv</code> dataset, filtering for Afghanistan only.</p>
+<p><strong>Download the dataset:</strong> <a href="../../_file/data/happiness.6919f563.csv" download="happiness.csv">📥 Download happiness.csv</a></p>
+<h3 id="sample-data-structure" tabindex="-1"><a class="observablehq-header-anchor" href="#sample-data-structure">Sample Data Structure</a></h3>
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Country</th>
+<th>Perceptions of corruption</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2015</td>
+<td>Afghanistan</td>
+<td>0.882</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>Afghanistan</td>
+<td>0.865</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>Afghanistan</td>
+<td>0.924</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Afghanistan</td>
+<td>0.910</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="step-1-loading-and-filtering-data" tabindex="-1"><a class="observablehq-header-anchor" href="#step-1-loading-and-filtering-data">Step 1: Loading and Filtering Data</a></h2>
+<pre><code>d3.csv("./data/happiness.csv").then(data =&gt; {
+  console.log("CSV Data:", data);
+
+  // Filter for Afghanistan only
+  const afghanistanData = data.filter(d =&gt; d.Country === "Afghanistan");
+
+  console.log("Afghanistan Data:", afghanistanData);
+  
+  // Time parser - convert year strings to Date objects
+  const parseYear = d3.timeParse("%Y");
+  
+  // All chart code goes here...
+});
+</code></pre>
+<p><strong>Why filter for one country?</strong></p>
+<ul>
+<li>Simpler to start with a single line</li>
+<li>Learn the basics before moving to multi-line charts</li>
+<li>Keeps the data structure straightforward</li>
+</ul>
+<p><strong>What's <code>d3.timeParse("%Y")</code>?</strong></p>
+<ul>
+<li>Parses year strings ("2015") into JavaScript Date objects</li>
+<li><code>"%Y"</code> is the format specifier for 4-digit years</li>
+<li>Required for <code>scaleTime</code> which works with Date objects</li>
+</ul>
+<hr>
+<h2 id="step-2-define-chart-dimensions" tabindex="-1"><a class="observablehq-header-anchor" href="#step-2-define-chart-dimensions">Step 2: Define Chart Dimensions</a></h2>
+<pre><code>const width = 500;
+const height = 300;
+const margin = { top: 20, right: 20, bottom: 50, left: 60 };
+</code></pre>
+<hr>
+<h2 id="step-3-create-scales" tabindex="-1"><a class="observablehq-header-anchor" href="#step-3-create-scales">Step 3: Create Scales</a></h2>
+<p>Line charts for time-series data use <strong><code>scaleTime</code> for the x-axis</strong> (dates/years) and <strong><code>scaleLinear</code> for the y-axis</strong> (values).</p>
+<h3 id="x-axis-scale-years-time-scale" tabindex="-1"><a class="observablehq-header-anchor" href="#x-axis-scale-years-time-scale">X-axis Scale (Years - Time Scale)</a></h3>
+<pre><code>const xScale = d3.scaleTime()
+  .domain(d3.extent(afghanistanData, d =&gt; parseYear(d.Year)))
+  .range([margin.left, width - margin.right]);
+</code></pre>
+<p><strong>What's <code>d3.scaleTime()</code>?</strong></p>
+<ul>
+<li>Specialized scale for time/date data</li>
+<li>Works with JavaScript Date objects (not numbers or strings)</li>
+<li>Automatically handles time intervals nicely</li>
+<li>Better than <code>scaleLinear</code> for dates because it understands time concepts</li>
+</ul>
+<p><strong>Why parse years?</strong></p>
+<pre><code>parseYear("2015") // Returns: Date object for Jan 1, 2015
+</code></pre>
+<ul>
+<li>CSV data comes as strings: <code>"2015"</code>, <code>"2016"</code>, etc.</li>
+<li><code>scaleTime</code> needs Date objects, not strings</li>
+<li><code>parseYear(d.Year)</code> converts each year string to a Date</li>
+</ul>
+<p><strong>Using <code>d3.extent()</code> with dates:</strong></p>
+<pre><code>d3.extent(afghanistanData, d =&gt; parseYear(d.Year))
+// Returns: [Date(2015-01-01), Date(2019-01-01)]
+</code></pre>
+<p><strong>Why <code>d3.extent()</code>?</strong></p>
+<ul>
+<li>Returns <code>[min, max]</code> in one call</li>
+<li>More efficient than calling <code>d3.min()</code> and <code>d3.max()</code> separately</li>
+<li>Perfect for line charts where you want to show the full data range</li>
+</ul>
+<h3 id="y-axis-scale-corruption-values" tabindex="-1"><a class="observablehq-header-anchor" href="#y-axis-scale-corruption-values">Y-axis Scale (Corruption Values)</a></h3>
+<pre><code>const yScale = d3.scaleLinear()
+  .domain([0, d3.max(afghanistanData, d =&gt; +d["Perceptions of corruption"])])
+  .range([height - margin.bottom, margin.top])
+  .nice();
+</code></pre>
+<p><strong>Why start at 0?</strong></p>
+<ul>
+<li>Shows the full context of the values</li>
+<li>Avoids misleading visualizations</li>
+<li>Standard practice for most metrics</li>
+</ul>
+<p><strong>What's <code>.nice()</code>?</strong></p>
+<ul>
+<li>Rounds domain to "nice" numbers (0.95 → 1.0)</li>
+<li>Makes axis labels cleaner and easier to read</li>
+</ul>
+<hr>
+<h2 id="step-4-create-the-line-generator-the-magic" tabindex="-1"><a class="observablehq-header-anchor" href="#step-4-create-the-line-generator-the-magic">Step 4: Create the Line Generator (The Magic!)</a></h2>
+<p>This is what makes line charts special - <code>d3.line()</code> is a <strong>path generator</strong>.</p>
+<pre><code>const line = d3.line()
+  .x(d =&gt; xScale(parseYear(d.Year)))
+  .y(d =&gt; yScale(+d["Perceptions of corruption"]));
+</code></pre>
+<p><strong>What is <code>d3.line()</code>?</strong></p>
+<p><code>d3.line()</code> is a <strong>function generator</strong> that:</p>
+<ol>
+<li>Takes an array of data points</li>
+<li>Converts each point to x,y coordinates</li>
+<li>Returns an SVG path string that connects all the points</li>
+</ol>
+<p><strong>Breaking it down:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Purpose</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>d3.line()</code></td>
+<td>Creates a line generator</td>
+<td>A function</td>
+</tr>
+<tr>
+<td><code>.x(accessor)</code></td>
+<td>How to get x-coordinate for each point</td>
+<td>The generator (for chaining)</td>
+</tr>
+<tr>
+<td><code>.y(accessor)</code></td>
+<td>How to get y-coordinate for each point</td>
+<td>The generator (for chaining)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Calling the line generator:</strong></p>
+<pre><code>// When you call line(data), it returns a path string
+const pathData = line(afghanistanData);
+
+console.log(pathData);
+// Output: "M60,120L120,115L180,125L240,122L300,118"
+</code></pre>
+<p><strong>Path string breakdown:</strong></p>
+<ul>
+<li><code>M60,120</code> - <strong>M</strong>ove to starting point (x=60, y=120)</li>
+<li><code>L120,115</code> - <strong>L</strong>ine to next point (x=120, y=115)</li>
+<li><code>L180,125</code> - <strong>L</strong>ine to next point (x=180, y=125)</li>
+<li>And so on...</li>
+</ul>
+<hr>
+<h2 id="step-5-create-svg-container" tabindex="-1"><a class="observablehq-header-anchor" href="#step-5-create-svg-container">Step 5: Create SVG Container</a></h2>
+<pre><code>const svg = d3.select(".container")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height);
+</code></pre>
+<hr>
+<h2 id="step-6-add-x-axis" tabindex="-1"><a class="observablehq-header-anchor" href="#step-6-add-x-axis">Step 6: Add X-axis</a></h2>
+<pre><code>svg.append("g")
+  .attr("transform", `translate(0,${height - margin.bottom})`)
+  .call(d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y")))
+  .call(g =&gt; g.select(".domain").remove());
+</code></pre>
+<p><strong>New: <code>.tickFormat(d3.timeFormat("%Y"))</code></strong></p>
+<p>Since we're using <code>scaleTime</code>, we need time-specific formatting:</p>
+<pre><code>d3.timeFormat("%Y")  // Formats dates as 4-digit years: "2015", "2016"
+</code></pre>
+<p><strong>Common time format specifiers:</strong></p>
+<ul>
+<li><code>"%Y"</code> - 4-digit year (2015)</li>
+<li><code>"%y"</code> - 2-digit year (15)</li>
+<li><code>"%B %Y"</code> - Full month and year (January 2015)</li>
+<li><code>"%b %d"</code> - Abbreviated month and day (Jan 15)</li>
+<li><code>"%m/%d/%Y"</code> - US date format (01/15/2015)</li>
+</ul>
+<p><strong>Why not <code>d3.format("d")</code>?</strong></p>
+<ul>
+<li><code>d3.format()</code> is for numbers</li>
+<li><code>d3.timeFormat()</code> is for Date objects</li>
+<li><code>scaleTime</code> works with Date objects, so we need time formatting</li>
+</ul>
+<hr>
+<h2 id="step-7-add-y-axis" tabindex="-1"><a class="observablehq-header-anchor" href="#step-7-add-y-axis">Step 7: Add Y-axis</a></h2>
+<pre><code>svg.append("g")
+  .attr("transform", `translate(${margin.left},0)`)
+  .call(d3.axisLeft(yScale))
+  .call(g =&gt; g.select(".domain").remove())
+  .call(g =&gt; g.selectAll(".tick line")
+    .attr("x2", width - margin.left - margin.right)
+    .attr("stroke-width", 0.1))
+  .call(g =&gt; g.append("text")
+    .attr("x", -margin.left)
+    .attr("y", 10)
+    .attr("fill", "currentColor")
+    .attr("text-anchor", "start")
+    .text("↑ Perceptions of corruption"));
+</code></pre>
+<p>Standard y-axis with grid lines and label.</p>
+<hr>
+<h2 id="step-8-draw-the-line-path" tabindex="-1"><a class="observablehq-header-anchor" href="#step-8-draw-the-line-path">Step 8: Draw the Line Path</a></h2>
+<p>Here's where we use our line generator!</p>
+<pre><code>svg.append("path")
+  .datum(afghanistanData)
+  .attr("fill", "none")
+  .attr("stroke", "steelblue")
+  .attr("stroke-width", 2)
+  .attr("d", line);
+</code></pre>
+<p><strong>Alternative approach - calling the line generator directly:</strong></p>
+<p>You can also skip <code>.datum()</code> and call the line generator directly:</p>
+<pre><code>svg.append("path")
+  .attr("fill", "none")
+  .attr("stroke", "steelblue")
+  .attr("stroke-width", 2)
+  .attr("d", line(afghanistanData));  // Call line() with data directly
+</code></pre>
+<p><strong>What's the difference?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Code</th>
+<th>How it works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>With <code>.datum()</code></strong></td>
+<td><code>.datum(data).attr("d", line)</code></td>
+<td>Binds data to element, D3 calls <code>line(data)</code> automatically</td>
+</tr>
+<tr>
+<td><strong>Direct call</strong></td>
+<td><code>.attr("d", line(data))</code></td>
+<td>You manually call <code>line(data)</code> and pass the result</td>
+</tr>
+</tbody>
+</table>
+<p>Both produce the exact same result! The <code>.datum()</code> approach is more "D3-like" and useful when you need the data bound to the element for other operations (like transitions or updates).</p>
+<p><strong>Key differences from bar charts:</strong></p>
+<h3 id="datum-vs-data" tabindex="-1"><a class="observablehq-header-anchor" href="#datum-vs-data"><code>.datum()</code> vs <code>.data()</code></a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Use Case</th>
+<th>Creates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.data(array)</code></td>
+<td>Bind each element to create multiple elements</td>
+<td>Multiple rectangles, circles, etc.</td>
+</tr>
+<tr>
+<td><code>.datum(array)</code></td>
+<td>Bind entire array to one element</td>
+<td>Single path for all data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why <code>.datum()</code> for line charts?</strong></p>
+<ul>
+<li>We're creating <strong>ONE path</strong> that connects all points</li>
+<li>Not creating separate elements for each data point</li>
+<li>The path itself represents the entire dataset</li>
+</ul>
+<p><strong>Comparison:</strong></p>
+<pre><code>// Bar chart (many rectangles):
+svg.selectAll("rect")
+  .data(data)           // Each item → one rectangle
+  .join("rect")
+  // → Creates 10 &lt;rect&gt; elements for 10 data points
+
+// Line chart (one path):
+svg.append("path")
+  .datum(data)          // Entire array → one path
+  .attr("d", line)
+  // → Creates 1 &lt;path&gt; element connecting 10 points
+</code></pre>
+<h3 id="path-attributes" tabindex="-1"><a class="observablehq-header-anchor" href="#path-attributes">Path Attributes</a></h3>
+<pre><code>.attr("fill", "none")         // No fill (or you get a filled shape!)
+.attr("stroke", "steelblue")  // Line color
+.attr("stroke-width", 2)      // Line thickness
+.attr("d", line)              // The path data (from line generator)
+</code></pre>
+<p><strong>Why <code>fill: none</code>?</strong></p>
+<p>Without it, SVG fills the area under the line!</p>
+<pre><code>With fill="none":     │  Without fill="none":
+                      │
+    /\  /\           │    /█\  /█\
+   /  \/  \          │   /███\/███\
+  /        \         │  /█████████████\
+</code></pre>
+<p><strong>The <code>d</code> attribute:</strong></p>
+<ul>
+<li><code>d</code> stands for "data" (SVG path data)</li>
+<li>We pass our line generator function: <code>.attr("d", line)</code></li>
+<li>D3 automatically calls <code>line(afghanistanData)</code> and uses the result</li>
+</ul>
+<hr>
+<div class="observablehq observablehq--block"><!--:4c623d00:--></div>
+<h2 id="simple-line-chart-output" tabindex="-1"><a class="observablehq-header-anchor" href="#simple-line-chart-output">Simple line chart output</a></h2>
+<div class="observablehq observablehq--block"><!--:75d59bee:--></div>
+<h2 id="simple-line-chart-complete-working-example" tabindex="-1"><a class="observablehq-header-anchor" href="#simple-line-chart-complete-working-example">Simple line chart complete working example</a></h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Line Chart - Afghanistan Corruption&lt;/title&gt;
+    &lt;style&gt;
+        text {
+            font-family: sans-serif;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;&lt;/div&gt;
+
+    &lt;script type="module"&gt;
+        import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+        d3.csv("./data/happiness.csv").then(data =&gt; {
+            console.log("CSV Data:", data);
+
+            // Filter for Afghanistan only
+            const afghanistanData = data.filter(d =&gt; d.Country === "Afghanistan");
+            console.log("Afghanistan Data:", afghanistanData);
+
+            // Time parser
+            const parseYear = d3.timeParse("%Y");
+
+            // Dimensions
+            const width = 500;
+            const height = 300;
+            const margin = { top: 20, right: 20, bottom: 50, left: 60 };
+
+            // Scales
+            const xScale = d3.scaleTime()
+                .domain(d3.extent(afghanistanData, d =&gt; parseYear(d.Year)))
+                .range([margin.left, width - margin.right]);
+
+            const yScale = d3.scaleLinear()
+                .domain([0, d3.max(afghanistanData, d =&gt; +d["Perceptions of corruption"])])
+                .range([height - margin.bottom, margin.top])
+                .nice();
+
+            // Line generator
+            const line = d3.line()
+                .x(d =&gt; xScale(parseYear(d.Year)))
+                .y(d =&gt; yScale(+d["Perceptions of corruption"]));
+
+            // Create SVG
+            const svg = d3.select(".container")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            // Add x-axis
+            svg.append("g")
+                .attr("transform", `translate(0,${height - margin.bottom})`)
+                .call(d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y")))
+                .call(g =&gt; g.select(".domain").remove());
+
+            // Add y-axis
+            svg.append("g")
+                .attr("transform", `translate(${margin.left},0)`)
+                .call(d3.axisLeft(yScale))
+                .call(g =&gt; g.select(".domain").remove())
+                .call(g =&gt; g.selectAll(".tick line")
+                    .attr("x2", width - margin.left - margin.right)
+                    .attr("stroke-width", 0.1))
+                .call(g =&gt; g.append("text")
+                    .attr("x", -margin.left)
+                    .attr("y", 10)
+                    .attr("fill", "currentColor")
+                    .attr("text-anchor", "start")
+                    .text("↑ Perceptions of corruption"));
+
+            // Draw line
+            svg.append("path")
+                .datum(afghanistanData)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", 2)
+                .attr("d", line);
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr>
+<h2 id="multi-line-chart" tabindex="-1"><a class="observablehq-header-anchor" href="#multi-line-chart">Multi-Line Chart</a></h2>
+<div class="observablehq observablehq--block"><!--:834b0732:--></div>
+<p>To create a multi-line chart, most of the code stays the same! Here are the <strong>only differences</strong>:</p>
+<h3 id="key-differences-from-single-line-chart" tabindex="-1"><a class="observablehq-header-anchor" href="#key-differences-from-single-line-chart">Key Differences from Single-Line Chart</a></h3>
+<p><strong>1. Filter for multiple countries instead of one:</strong></p>
+<pre><code>// Single-line: Filter for one country
+const afghanistanData = data.filter(d =&gt; d.Country === "Afghanistan");
+
+// Multi-line: Filter for multiple countries
+const selectedCountries = ["Afghanistan", "Albania", "Algeria", "Argentina", "Australia", 
+                           "Austria", "Belgium", "Brazil", "Canada", "Chile"];
+const filteredData = data.filter(d =&gt; selectedCountries.includes(d.Country));
+</code></pre>
+<p><strong>2. Group data by country using <code>d3.group()</code>:</strong></p>
+<pre><code>// Group data by country - creates a Map
+const groupedData = d3.group(filteredData, d =&gt; d.Country);
+// Returns: Map { "Afghanistan" =&gt; [...], "Albania" =&gt; [...], ... }
+</code></pre>
+<p><strong>3. Use <code>.selectAll().data()</code> instead of <code>.append().datum()</code>:</strong></p>
+<pre><code>// Single-line: One path for one dataset
+svg.append("path")
+  .datum(afghanistanData)
+  .attr("d", line);
+
+// Multi-line: Multiple paths for multiple datasets
+svg.selectAll(".country-line")
+  .data(groupedData)           // Each Map entry = one country's data
+  .join("path")
+  .attr("class", "country-line")
+  .attr("d", d =&gt; line(d[1])); // d[1] is the country's data array
+</code></pre>
+<p><strong>4. Style each line differently (optional):</strong></p>
+<pre><code>.attr("stroke", d =&gt; d[0] === "Belgium" ? "#FF7F11" : "#909090")  // Highlight Belgium
+.attr("stroke-width", d =&gt; d[0] === "Belgium" ? 2 : 0.3)          // Make it thicker
+</code></pre>
+<ul>
+<li><code>d[0]</code> = country name (Map key)</li>
+<li><code>d[1]</code> = country's data array (Map value)</li>
+</ul>
+<p>That's it! Everything else (scales, axes, line generator) remains identical.</p>
+<hr>
+<h2 id="multi-line-chart-complete-working-example" tabindex="-1"><a class="observablehq-header-anchor" href="#multi-line-chart-complete-working-example">Multi line chart complete working example</a></h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Mullti Line Chart&lt;/title&gt;
+    &lt;style&gt;
+        text {
+            font-family: sans-serif;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;&lt;/div&gt;
+
+    &lt;!-- Notice type="module" --&gt;
+    &lt;script type="module"&gt;
+        // Import D3 from the CDN
+        import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+        d3.csv("../../dummy-example-data/happiness.csv").then(data =&gt; {
+
+            console.log("CSV Data:", data);
+
+            // Select 10 countries including Afghanistan
+            const selectedCountries = ["Afghanistan", "Albania", "Algeria", "Argentina", "Australia", 
+                                       "Austria", "Belgium", "Brazil", "Canada", "Chile"];
+            
+            // Filter data for selected countries only
+            const filteredData = data.filter(d =&gt; selectedCountries.includes(d.Country));
+
+            // Group data by country
+            const groupedData = d3.group(filteredData, d =&gt; d.Country);
+            const countries = Array.from(groupedData.keys());
+
+            console.log("Countries:", countries);
+
+            // Time parser
+            const parseYear = d3.timeParse("%Y");
+
+            // Dimensions
+            const width = 500;
+            const height = 300;
+            const margin = { top: 20, right: 20, bottom: 50, left: 60 };
+
+            // Scales
+            const xScale = d3.scaleTime()
+                .domain(d3.extent(filteredData, d =&gt; parseYear(d.Year)))
+                .range([margin.left, width - margin.right]);
+
+            const yScale = d3.scaleLinear()
+                .domain([0, d3.max(filteredData, d =&gt; +d["Perceptions of corruption"])])
+                .range([height - margin.bottom, margin.top])
+                .nice();
+
+            // Line generator
+            const line = d3.line()
+                .x(d =&gt; xScale(parseYear(d.Year)))
+                .y(d =&gt; yScale(+d["Perceptions of corruption"]));
+
+            // Create SVG
+            const svg = d3.select(".container")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            // Add x-axis
+            svg.append("g")
+                .attr("transform", `translate(0,${height - margin.bottom})`)
+                .call(d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y")))
+                .call(g =&gt; g.select(".domain").remove());
+
+            // Add y-axis
+            svg.append("g")
+                .attr("transform", `translate(${margin.left},0)`)
+                .call(d3.axisLeft(yScale))
+                .call(g =&gt; g.select(".domain").remove())
+                .call(g =&gt; g.selectAll(".tick line")
+                    .attr("x2", width - margin.left - margin.right)
+                    .attr("stroke-width", 0.1))
+                .call(g =&gt; g.append("text")
+                    .attr("x", -margin.left)
+                    .attr("y", 10)
+                    .attr("fill", "currentColor")
+                    .attr("text-anchor", "start")
+                    .text("↑ Perceptions of corruption"));
+
+            // Draw lines for each country
+            svg.selectAll(".country-line")
+                .data(groupedData)
+                .join("path")
+                .attr("class", "country-line")
+                .attr("fill", "none")
+                .attr("stroke", d =&gt; d[0] === "Belgium" ? "#FF7F11" : "#909090")
+                .attr("stroke-width", d =&gt; d[0] === "Belgium" ? 2 : 0.3)
+                .attr("d", d =&gt; line(d[1]));
+
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./grouped-bar"><span>Grouped bar chart</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="../../_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>

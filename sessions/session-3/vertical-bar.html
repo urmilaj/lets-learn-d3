@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Vertical bar chart | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="preload" as="style" href="../../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="../../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../../_observablehq/client.be619ba2.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../../_npm/d3@7.9.0/e324157d.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="../../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../../_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="../../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../../_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="../../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../../_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../../_observablehq/client.be619ba2.js";
+import {registerFile} from "../../_observablehq/stdlib.73a8ec5a.js";
+
+registerFile("../../data/music-aggregate.csv", {"name":"../../data/music-aggregate.csv","mimeType":"text/csv","path":"../../_file/data/music-aggregate.f22ca338.csv","lastModified":1769164617161,"size":99});
+
+define({id: "714e410d", inputs: ["FileAttachment"], outputs: ["musicData"], body: async (FileAttachment) => {
+const musicData = await FileAttachment("../../data/music-aggregate.csv").csv({typed: true});
+return {musicData};
+}});
+
+define({id: "0653de5b", inputs: ["view","Inputs","musicData"], body: (view,Inputs,musicData) => {
+view(Inputs.table(musicData))
+}});
+
+define({id: "63c04c47", outputs: ["width","height","margin"], body: () => {
+// Chart dimensions
+const width = 928;
+const height = 500;
+const margin = { top: 20, right: 20, bottom: 50, left: 100 };
+return {width,height,margin};
+}});
+
+define({id: "0b96a282", inputs: ["d3","musicData","margin","width"], outputs: ["xScale"], body: (d3,musicData,margin,width) => {
+// Create a band scale for years (categorical x-axis)
+const xScale = d3.scaleBand()
+  .domain((musicData.map(d=>d.Format)))  // All unique years
+  .range([margin.left, width - margin.right])  // Pixel range
+  .padding(0.1);  // Space between bars (10%)
+return {xScale};
+}});
+
+define({id: "4f0fa33e", inputs: ["d3","musicData","height","margin"], outputs: ["yScale"], body: (d3,musicData,height,margin) => {
+// Create a linear scale for revenue (numerical y-axis)
+const yScale = d3.scaleLinear()
+  .domain([0, d3.max(musicData, d => d.Revenue)])  // 0 to max revenue
+  .range([height - margin.bottom, margin.top])  // Flipped! SVG y goes down
+return {yScale};
+}});
+
+define({id: "44137661", inputs: ["d3","width","height"], outputs: ["svg"], body: (d3,width,height) => {
+const svg = d3.create("svg")
+    .attr("width", width)
+    .attr("height", height)
+return {svg};
+}});
+
+define({id: "d8277d88", inputs: ["d3","xScale","svg","height","margin"], outputs: ["xAxis"], body: (d3,xScale,svg,height,margin) => {
+const xAxis = d3.axisBottom(xScale);
+// Add x-axis
+svg.append("g")
+    .attr("transform", `translate(0,${height - margin.bottom})`)
+    .call(xAxis)
+    .call(g => g.select(".domain").remove())
+return {xAxis};
+}});
+
+define({id: "74445b6d", inputs: ["d3","yScale","svg","margin","width"], outputs: ["yAxis"], body: (d3,yScale,svg,margin,width) => {
+const yAxis = d3.axisLeft(yScale);
+// Add y-axis
+svg.append("g")
+    .attr("transform", `translate(${margin.left},0)`)
+    .call(yAxis)
+    .call(g => g.select(".domain").remove())
+    .call(g => g.selectAll(".tick line").attr("x2", width-margin.right).attr("stroke-width", 0.1))
+    .call(g => g.append("text")
+        .attr("x", 0)
+        .attr("y", 28)
+        .attr("fill", "black")
+        .attr("text-anchor", "end")
+        .text("↑ Revenue ($ millions)"));
+
+return {yAxis};
+}});
+
+define({id: "a5bd745f", inputs: ["svg","musicData","xScale","yScale"], body: (svg,musicData,xScale,yScale) => {
+// Create bars
+svg.append("g")
+  .selectAll("rect")
+  .data(musicData)
+  .join("rect")
+    .attr("x", d => xScale(d.Format))  // x position from year
+    .attr("y", d => yScale(d.Revenue))  // y position from revenue
+    .attr("width", xScale.bandwidth())  // width from scale
+    .attr("height", d => yScale(0) - yScale(d.Revenue))  // height
+    .attr("fill", "rebeccaPurple");
+}});
+
+define({id: "76a3c000", inputs: ["display","svg"], body: (display,svg) => {
+// Add chart to the page
+display(svg.node());
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Lets learn D3</a></li>
+  </ol>
+  <details>
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-1/initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="../session-1/d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="../session-1/exercises-1">Exercises</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-2/d3-initial-setup">D3 initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-selection">D3 selection</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-data-binding">D3 data binding</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-scales">D3 scales</a></li>
+    <li class="observablehq-link"><a href="../session-2/demo">Session 2 demo code</a></li>
+    </ol>
+  </details>
+  <section class="observablehq-section-active">
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./vertical-bar">Vertical bar chart</a></li>
+    <li class="observablehq-link"><a href="./horizontal-bar">Horizontal bar chart</a></li>
+    <li class="observablehq-link"><a href="./grouped-bar">Grouped bar chart</a></li>
+    <li class="observablehq-link"><a href="./line">Line chart</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#what-you-ll-learn">What You&#x27;ll Learn</a></li>
+<li class="observablehq-secondary-link"><a href="#the-data">The Data</a></li>
+<li class="observablehq-secondary-link"><a href="#step-1-loading-csv-data-with-d3">Step 1: Loading CSV Data with D3</a></li>
+<li class="observablehq-secondary-link"><a href="#step-2-define-chart-dimensions">Step 2: Define Chart Dimensions</a></li>
+<li class="observablehq-secondary-link"><a href="#step-3-create-scales">Step 3: Create Scales</a></li>
+<li class="observablehq-secondary-link"><a href="#step-4-create-svg-container">Step 4: Create SVG Container</a></li>
+<li class="observablehq-secondary-link"><a href="#step-5-draw-the-x-axis">Step 5: Draw the x axis</a></li>
+<li class="observablehq-secondary-link"><a href="#step-6-draw-the-y-axis">Step 6: Draw the y axis</a></li>
+<li class="observablehq-secondary-link"><a href="#step-7-draw-the-bars">Step 7: Draw the Bars</a></li>
+<li class="observablehq-secondary-link"><a href="#complete-working-example">Complete Working Example</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="vertical-bar-chart" tabindex="-1"><a class="observablehq-header-anchor" href="#vertical-bar-chart">Vertical Bar Chart</a></h1>
+<p>A vertical bar chart is one of the most fundamental and widely-used data visualizations. It's perfect for comparing values across different categories using vertical bars where the height represents the data value.</p>
+<hr>
+<h2 id="what-you-ll-learn" tabindex="-1"><a class="observablehq-header-anchor" href="#what-you-ll-learn">What You'll Learn</a></h2>
+<ul>
+<li>Using <code>scaleBand</code> for categorical x-axis</li>
+<li>Using <code>scaleLinear</code> for numerical y-axis</li>
+<li>Drawing axes with <code>d3.axisBottom()</code> and <code>d3.axisLeft()</code></li>
+<li>The margin convention for proper chart spacing</li>
+<li>Filtering and preparing data</li>
+<li>Creating bars with SVG rectangles</li>
+</ul>
+<hr>
+<div class="observablehq observablehq--block"><!--:714e410d:--></div>
+<h2 id="the-data" tabindex="-1"><a class="observablehq-header-anchor" href="#the-data">The Data</a></h2>
+<p>We're using the <code>music-aggregate.csv</code> dataset, which contains revenue data for different music formats over the years.</p>
+<p><strong>Download the dataset:</strong> <a href="../../_file/data/music-aggregate.f22ca338.csv" download="music-aggregate.csv">Click to download music-aggregate.csv dataset</a></p>
+<hr>
+<h2 id="step-1-loading-csv-data-with-d3" tabindex="-1"><a class="observablehq-header-anchor" href="#step-1-loading-csv-data-with-d3">Step 1: Loading CSV Data with D3</a></h2>
+<p>To work with our data, we first need to load the CSV file. D3 provides powerful methods for loading and parsing data.</p>
+<h3 id="using-d3-csv-to-load-data" tabindex="-1"><a class="observablehq-header-anchor" href="#using-d3-csv-to-load-data">Using <code>d3.csv()</code> to Load Data</a></h3>
+<pre><code>// Load CSV data with vanilla JavaScript
+d3.csv("./data/music-aggregate.csv").then(data =&gt; {
+  // All your chart code goes inside here
+  console.log(data);  // See what the data looks like
+  
+  // Filter, create scales, draw chart...
+});
+</code></pre>
+<p><strong>What's happening here?</strong></p>
+<ol>
+<li><strong><code>d3.csv()</code></strong> - D3's method to load and parse CSV files</li>
+<li><strong><code>.then()</code></strong> - Handles the loaded data when it's ready (it's asynchronous)</li>
+<li><strong><code>data</code></strong> - The parameter containing your loaded CSV as an array of objects</li>
+<li><strong>All chart code must go inside</strong> the <code>.then()</code> callback</li>
+</ol>
+<p><strong>Why <code>.then()</code>?</strong></p>
+<ul>
+<li>Loading files takes time (network request)</li>
+<li>JavaScript doesn't wait - it continues running</li>
+<li><code>.then()</code> says "when the data is ready, THEN do this"</li>
+</ul>
+<h3 id="what-the-data-looks-like" tabindex="-1"><a class="observablehq-header-anchor" href="#what-the-data-looks-like">What the Data Looks Like</a></h3>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:0653de5b:--></div>
+<hr>
+<h2 id="step-2-define-chart-dimensions" tabindex="-1"><a class="observablehq-header-anchor" href="#step-2-define-chart-dimensions">Step 2: Define Chart Dimensions</a></h2>
+<p>Following the <strong>margin convention</strong>, we define our chart dimensions:</p>
+<div class="observablehq observablehq--block"><!--:63c04c47:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-comment">// Chart dimensions</span>
+<span class="hljs-keyword">const</span> width = <span class="hljs-number">928</span>;
+<span class="hljs-keyword">const</span> height = <span class="hljs-number">500</span>;
+<span class="hljs-keyword">const</span> margin = { <span class="hljs-attr">top</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">right</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">bottom</span>: <span class="hljs-number">50</span>, <span class="hljs-attr">left</span>: <span class="hljs-number">100</span> };
+</code></pre>
+<p><strong>Why margins?</strong></p>
+<ul>
+<li>Space for axes labels and tick marks</li>
+<li>Prevents bars from being cut off</li>
+<li>Makes the chart readable</li>
+</ul>
+<hr>
+<h2 id="step-3-create-scales" tabindex="-1"><a class="observablehq-header-anchor" href="#step-3-create-scales">Step 3: Create Scales</a></h2>
+<p>Scales are the bridge between your data values and visual properties.</p>
+<h3 id="x-axis-scale-categories-years" tabindex="-1"><a class="observablehq-header-anchor" href="#x-axis-scale-categories-years">X-axis Scale (Categories - Years)</a></h3>
+<div class="observablehq observablehq--block"><!--:0b96a282:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-comment">// Create a band scale for years (categorical x-axis)</span>
+<span class="hljs-keyword">const</span> xScale = d3.<span class="hljs-title function_">scaleBand</span>()
+  .<span class="hljs-title function_">domain</span>((musicData.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span>=&gt;</span>d.<span class="hljs-property">Format</span>)))  <span class="hljs-comment">// All unique years</span>
+  .<span class="hljs-title function_">range</span>([margin.<span class="hljs-property">left</span>, width - margin.<span class="hljs-property">right</span>])  <span class="hljs-comment">// Pixel range</span>
+  .<span class="hljs-title function_">padding</span>(<span class="hljs-number">0.1</span>);  <span class="hljs-comment">// Space between bars (10%)</span>
+</code></pre>
+<p><strong>What's <code>scaleBand</code>?</strong></p>
+<ul>
+<li>Used for categorical data (years in this case)</li>
+<li>Automatically calculates bar width</li>
+<li><code>.padding(0.1)</code> adds 10% spacing between bars</li>
+<li><code>.bandwidth()</code> gives you the width of each bar</li>
+</ul>
+<h3 id="y-axis-scale-values-revenue" tabindex="-1"><a class="observablehq-header-anchor" href="#y-axis-scale-values-revenue">Y-axis Scale (Values - Revenue)</a></h3>
+<div class="observablehq observablehq--block"><!--:4f0fa33e:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-comment">// Create a linear scale for revenue (numerical y-axis)</span>
+<span class="hljs-keyword">const</span> yScale = d3.<span class="hljs-title function_">scaleLinear</span>()
+  .<span class="hljs-title function_">domain</span>([<span class="hljs-number">0</span>, d3.<span class="hljs-title function_">max</span>(musicData, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">Revenue</span>)])  <span class="hljs-comment">// 0 to max revenue</span>
+  .<span class="hljs-title function_">range</span>([height - margin.<span class="hljs-property">bottom</span>, margin.<span class="hljs-property">top</span>])  <span class="hljs-comment">// Flipped! SVG y goes down</span>
+</code></pre>
+<p><strong>Key points:</strong></p>
+<ul>
+<li><code>.domain([0, max])</code> - Always start at 0 for bar charts</li>
+<li><code>.range()</code> is <strong>flipped</strong> - SVG y-coordinates go from top (0) to bottom (height)</li>
+</ul>
+<hr>
+<h2 id="step-4-create-svg-container" tabindex="-1"><a class="observablehq-header-anchor" href="#step-4-create-svg-container">Step 4: Create SVG Container</a></h2>
+<div class="observablehq observablehq--block"><!--:44137661:--></div>
+<pre><code>// Create SVG element
+const svg = d3.select(".container")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+</code></pre>
+<hr>
+<h2 id="step-5-draw-the-x-axis" tabindex="-1"><a class="observablehq-header-anchor" href="#step-5-draw-the-x-axis">Step 5: Draw the x axis</a></h2>
+<div class="observablehq observablehq--block"><!--:d8277d88:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> xAxis = d3.<span class="hljs-title function_">axisBottom</span>(xScale);
+<span class="hljs-comment">// Add x-axis</span>
+svg.<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-string">`translate(0,<span class="hljs-subst">${height - margin.bottom}</span>)`</span>)
+    .<span class="hljs-title function_">call</span>(xAxis)
+    .<span class="hljs-title function_">call</span>(<span class="hljs-function"><span class="hljs-params">g</span> =&gt;</span> g.<span class="hljs-title function_">select</span>(<span class="hljs-string">".domain"</span>).<span class="hljs-title function_">remove</span>())
+</code></pre>
+<hr>
+<h2 id="step-6-draw-the-y-axis" tabindex="-1"><a class="observablehq-header-anchor" href="#step-6-draw-the-y-axis">Step 6: Draw the y axis</a></h2>
+<div class="observablehq observablehq--block"><!--:74445b6d:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> yAxis = d3.<span class="hljs-title function_">axisLeft</span>(yScale);
+<span class="hljs-comment">// Add y-axis</span>
+svg.<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-string">`translate(<span class="hljs-subst">${margin.left}</span>,0)`</span>)
+    .<span class="hljs-title function_">call</span>(yAxis)
+    .<span class="hljs-title function_">call</span>(<span class="hljs-function"><span class="hljs-params">g</span> =&gt;</span> g.<span class="hljs-title function_">select</span>(<span class="hljs-string">".domain"</span>).<span class="hljs-title function_">remove</span>())
+    .<span class="hljs-title function_">call</span>(<span class="hljs-function"><span class="hljs-params">g</span> =&gt;</span> g.<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".tick line"</span>).<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x2"</span>, width-margin.<span class="hljs-property">right</span>).<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, <span class="hljs-number">0.1</span>))
+    .<span class="hljs-title function_">call</span>(<span class="hljs-function"><span class="hljs-params">g</span> =&gt;</span> g.<span class="hljs-title function_">append</span>(<span class="hljs-string">"text"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, <span class="hljs-number">0</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, <span class="hljs-number">28</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"black"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"end"</span>)
+        .<span class="hljs-title function_">text</span>(<span class="hljs-string">"↑ Revenue ($ millions)"</span>));
+
+</code></pre>
+<h2 id="step-7-draw-the-bars" tabindex="-1"><a class="observablehq-header-anchor" href="#step-7-draw-the-bars">Step 7: Draw the Bars</a></h2>
+<p>Now for the main event - creating bars with data binding!</p>
+<div class="observablehq observablehq--block"><!--:a5bd745f:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-comment">// Create bars</span>
+svg.<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+  .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">"rect"</span>)
+  .<span class="hljs-title function_">data</span>(musicData)
+  .<span class="hljs-title function_">join</span>(<span class="hljs-string">"rect"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">xScale</span>(d.<span class="hljs-property">Format</span>))  <span class="hljs-comment">// x position from year</span>
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">yScale</span>(d.<span class="hljs-property">Revenue</span>))  <span class="hljs-comment">// y position from revenue</span>
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, xScale.<span class="hljs-title function_">bandwidth</span>())  <span class="hljs-comment">// width from scale</span>
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">yScale</span>(<span class="hljs-number">0</span>) - <span class="hljs-title function_">yScale</span>(d.<span class="hljs-property">Revenue</span>))  <span class="hljs-comment">// height</span>
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"rebeccaPurple"</span>);
+</code></pre>
+<p><strong>Understanding each attribute:</strong></p>
+<ul>
+<li><strong><code>x</code></strong>: Horizontal position - <code>xScale(d.Year)</code> converts year to pixel position</li>
+<li><strong><code>y</code></strong>: Top of the bar - <code>yScale(revenue)</code> converts revenue to pixel position</li>
+<li><strong><code>width</code></strong>: <code>xScale.bandwidth()</code> - the width calculated by scaleBand</li>
+<li><strong><code>height</code></strong>: <code>yScale(0) - yScale(revenue)</code> - distance from bottom to top</li>
+</ul>
+<p><strong>Why the height calculation?</strong></p>
+<pre><code>yScale(0) = 480px (bottom of chart)
+yScale(100) = 200px (somewhere in middle)
+height = 480 - 200 = 280px ✓
+</code></pre>
+<hr>
+<p><strong>Congratulations! 🎉</strong> You've created your first complete D3 bar chart from scratch!</p>
+<div class="observablehq observablehq--block"><!--:76a3c000:--></div>
+<hr>
+<h2 id="complete-working-example" tabindex="-1"><a class="observablehq-header-anchor" href="#complete-working-example">Complete Working Example</a></h2>
+<p>Here's the full code together:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Music data - vertical bar chart&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;&lt;/div&gt;
+    &lt;script type="module"&gt;
+        // Import D3 from the CDN
+        import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+        d3.csv("./data/music-aggregate.csv").then(data =&gt; {
+            console.log("CSV Data:", data);
+
+            // Dimensions
+            const width = 928;
+            const height = 500;
+            const margin = { top: 20, right: 20, bottom: 50, left: 100 };
+
+            // Scales
+            const xScale = d3.scaleBand()
+                .domain(data.map(d =&gt; d.Format))
+                .range([margin.left, width - margin.right])
+                .padding(0.1);
+
+            const yScale = d3.scaleLinear()
+                .domain([0, d3.max(data, d =&gt; +d.Revenue)])
+                .range([height - margin.bottom, margin.top])
+
+            const xAxis = d3.axisBottom(xScale);
+            const yAxis = d3.axisLeft(yScale);
+
+            // Create SVG
+            const svg = d3.select(".container")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+
+            // Add x-axis
+            svg.append("g")
+                .attr("transform", `translate(0,${height - margin.bottom})`)
+                .call(xAxis)
+                .call(g =&gt; g.select(".domain").remove())
+
+            // Add y-axis
+            svg.append("g")
+                .attr("transform", `translate(${margin.left},0)`)
+                .call(yAxis)
+                .call(g =&gt; g.select(".domain").remove())
+                .call(g =&gt; g.selectAll(".tick line").attr("x2", width-margin.right).attr("stroke-width", 0.1))
+                .call(g =&gt; g.append("text")
+                    .attr("x", 0)
+                    .attr("y", 28)
+                    .attr("fill", "black")
+                    .attr("text-anchor", "end")
+                    .text("↑ Revenue ($ millions)"));
+
+            // Draw bars
+            svg.append("g")
+                .selectAll("rect")
+                .data(data)
+                .join("rect")
+                .attr("x", d =&gt; xScale(d.Format))
+                .attr("y", d =&gt; yScale(+d.Revenue))
+                .attr("width", xScale.bandwidth())
+                .attr("height", d =&gt; yScale(0) - yScale(+d.Revenue))
+                .attr("fill", "rebeccaPurple");        
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="../session-2/demo"><span>Session 2 demo code</span></a><a rel="next" href="./horizontal-bar"><span>Horizontal bar chart</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="../../_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>

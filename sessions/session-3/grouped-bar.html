@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Grouped bar chart | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="preload" as="style" href="../../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="../../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../../_observablehq/client.be619ba2.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../../_npm/d3@7.9.0/e324157d.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="../../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../../_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="../../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../../_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="../../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../../_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../../_observablehq/client.be619ba2.js";
+import {registerFile} from "../../_observablehq/stdlib.73a8ec5a.js";
+
+registerFile("../../data/happiness.csv", {"name":"../../data/happiness.csv","mimeType":"text/csv","path":"../../_file/data/happiness.6919f563.csv","lastModified":1769174690892,"size":71808});
+
+define({id: "4c623d00", inputs: ["FileAttachment"], outputs: ["data"], body: async (FileAttachment) => {
+const data = await FileAttachment("../../data/happiness.csv").csv();
+return {data};
+}});
+
+define({id: "73b79a41", inputs: ["Inputs","data","display"], body: async (Inputs,data,display) => {
+display(await(
+Inputs.table(data)
+))
+}});
+
+define({id: "0e361a92", inputs: ["data","d3","display"], outputs: ["filteredData","group","countries","years","width","height","margin","x0","x1","yScale","colorScale","svg","countryLabels","yearLabels","countryGroups"], body: (data,d3,display) => {
+const filteredData = data.filter(d => d.Country === "Afghanistan" || d.Country === "Germany");
+
+
+            const group = d3.group(filteredData, d => d.Country, d => d.Year);
+
+
+            // Convert to array structure for D3
+            const countries = [...new Set(filteredData.map(d => d.Country))]
+            const years = [...new Set(filteredData.map(d => +d.Year))].sort((a, b) => a - b);
+
+            // Dimensions
+            const width = 928;
+            const height = 500;
+            const margin = { top: 20, right: 20, bottom: 100, left: 60 };
+
+            // Scales
+            // x0 scale for countries
+            const x0 = d3.scaleBand()
+                .domain(countries)
+                .range([margin.left, width - margin.right])
+                .paddingInner(0.25);
+
+            // x1 scale for years within each country
+            const x1 = d3.scaleBand()
+                .domain(years)
+                .range([0, x0.bandwidth()])
+                .padding(0.08);
+
+            // y scale for corruption perception
+            const yScale = d3.scaleLinear()
+                .domain([0, d3.max(filteredData, d => +d["Perceptions of corruption"])])
+                .range([height - margin.bottom, margin.top])
+
+            // Color scale for countries
+            const colorScale = d3.scaleOrdinal()
+                .domain(countries)
+                .range(["#e6af2e", "#6b0504"]);
+
+const svg = d3.create("svg")
+    .attr("width", width)
+    .attr("height", height)
+
+ const countryLabels = svg.append("g")
+                .attr("transform", `translate(0,${height - margin.bottom + 35})`);
+
+            countries.forEach(country => {
+                countryLabels.append("text")
+                    .attr("x", x0(country) + x0.bandwidth() / 2)
+                    .attr("y", 0)
+                    .attr("text-anchor", "middle")
+                    .attr("font-size", "14px")
+                    .text(country);
+            });
+
+            // Add year labels above country labels
+            const yearLabels = svg.append("g")
+                .attr("transform", `translate(0,${height - margin.bottom + 15})`);
+
+            countries.forEach(country => {
+                years.forEach(year => {
+                    yearLabels.append("text")
+                        .attr("x", x0(country) + x1(year) + x1.bandwidth() / 2)
+                        .attr("y", 0)
+                        .attr("text-anchor", "middle")
+                        .attr("font-size", "10px")
+                        .text(year);
+                });
+            });
+      
+            // Add y-axis
+            svg.append("g")
+                .attr("transform", `translate(${margin.left},0)`)
+                .call(d3.axisLeft(yScale))
+                .call(g => g.select(".domain").remove())
+                .call(g => g.selectAll(".tick line")
+                    .attr("x2", width - margin.left - margin.right)
+                    .attr("stroke-width", 0.1))
+                .call(g => g.append("text")
+                    .attr("x", -margin.left)
+                    .attr("y", 10)
+                    .attr("fill", "currentColor")
+                    .attr("text-anchor", "start")
+                    .text("↑ Perceptions of corruption"));
+
+            // Draw grouped bars
+            const countryGroups = svg.append("g")
+                .selectAll("g")
+                .data(group)
+                .join("g")
+                .attr("transform", d => `translate(${x0(d[0])},0)`);
+
+            countryGroups.selectAll("rect")
+                .data(d => d[1])
+                .join("rect")
+                .attr("x", d => x1(+d[0]))
+                .attr("y", d => yScale(+d[1][0]["Perceptions of corruption"]))
+                .attr("width", x1.bandwidth())
+                .attr("height", d => yScale(0) - yScale(+d[1][0]["Perceptions of corruption"]))
+                .attr("fill", d => colorScale(d[1][0]["Country"]))
+
+                display(svg.node());
+
+return {filteredData,group,countries,years,width,height,margin,x0,x1,yScale,colorScale,svg,countryLabels,yearLabels,countryGroups};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Lets learn D3</a></li>
+  </ol>
+  <details>
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-1/initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="../session-1/d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="../session-1/exercises-1">Exercises</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-2/d3-initial-setup">D3 initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-selection">D3 selection</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-data-binding">D3 data binding</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-scales">D3 scales</a></li>
+    <li class="observablehq-link"><a href="../session-2/demo">Session 2 demo code</a></li>
+    </ol>
+  </details>
+  <section class="observablehq-section-active">
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./vertical-bar">Vertical bar chart</a></li>
+    <li class="observablehq-link"><a href="./horizontal-bar">Horizontal bar chart</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./grouped-bar">Grouped bar chart</a></li>
+    <li class="observablehq-link"><a href="./line">Line chart</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#what-you-ll-learn">What You&#x27;ll Learn</a></li>
+<li class="observablehq-secondary-link"><a href="#data">Data</a></li>
+<li class="observablehq-secondary-link"><a href="#step-1-loading-and-filtering-data">Step 1: Loading and Filtering Data</a></li>
+<li class="observablehq-secondary-link"><a href="#step-2-grouping-data-with-d3-group">Step 2: Grouping Data with d3.group()</a></li>
+<li class="observablehq-secondary-link"><a href="#step-3-extracting-unique-values">Step 3: Extracting Unique Values</a></li>
+<li class="observablehq-secondary-link"><a href="#step-4-define-chart-dimensions">Step 4: Define Chart Dimensions</a></li>
+<li class="observablehq-secondary-link"><a href="#step-5-create-nested-scales">Step 5: Create Nested Scales</a></li>
+<li class="observablehq-secondary-link"><a href="#step-6-create-svg-container">Step 6: Create SVG Container</a></li>
+<li class="observablehq-secondary-link"><a href="#step-7-add-custom-axis-labels">Step 7: Add Custom Axis Labels</a></li>
+<li class="observablehq-secondary-link"><a href="#step-8-add-y-axis">Step 8: Add Y-axis</a></li>
+<li class="observablehq-secondary-link"><a href="#step-9-draw-grouped-bars-the-magic">Step 9: Draw Grouped Bars (The Magic!)</a></li>
+<li class="observablehq-secondary-link"><a href="#grouped-bar-chart-output">Grouped bar chart output</a></li>
+<li class="observablehq-secondary-link"><a href="#complete-working-example">Complete Working Example</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="grouped-bar-chart" tabindex="-1"><a class="observablehq-header-anchor" href="#grouped-bar-chart">Grouped bar chart</a></h1>
+<p>A grouped bar chart uses applies the same concepts as a simple bar chart, but instead of using <code>d3.scaleBand()</code> once, you can use it several times to create multi-level grouped bar chart. For example, if you have happiness data for multiple countries for multiple years, you can create a grouped bar chart, with the <strong>country</strong> has the first main group and <strong>years</strong> has the second level sub group. Take a look at the data below for reference.</p>
+<hr>
+<h2 id="what-you-ll-learn" tabindex="-1"><a class="observablehq-header-anchor" href="#what-you-ll-learn">What You'll Learn</a></h2>
+<ul>
+<li>Filtering data for specific countries</li>
+<li>Using <code>d3.group()</code> to create hierarchical data structures</li>
+<li>Creating nested scales with <code>scaleBand()</code> (x0 for main groups, x1 for sub-groups)</li>
+<li>Using <code>scaleOrdinal()</code> for color mapping by category</li>
+<li>Nested data binding (groups within groups)</li>
+<li>Adding custom axis labels for multi-level groupings</li>
+<li>Working with grouped Map structures from <code>d3.group()</code></li>
+</ul>
+<hr>
+<h2 id="data" tabindex="-1"><a class="observablehq-header-anchor" href="#data">Data</a></h2>
+<div class="observablehq observablehq--block"><!--:4c623d00:--></div>
+<p>We're using the <strong>raw</strong> <code>happiness.csv</code> dataset.</p>
+<p><strong>Download the dataset:</strong> <a href="../../_file/data/happiness.6919f563.csv" download="happiness.csv">📥 Download happiness.csv</a></p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:73b79a41:--></div>
+<hr>
+<h2 id="step-1-loading-and-filtering-data" tabindex="-1"><a class="observablehq-header-anchor" href="#step-1-loading-and-filtering-data">Step 1: Loading and Filtering Data</a></h2>
+<h3 id="load-the-csv" tabindex="-1"><a class="observablehq-header-anchor" href="#load-the-csv">Load the CSV</a></h3>
+<pre><code>d3.csv("./data/happiness.csv").then(data =&gt; {
+  console.log("CSV Data:", data);
+  
+  // All chart code goes here...
+});
+</code></pre>
+<h3 id="filter-for-specific-countries" tabindex="-1"><a class="observablehq-header-anchor" href="#filter-for-specific-countries">Filter for Specific Countries</a></h3>
+<p>For this example, we'll compare <strong>Afghanistan</strong> and <strong>Germany</strong> across multiple years:</p>
+<pre><code>const filteredData = data.filter(d =&gt; d.Country === "Afghanistan" || d.Country === "Germany");
+
+console.log("Filtered Data:", filteredData);
+</code></pre>
+<p><strong>What's <code>.filter()</code>?</strong></p>
+<ul>
+<li>Keeps only rows where the condition is <code>true</code></li>
+<li><code>||</code> is the OR operator - matches either country</li>
+<li>Returns a new array with only Afghanistan and Germany data</li>
+</ul>
+<p><strong>Result:</strong> We now have only rows for these two countries across all years.</p>
+<hr>
+<h2 id="step-2-grouping-data-with-d3-group" tabindex="-1"><a class="observablehq-header-anchor" href="#step-2-grouping-data-with-d3-group">Step 2: Grouping Data with <code>d3.group()</code></a></h2>
+<p>This is the key to grouped bar charts! We need to organize our data hierarchically: <strong>Country → Year → Data</strong>.</p>
+<h3 id="using-d3-group-for-nested-structure" tabindex="-1"><a class="observablehq-header-anchor" href="#using-d3-group-for-nested-structure">Using <code>d3.group()</code> for Nested Structure</a></h3>
+<pre><code>const group = d3.group(filteredData, d =&gt; d.Country, d =&gt; d.Year);
+
+console.log("Grouped Data:", group);
+</code></pre>
+<p><strong>Breaking it down:</strong></p>
+<ol>
+<li><strong>First parameter (<code>filteredData</code>)</strong> - The data to group</li>
+<li><strong>Second parameter (<code>d =&gt; d.Country</code>)</strong> - First level of grouping (by Country)</li>
+<li><strong>Third parameter (<code>d =&gt; d.Year</code>)</strong> - Second level of grouping (by Year within each Country)</li>
+</ol>
+<p><strong>What does <code>d3.group()</code> return?</strong></p>
+<p>A <strong>nested Map</strong> structure:</p>
+<pre><code>Map {
+  "Afghanistan" =&gt; Map {
+    "2015" =&gt; [{ Country: "Afghanistan", Year: "2015", ... }],
+    "2016" =&gt; [{ Country: "Afghanistan", Year: "2016", ... }],
+    "2017" =&gt; [{ Country: "Afghanistan", Year: "2017", ... }]
+  },
+  "Germany" =&gt; Map {
+    "2015" =&gt; [{ Country: "Germany", Year: "2015", ... }],
+    "2016" =&gt; [{ Country: "Germany", Year: "2016", ... }],
+    "2017" =&gt; [{ Country: "Germany", Year: "2017", ... }]
+  }
+}
+</code></pre>
+<p><strong>Why this structure?</strong></p>
+<ul>
+<li>Makes it easy to iterate over countries first</li>
+<li>Then iterate over years within each country</li>
+<li>Perfect for nested data binding in D3!</li>
+</ul>
+<h3 id="d3-group-vs-d3-rollup" tabindex="-1"><a class="observablehq-header-anchor" href="#d3-group-vs-d3-rollup"><code>d3.group()</code> vs <code>d3.rollup()</code></a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+<th>Use When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>d3.group()</code></td>
+<td>Map with <strong>all rows</strong> in arrays</td>
+<td>You need the original data rows</td>
+</tr>
+<tr>
+<td><code>d3.rollup()</code></td>
+<td>Map with <strong>aggregated values</strong></td>
+<td>You need to calculate sum, mean, etc.</td>
+</tr>
+</tbody>
+</table>
+<p>In this chart, we need the actual data rows (not aggregated), so we use <code>d3.group()</code>.</p>
+<hr>
+<h2 id="step-3-extracting-unique-values" tabindex="-1"><a class="observablehq-header-anchor" href="#step-3-extracting-unique-values">Step 3: Extracting Unique Values</a></h2>
+<p>We need arrays of unique countries and years for our scales.</p>
+<h3 id="getting-unique-countries" tabindex="-1"><a class="observablehq-header-anchor" href="#getting-unique-countries">Getting Unique Countries</a></h3>
+<pre><code>const countries = [...new Set(filteredData.map(d =&gt; d.Country))];
+
+console.log("Countries:", countries); // ["Afghanistan", "Germany"]
+</code></pre>
+<p><strong>Breaking it down:</strong></p>
+<ol>
+<li><strong><code>.map(d =&gt; d.Country)</code></strong> - Extract all country values: <code>["Afghanistan", "Afghanistan", "Germany", "Germany", ...]</code></li>
+<li><strong><code>new Set(...)</code></strong> - Create a Set (removes duplicates): <code>Set { "Afghanistan", "Germany" }</code></li>
+<li><strong><code>[...  ]</code></strong> - Spread operator converts Set back to array: <code>["Afghanistan", "Germany"]</code></li>
+</ol>
+<h3 id="getting-unique-years-sorted" tabindex="-1"><a class="observablehq-header-anchor" href="#getting-unique-years-sorted">Getting Unique Years (Sorted)</a></h3>
+<pre><code>const years = [...new Set(filteredData.map(d =&gt; +d.Year))].sort((a, b) =&gt; a - b);
+
+console.log("Years:", years); // [2015, 2016, 2017, ...]
+</code></pre>
+<p><strong>Additional steps:</strong></p>
+<ul>
+<li><strong><code>+d.Year</code></strong> - Convert string to number (important for sorting!)</li>
+<li><strong><code>.sort((a, b) =&gt; a - b)</code></strong> - Sort years numerically in ascending order</li>
+</ul>
+<p><strong>Why convert to number?</strong></p>
+<pre><code>// String sort (WRONG):
+["2019", "2015", "2017"].sort() // ["2015", "2017", "2019"] ✓ (works by luck)
+
+// But be careful:
+["9", "10", "11"].sort() // ["10", "11", "9"] ❌ (alphabetical!)
+
+// Number sort (CORRECT):
+[9, 10, 11].sort((a, b) =&gt; a - b) // [9, 10, 11] ✓
+</code></pre>
+<hr>
+<h2 id="step-4-define-chart-dimensions" tabindex="-1"><a class="observablehq-header-anchor" href="#step-4-define-chart-dimensions">Step 4: Define Chart Dimensions</a></h2>
+<pre><code>const width = 928;
+const height = 500;
+const margin = { top: 20, right: 20, bottom: 100, left: 60 };
+</code></pre>
+<p><strong>Note:</strong> <code>bottom: 100</code> - Extra space for two levels of labels (years + countries)!</p>
+<hr>
+<h2 id="step-5-create-nested-scales" tabindex="-1"><a class="observablehq-header-anchor" href="#step-5-create-nested-scales">Step 5: Create Nested Scales</a></h2>
+<p>This is where grouped bar charts get interesting - we need <strong>TWO x-scales</strong>!</p>
+<h3 id="x0-scale-main-groups-countries" tabindex="-1"><a class="observablehq-header-anchor" href="#x0-scale-main-groups-countries">X0 Scale (Main Groups - Countries)</a></h3>
+<pre><code>// x0 scale for countries (outer grouping)
+const x0 = d3.scaleBand()
+  .domain(countries)                              // ["Afghanistan", "Germany"]
+  .range([margin.left, width - margin.right])    // Full chart width
+  .paddingInner(0.25);                           // 25% space between country groups
+</code></pre>
+<p><strong>What this does:</strong></p>
+<ul>
+<li>Divides the chart width into sections for each country</li>
+<li>Each country gets a "band" of space</li>
+<li><code>.paddingInner(0.25)</code> adds spacing between country groups</li>
+</ul>
+<h3 id="x1-scale-sub-groups-years" tabindex="-1"><a class="observablehq-header-anchor" href="#x1-scale-sub-groups-years">X1 Scale (Sub-groups - Years)</a></h3>
+<pre><code>// x1 scale for years within each country (inner grouping)
+const x1 = d3.scaleBand()
+  .domain(years)                  // [2015, 2016, 2017, ...]
+  .range([0, x0.bandwidth()])     // Within one country's band!
+  .padding(0.08);                 // 8% space between year bars
+</code></pre>
+<p><strong>Key difference:</strong></p>
+<ul>
+<li><code>.range([0, x0.bandwidth()])</code> - Range is <strong>within one country's space</strong>, not the full chart!</li>
+<li>Subdivides each country section into bars for each year</li>
+</ul>
+<h3 id="y-scale-values" tabindex="-1"><a class="observablehq-header-anchor" href="#y-scale-values">Y Scale (Values)</a></h3>
+<pre><code>const yScale = d3.scaleLinear()
+  .domain([0, d3.max(filteredData, d =&gt; +d["Perceptions of corruption"])])
+  .range([height - margin.bottom, margin.top])
+</code></pre>
+<p>Standard linear scale for the corruption perception values.</p>
+<h3 id="color-scale-countries" tabindex="-1"><a class="observablehq-header-anchor" href="#color-scale-countries">Color Scale (Countries)</a></h3>
+<pre><code>// Color scale for countries
+const colorScale = d3.scaleOrdinal()
+  .domain(countries)                    // ["Afghanistan", "Germany"]
+  .range(["#e6af2e", "#6b0504"]);      // [yellow-orange, dark red]
+</code></pre>
+<p><strong>Why <code>scaleOrdinal()</code>?</strong></p>
+<ul>
+<li>Countries are categorical (not continuous)</li>
+<li>Each country gets its own distinct color</li>
+<li>Makes it easy to distinguish countries visually</li>
+</ul>
+<hr>
+<h2 id="step-6-create-svg-container" tabindex="-1"><a class="observablehq-header-anchor" href="#step-6-create-svg-container">Step 6: Create SVG Container</a></h2>
+<pre><code>const svg = d3.select(".container")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+</code></pre>
+<hr>
+<h2 id="step-7-add-custom-axis-labels" tabindex="-1"><a class="observablehq-header-anchor" href="#step-7-add-custom-axis-labels">Step 7: Add Custom Axis Labels</a></h2>
+<p>Grouped bar charts need <strong>two levels of labels</strong>: main groups (countries) and sub-groups (years).</p>
+<h3 id="country-labels-bottom-level" tabindex="-1"><a class="observablehq-header-anchor" href="#country-labels-bottom-level">Country Labels (Bottom Level)</a></h3>
+<pre><code>// Add country labels below years
+const countryLabels = svg.append("g")
+  .attr("transform", `translate(0,${height - margin.bottom + 35})`);
+
+countries.forEach(country =&gt; {
+  countryLabels.append("text")
+    .attr("x", x0(country) + x0.bandwidth() / 2)  // Center of country band
+    .attr("y", 0)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "14px")
+    .text(country);
+});
+</code></pre>
+<p><strong>Key calculation:</strong></p>
+<ul>
+<li><code>x0(country)</code> - Left edge of country band</li>
+<li><code>+ x0.bandwidth() / 2</code> - Add half the width = center!</li>
+</ul>
+<h3 id="year-labels-above-country-labels" tabindex="-1"><a class="observablehq-header-anchor" href="#year-labels-above-country-labels">Year Labels (Above Country Labels)</a></h3>
+<pre><code>// Add year labels above country labels
+const yearLabels = svg.append("g")
+  .attr("transform", `translate(0,${height - margin.bottom + 15})`);
+
+countries.forEach(country =&gt; {
+  years.forEach(year =&gt; {
+    yearLabels.append("text")
+      .attr("x", x0(country) + x1(year) + x1.bandwidth() / 2)  // Position within country
+      .attr("y", 0)
+      .attr("text-anchor", "middle")
+      .attr("font-size", "10px")
+      .text(year);
+  });
+});
+</code></pre>
+<p><strong>Position calculation:</strong></p>
+<ul>
+<li><code>x0(country)</code> - Country's starting position</li>
+<li><code>+ x1(year)</code> - Year's position <strong>within</strong> that country</li>
+<li><code>+ x1.bandwidth() / 2</code> - Center of the year bar</li>
+</ul>
+<hr>
+<h2 id="step-8-add-y-axis" tabindex="-1"><a class="observablehq-header-anchor" href="#step-8-add-y-axis">Step 8: Add Y-axis</a></h2>
+<pre><code>svg.append("g")
+  .attr("transform", `translate(${margin.left},0)`)
+  .call(d3.axisLeft(yScale))
+  .call(g =&gt; g.select(".domain").remove())
+  .call(g =&gt; g.selectAll(".tick line")
+    .attr("x2", width - margin.left - margin.right)
+    .attr("stroke-width", 0.1))
+  .call(g =&gt; g.append("text")
+    .attr("x", -margin.left)
+    .attr("y", 10)
+    .attr("fill", "currentColor")
+    .attr("text-anchor", "start")
+    .text("↑ Perceptions of corruption"));
+</code></pre>
+<p>Standard y-axis with grid lines and label.</p>
+<hr>
+<h2 id="step-9-draw-grouped-bars-the-magic" tabindex="-1"><a class="observablehq-header-anchor" href="#step-9-draw-grouped-bars-the-magic">Step 9: Draw Grouped Bars (The Magic!)</a></h2>
+<p>This is where the nested data binding happens!</p>
+<h3 id="first-level-create-groups-for-each-country" tabindex="-1"><a class="observablehq-header-anchor" href="#first-level-create-groups-for-each-country">First Level: Create Groups for Each Country</a></h3>
+<pre><code>const countryGroups = svg.append("g")
+  .selectAll("g")
+  .data(group)                          // Bind the Map from d3.group()
+  .join("g")
+  .attr("transform", d =&gt; `translate(${x0(d[0])},0)`);
+</code></pre>
+<p><strong>What's happening:</strong></p>
+<ol>
+<li><strong><code>.data(group)</code></strong> - Bind the nested Map (country → years → data)</li>
+<li><strong><code>.join("g")</code></strong> - Create a <code>&lt;g&gt;</code> group for each country</li>
+<li><strong><code>d[0]</code></strong> - The Map key (country name: "Afghanistan" or "Germany")</li>
+<li><strong><code>translate(${x0(d[0])},0)</code></strong> - Move each country group to its x position</li>
+</ol>
+<p><strong>Result:</strong> We now have one <code>&lt;g&gt;</code> group positioned for each country.</p>
+<h3 id="second-level-create-bars-for-each-year" tabindex="-1"><a class="observablehq-header-anchor" href="#second-level-create-bars-for-each-year">Second Level: Create Bars for Each Year</a></h3>
+<pre><code>countryGroups.selectAll("rect")
+  .data(d =&gt; d[1])              // d[1] is the nested Map of years
+  .join("rect")
+  .attr("x", d =&gt; x1(+d[0]))    // x position within country (year)
+  .attr("y", d =&gt; yScale(+d[1][0]["Perceptions of corruption"]))
+  .attr("width", x1.bandwidth())
+  .attr("height", d =&gt; yScale(0) - yScale(+d[1][0]["Perceptions of corruption"]))
+  .attr("fill", d =&gt; colorScale(d[1][0]["Country"]));
+</code></pre>
+<p><strong>Breaking down the data structure:</strong></p>
+<p>For each country group:</p>
+<ul>
+<li><strong><code>d[1]</code></strong> - The nested Map of years for this country<pre><code>Map {
+  "2015" =&gt; [{ Country: "Afghanistan", Year: "2015", ... }],
+  "2016" =&gt; [{ Country: "Afghanistan", Year: "2016", ... }]
+}
+</code></pre>
+</li>
+</ul>
+<p>For each bar (year):</p>
+<ul>
+<li><strong><code>d[0]</code></strong> - The year (Map key): <code>"2015"</code></li>
+<li><strong><code>d[1]</code></strong> - Array of data rows for this year: <code>[{ ... }]</code></li>
+<li><strong><code>d[1][0]</code></strong> - The first (and only) data row</li>
+<li><strong><code>d[1][0]["Perceptions of corruption"]</code></strong> - The value to plot</li>
+</ul>
+<p><strong>Attribute calculations:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Calculation</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>x</strong></td>
+<td><code>x1(+d[0])</code></td>
+<td>Position within country group based on year</td>
+</tr>
+<tr>
+<td><strong>y</strong></td>
+<td><code>yScale(value)</code></td>
+<td>Top of bar based on corruption value</td>
+</tr>
+<tr>
+<td><strong>width</strong></td>
+<td><code>x1.bandwidth()</code></td>
+<td>Width of year bar</td>
+</tr>
+<tr>
+<td><strong>height</strong></td>
+<td><code>yScale(0) - yScale(value)</code></td>
+<td>From bottom to value</td>
+</tr>
+<tr>
+<td><strong>fill</strong></td>
+<td><code>colorScale(country)</code></td>
+<td>Color based on country</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="grouped-bar-chart-output" tabindex="-1"><a class="observablehq-header-anchor" href="#grouped-bar-chart-output">Grouped bar chart output</a></h2>
+<div class="observablehq observablehq--block"><!--:0e361a92:--></div>
+<hr>
+<h2 id="complete-working-example" tabindex="-1"><a class="observablehq-header-anchor" href="#complete-working-example">Complete Working Example</a></h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Grouped bar chart - happiness data&lt;/title&gt;
+    &lt;style&gt;
+        text {
+            font-family: sans-serif;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;&lt;/div&gt;
+
+    &lt;!-- Notice type="module" --&gt;
+    &lt;script type="module"&gt;
+        // Import D3 from the CDN
+        import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+        d3.csv("./data/happiness.csv").then(data =&gt; {
+
+            // Filter for Afghanistan and Albania only
+            const filteredData = data.filter(d =&gt; d.Country === "Afghanistan" || d.Country === "Germany");
+
+
+            const group = d3.group(filteredData, d =&gt; d.Country, d =&gt; d.Year);
+
+            // Convert to array structure for D3
+            const countries = [...new Set(filteredData.map(d =&gt; d.Country))]
+            const years = [...new Set(filteredData.map(d =&gt; +d.Year))].sort((a, b) =&gt; a - b);
+
+            // Dimensions
+            const width = 928;
+            const height = 500;
+            const margin = { top: 20, right: 20, bottom: 100, left: 60 };
+
+            // Scales
+            // x0 scale for countries
+            const x0 = d3.scaleBand()
+                .domain(countries)
+                .range([margin.left, width - margin.right])
+                .paddingInner(0.25);
+
+            // x1 scale for years within each country
+            const x1 = d3.scaleBand()
+                .domain(years)
+                .range([0, x0.bandwidth()])
+                .padding(0.08);
+
+            // y scale for corruption perception
+            const yScale = d3.scaleLinear()
+                .domain([0, d3.max(filteredData, d =&gt; +d["Perceptions of corruption"])])
+                .range([height - margin.bottom, margin.top])
+
+            // Color scale for countries
+            const colorScale = d3.scaleOrdinal()
+                .domain(countries)
+                .range(["#e6af2e", "#6b0504"]);
+
+            // Create SVG
+            const svg = d3.select(".container")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+
+            // Add country labels below years
+            const countryLabels = svg.append("g")
+                .attr("transform", `translate(0,${height - margin.bottom + 35})`);
+
+            countries.forEach(country =&gt; {
+                countryLabels.append("text")
+                    .attr("x", x0(country) + x0.bandwidth() / 2)
+                    .attr("y", 0)
+                    .attr("text-anchor", "middle")
+                    .attr("font-size", "14px")
+                    .text(country);
+            });
+
+            // Add year labels above country labels
+            const yearLabels = svg.append("g")
+                .attr("transform", `translate(0,${height - margin.bottom + 15})`);
+
+            countries.forEach(country =&gt; {
+                years.forEach(year =&gt; {
+                    yearLabels.append("text")
+                        .attr("x", x0(country) + x1(year) + x1.bandwidth() / 2)
+                        .attr("y", 0)
+                        .attr("text-anchor", "middle")
+                        .attr("font-size", "10px")
+                        .text(year);
+                });
+            });
+      
+            // Add y-axis
+            svg.append("g")
+                .attr("transform", `translate(${margin.left},0)`)
+                .call(d3.axisLeft(yScale))
+                .call(g =&gt; g.select(".domain").remove())
+                .call(g =&gt; g.selectAll(".tick line")
+                    .attr("x2", width - margin.left - margin.right)
+                    .attr("stroke-width", 0.1))
+                .call(g =&gt; g.append("text")
+                    .attr("x", -margin.left)
+                    .attr("y", 10)
+                    .attr("fill", "currentColor")
+                    .attr("text-anchor", "start")
+                    .text("↑ Perceptions of corruption"));
+
+            // Draw grouped bars
+            const countryGroups = svg.append("g")
+                .selectAll("g")
+                .data(group)
+                .join("g")
+                .attr("transform", d =&gt; `translate(${x0(d[0])},0)`);
+
+            countryGroups.selectAll("rect")
+                .data(d =&gt; d[1])
+                .join("rect")
+                .attr("x", d =&gt; x1(+d[0]))
+                .attr("y", d =&gt; yScale(+d[1][0]["Perceptions of corruption"]))
+                .attr("width", x1.bandwidth())
+                .attr("height", d =&gt; yScale(0) - yScale(+d[1][0]["Perceptions of corruption"]))
+                .attr("fill", d =&gt; colorScale(d[1][0]["Country"]))
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./horizontal-bar"><span>Horizontal bar chart</span></a><a rel="next" href="./line"><span>Line chart</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="../../_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>
