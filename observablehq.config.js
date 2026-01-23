@@ -23,12 +23,17 @@ export default {
         { name: "D3 data binding", path: "/sessions/session-2/d3-data-binding" },
         { name: "D3 scales", path: "/sessions/session-2/d3-scales" },
         {name: "Session 2 demo code", path: "sessions/session-2/demo"}
-      ]
+      ],
+      open: false,
     },
     {
       name: "Session 3: D3 simple charts",
-      open: false,
-      pages: []
+      pages: [
+        { name: "Vertical bar chart", path: "/sessions/session-3/vertical-bar" },
+        { name: "Horizontal bar chart", path: "/sessions/session-3/horizontal-bar" },
+        { name: "Grouped bar chart", path: "/sessions/session-3/grouped-bar" },
+        { name: "Line chart", path: "/sessions/session-3/line" }
+      ],
     },
     {
       name: "Session 4: D3 intermediate charts",

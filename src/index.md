@@ -22,7 +22,7 @@ Before diving into D3, you'll need to understand the core web technologies it's 
 
 ---
 
-### Session 2: D3 Basics
+### Session 2: D3 Basics (Completed on 17th Jan, 2026)
 
 1. [D3 initial setup](sessions/session-2/d3-initial-setup) - Add D3 to your project
 2. [D3 selection](sessions/session-2/d3-selection) - Select, modify, and bind data to HTML/DOM elements
@@ -32,7 +32,10 @@ Before diving into D3, you'll need to understand the core web technologies it's 
 
 ### Session 3: D3 Simple Charts
 
-*Coming soon - Bar charts, line charts, and basic visualizations*
+1. [Vertical bar chart](sessions/session-3/vertical-bar)
+2. [Horizontal bar chart](sessions/session-3/horizontal-bar)
+3. [Grouped bar chart](sessions/session-3/grouped-bar)
+4. [Line chart](sessions/session-3/line)
 
 ---
 
