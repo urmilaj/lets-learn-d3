@@ -118,7 +118,112 @@ const yScale = d3.scaleLinear()
 - `.domain([0, max])` - Always start at 0 for bar charts
 - `.range()` is **flipped** - SVG y-coordinates go from top (0) to bottom (height)
 
+## Interactive Example: Understanding the Y-axis Flip
+
+Try toggling between flipped and unflipped ranges to see why we need to flip the y-axis:
+
+```js
+const rangeOption = view(Inputs.radio(
+  ["Flipped Range (Correct)", "Unflipped Range (Wrong)"],
+  {value: "Flipped Range (Correct)", label: "Y-axis Range:"}
+));
+```
+
+```js
+  // Sample data for demonstration
+  const sampleData = [
+    {Format: "CD", Revenue: 150},
+    {Format: "Vinyl", Revenue: 100},
+    {Format: "Digital", Revenue: 200}
+  ];
+  
+  const demoWidth = 600;
+  const demoHeight = 300;
+  const demoMargin = {top: 20, right: 20, bottom: 40, left: 60};
+  
+  // X-axis scale
+  const demoXScale = d3.scaleBand()
+    .domain(sampleData.map(d => d.Format))
+    .range([demoMargin.left, demoWidth - demoMargin.right])
+    .padding(0.2);
+  
+  // Y-axis scale - changes based on selection
+  const demoYScale = d3.scaleLinear()
+    .domain([0, d3.max(sampleData, d => d.Revenue)])
+    .range(rangeOption === "Flipped Range (Correct)" 
+      ? [demoHeight - demoMargin.bottom, demoMargin.top]  // Flipped
+      : [demoMargin.top, demoHeight - demoMargin.bottom]  // Unflipped
+    );
+  
+  // Create SVG
+  const demoSvg = d3.create("svg")
+    .attr("width", demoWidth)
+    .attr("height", demoHeight)
+    .style("background", "#f9f9f9")
+    .style("border", "1px solid #ddd");
+  
+  // Add coordinate reference line at top
+  demoSvg.append("line")
+    .attr("x1", 0)
+    .attr("x2", demoWidth)
+    .attr("y1", 0)
+    .attr("y2", 0)
+    .attr("stroke", "red")
+    .attr("stroke-width", 2);
+  
+  demoSvg.append("text")
+    .attr("x", 10)
+    .attr("y", 15)
+    .attr("fill", "red")
+    .attr("font-size", "12px")
+    .text("← SVG y=0 starts here (top)");
+  
+  // Draw bars
+  demoSvg.append("g")
+    .selectAll("rect")
+    .data(sampleData)
+    .join("rect")
+      .attr("x", d => demoXScale(d.Format))
+      .attr("y", d => demoYScale(d.Revenue))
+      .attr("width", demoXScale.bandwidth())
+      .attr("height", d => Math.abs(demoYScale(0) - demoYScale(d.Revenue)))
+      .attr("fill", rangeOption === "Flipped Range (Correct)" ? "rebeccaPurple" : "orange")
+      .attr("opacity", 0.8);
+  
+  // Add x-axis
+  demoSvg.append("g")
+    .attr("transform", `translate(0,${demoHeight - demoMargin.bottom})`)
+    .call(d3.axisBottom(demoXScale));
+  
+  // Add y-axis
+  demoSvg.append("g")
+    .attr("transform", `translate(${demoMargin.left},0)`)
+    .call(d3.axisLeft(demoYScale));
+  
+  // Add explanation text
+  demoSvg.append("text")
+    .attr("x", demoWidth / 2)
+    .attr("y", demoHeight - 5)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "13px")
+    .attr("font-weight", "bold")
+    .attr("fill", rangeOption === "Flipped Range (Correct)" ? "green" : "red")
+    .text(rangeOption === "Flipped Range (Correct)" 
+      ? "✓ Bars grow upward as expected" 
+      : "✗ Bars grow downward (wrong!)");
+  
+  display(demoSvg.node())
+```
+
+**What's happening?**
+- **Flipped Range**: `[height - margin.bottom, margin.top]` → Higher revenue values map to smaller y-coordinates (closer to top)
+- **Unflipped Range**: `[margin.top, height - margin.bottom]` → Higher revenue values map to larger y-coordinates (closer to bottom) ❌
+
+This flip is necessary because SVG's coordinate system starts at the top-left corner (y=0), not the bottom-left like traditional graphs!
+
 ---
+
+
 
 ## Step 4: Create SVG Container
 
