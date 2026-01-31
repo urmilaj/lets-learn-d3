@@ -32,7 +32,8 @@ export default {
         { name: "Vertical bar chart", path: "/sessions/session-3/vertical-bar" },
         { name: "Horizontal bar chart", path: "/sessions/session-3/horizontal-bar" },
         { name: "Grouped bar chart", path: "/sessions/session-3/grouped-bar" },
-        { name: "Line chart", path: "/sessions/session-3/line" }
+        { name: "Line chart", path: "/sessions/session-3/line" },
+        {name: "Refresher session", path: "/sessions/session-3/refresher-session"},
       ],
     },
     {
