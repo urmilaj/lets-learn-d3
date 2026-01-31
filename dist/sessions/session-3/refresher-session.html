@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Refresher Session | Lets learn D3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="modulepreload" href="../../_observablehq/client.2105f893.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.73a8ec5a.js">
+<link rel="icon" href="../../_file/icon.8ccf84f2.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../../_observablehq/client.2105f893.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Lets learn D3</a></li>
+  </ol>
+  <details>
+    <summary>Session 1: Web development basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-1/initial-setup">Initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-html">Basic HTML</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-css">Basic CSS</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-svg">Basic SVG</a></li>
+    <li class="observablehq-link"><a href="../session-1/basic-js">Basic Javascript</a></li>
+    <li class="observablehq-link"><a href="../session-1/d3-example-1">D3 example</a></li>
+    <li class="observablehq-link"><a href="../session-1/exercises-1">Exercises</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 2: D3 basics</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../session-2/d3-initial-setup">D3 initial setup</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-selection">D3 selection</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-data-binding">D3 data binding</a></li>
+    <li class="observablehq-link"><a href="../session-2/d3-scales">D3 scales</a></li>
+    <li class="observablehq-link"><a href="../session-2/demo">Session 2 demo code</a></li>
+    </ol>
+  </details>
+  <section class="observablehq-section-active">
+    <summary>Session 3: D3 simple charts</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./vertical-bar">Vertical bar chart</a></li>
+    <li class="observablehq-link"><a href="./horizontal-bar">Horizontal bar chart</a></li>
+    <li class="observablehq-link"><a href="./grouped-bar">Grouped bar chart</a></li>
+    <li class="observablehq-link"><a href="./line">Line chart</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./refresher-session">Refresher session</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Session 4: D3 intermediate charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 5: D3 advanced charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 6: D3 custom charts</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 7: D3 and observable notebooks</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 8: Modern web development with D3</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 9: Github, git and git pages</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 10: D3 and Vue.js</summary>
+    <ol>
+    </ol>
+  </details>
+  <details>
+    <summary>Session 11: D3 and Svelte.js</summary>
+    <ol>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="refresher-session-code-31-jan-2026" tabindex="-1"><a class="observablehq-header-anchor" href="#refresher-session-code-31-jan-2026">Refresher Session Code (31 Jan 2026)</a></h1>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;D3 refresher session&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/d3@7"&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;h1 class="titleTag"&gt;D3 refresher session&lt;/h1&gt;
+        &lt;svg width="500" height="500" style="background-color:bisque"&gt;
+            &lt;line x1="50" y1="20" x2="50" y2="80" stroke="black" stroke-width="10" /&gt;
+            &lt;circle cx="50" cy="20" r="20" fill="white" stroke="black" stroke-width="2" stroke-dasharray="5,5" /&gt;
+            &lt;rect id="specialRect" class="rectOne" x="50" y="0" width="50" height="50" opacity="0.8"/&gt;
+            &lt;rect class="rectOne" x="150" y="0" width="50" height="50" opacity="0.8"/&gt;
+            &lt;path d="M50,150 c20,50,50,60,70,20" stroke="black" fill="pink" /&gt;
+            &lt;text x="0" y="150"&gt;Hello&lt;/text&gt;
+            &lt;g transform="translate(150,180)"&gt;
+                &lt;circle cx="0" cy="0" r="20" fill="white" stroke="black" stroke-width="2" stroke-dasharray="5,5" /&gt;
+                &lt;circle cx="20" cy="0" r="20" fill="lightblue" stroke="black" stroke-width="2" stroke-dasharray="5,5" /&gt;
+            &lt;/g&gt;
+            &lt;rect class="otherRect"/&gt;
+            &lt;rect class="otherRect"/&gt;
+            &lt;rect class="otherRect"/&gt;
+            &lt;rect class="otherRect"/&gt;
+        &lt;/svg&gt;
+        &lt;svg class="svg2"&gt;&lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        console.log(d3)
+        const value = '5';
+        let number = 5;
+
+        number = 10
+
+        const peopleInTheSession = {
+            p1: 'yashita',
+            p2: 'john',
+            p3: 'doe'
+        }
+        const peopleInTheSession2 = [
+            {
+            p1: 'yashita',
+            p2: 'john',
+            p3: 'doe'
+        },
+        {
+            p1: 'yashita',
+            p2: 'john',
+            p3: 'doe'
+        }
+        ]
+
+        const fruits = ['apple', 'banana', 'cherry'];
+
+        // value = '10'
+        // console.log(number)
+        // console.log(peopleInTheSession) 
+        // console.log(fruits)
+
+        console.log(peopleInTheSession2)
+
+
+        document.querySelector('.titleTag').textContent = "D3 refresher session - updated"
+        document.querySelector('.titleTag').style.color = "blue"
+
+
+        document.querySelector('.titleTag').style.color = "red"
+
+
+
+        d3.selectAll('#specialRect')
+        .attr('fill', 'orange')
+
+        d3.selectAll("circle").attr("fill", "lightgreen");
+
+        const otherRect = d3.selectAll(".otherRect")
+        .attr("width", "40")
+        .attr("height", "40")
+        .attr("x", (d,i) =&gt; i*50)
+        .attr("y", 300)
+
+        console.log(otherRect)
+
+        const dataNames = ['yashita', 'devz', 'naman', 'urmila'];
+
+        const dataTwo = [
+            {name: 'yashita', age: 25},
+            {name: 'devz', age: 26},
+            {name: 'naman', age: 24},
+            {name: 'urmila', age: 29}
+        ];
+
+
+        const svgContainer = d3.select(".svg2")
+        .attr("width", 500)
+        .attr("height", 500)
+        .style("background-color", "bisque");
+
+
+        svgContainer.selectAll(".sessionAttenders")
+        .data(dataNames)
+        .join("circle")
+        .attr("class", "sessionAttenders")
+        .attr("cx", (d,i) =&gt; (i*20))
+        .attr("cy", 50)
+        .attr("r", 6)
+        .attr("fill", "purple")
+        .attr("stroke", "white")
+        .attr("opacity", 0.7)
+
+
+        svgContainer.append("g")
+        .attr("transform", "translate(0,100)")
+        .selectAll("text")
+        .data(dataTwo)
+        .join("text")
+        .attr("x", (d,i) =&gt; i*100)
+        .attr("y", (d,i) =&gt; i*10)
+        .text(d =&gt; d.name+ " hello " +d.age)
+
+
+        const x = d3.scaleLinear()
+        .domain([d3.min(dataTwo, d=&gt;d.age), d3.max(dataTwo, d=&gt;d.age)])
+        .range([50, 150])
+
+        console.log(x.domain())
+        console.log(x.range())
+
+        svgContainer.selectAll("text")
+        .data(dataTwo)
+        .attr("class", "ageText")
+        .join("text")
+        .attr("x", (d) =&gt; x(d.age))
+        .attr("y", 500)
+        .attr("dx", 5)
+        .attr("text-anchor", "end")
+        .text(d =&gt; d.age)
+
+        d3.csv("music-aggregate.csv").then(data =&gt; {
+            console.log(data)
+
+            const x = d3.scaleBand()
+            .domain(data.map(d=&gt;d.Format))
+            .range([50, 450])
+            .padding(0.2)
+
+            const y = d3.scaleLinear()
+            .domain([d3.min(data, d=&gt;Number(d.Revenue)), d3.max(data, d=&gt;Number(d.Revenue))])
+            .range([450, 50])
+
+            const xAxis = d3.axisBottom(x)
+            const yAxis = d3.axisLeft(y)
+
+            svgContainer.append("g")
+            .attr("transform", "translate(0, 450)")
+            .call(xAxis)
+            .call(g =&gt; g.select(".domain").remove())
+
+            svgContainer.append("g")
+            .attr("transform", "translate(50, 0)")
+            .call(yAxis)
+
+            svgContainer.selectAll("rect")
+            .data(data)
+            .join("rect")
+            .attr("x", d =&gt; x(d.Format))
+            .attr("y", d =&gt; y(Number(d.Revenue)))
+            .attr("width", x.bandwidth())
+            .attr("height", d =&gt; 450 - y(Number(d.Revenue)))
+            .attr("fill", "teal")
+
+
+        })
+
+
+
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./line"><span>Line chart</span></a></nav>
+<div><div style="display: flex; align-items: center; ">
+  <a href="https://github.com/urmilaj/lets-learn-d3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center;" rel="noopener noreferrer">
+    <img src="../../_file/icon.8ccf84f2.png" width="32" height="32">
+    <span style="font-size: 15px; margin-top: 7px;">Lets learn D3</span>
+  </a>
+  </div></div>
+</footer>
+</div>
+</body>
+</html>
